@@ -43,9 +43,15 @@ public class Dashboard extends Fragment
         else
         {
             questionnaire.setVisibility(View.GONE);
-
-
         }
+
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
+            }
+        });
 
         return dashboard;
     }

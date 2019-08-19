@@ -35,9 +35,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
+        Intent intent = getIntent();
+        boolean goToSchedule = intent.getBooleanExtra("schedule", false);
+        if (goToSchedule)
+        {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
+        }
+        else {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
+        }
     }
 
 
@@ -52,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             nextFragment = new Dashboard();
         }
-        else if (id == R.id.nav_gallery)
+        else if (id == R.id.nav_schedule)
         {
-
+            nextFragment = new Schedule();
         }
         else if (id == R.id.nav_slideshow)
         {

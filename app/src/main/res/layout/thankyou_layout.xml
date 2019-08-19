@@ -12,12 +12,38 @@
         android:textAlignment="center"
         android:textSize="30sp"/>
 
-    <Button
-        android:id="@+id/finish"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Finish"
-        android:textColor="@android:color/white" />
+        android:text="Do you want to continue?"
+        android:textAlignment="center"
+        android:textSize="30sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/wantContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textColor="@android:color/white" />
+
+
+        <Button
+            android:id="@+id/notContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:layout_marginLeft="100dp"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
