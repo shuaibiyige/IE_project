@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="600dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
    <LinearLayout
@@ -16,20 +16,20 @@
            android:layout_height="wrap_content"
            android:layout_gravity="center_vertical"
            android:text="What is your child's age?"
-           android:layout_marginLeft="25dp"
-           android:textSize="25sp" />
+           android:layout_marginLeft="15dp"
+           android:textSize="17sp" />
        <Spinner
            android:id="@+id/childAgeSpinner"
-           android:layout_width="150dp"
+           android:layout_width="200dp"
            android:layout_height="wrap_content"
-           android:layout_marginLeft="25dp"/>
+           android:layout_marginLeft="15dp"/>
 
    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -37,20 +37,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="What are your hobbies?"
-            android:layout_marginLeft="25dp"
-            android:textSize="25sp" />
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp" />
         <Spinner
             android:id="@+id/hobbiesSpinner"
-            android:layout_width="150dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -58,21 +58,21 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="What is the child's eating habit?"
-            android:layout_marginLeft="25dp"
-            android:textSize="25sp" />
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp" />
         <Spinner
             android:id="@+id/eatingHabitSpinner"
-            android:layout_width="150dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp">
 
         <TextView
             android:id="@+id/child_hobbies"
@@ -80,10 +80,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="What are the child's hobbies?"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <CheckBox
-            android:id="@+id/movie"
+            android:id="@+id/child_movie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Movie"
@@ -93,56 +93,54 @@
             android:checked="false" />
 
         <CheckBox
-            android:id="@+id/gaming"
+            android:id="@+id/child_gaming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gaming"
-            android:layout_below="@+id/movie"
+            android:layout_below="@+id/child_movie"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <CheckBox
-            android:id="@+id/baking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Baking"
-            android:layout_alignTop="@+id/movie"
-            android:layout_toRightOf="@id/movie"
-            android:layout_marginLeft="99dp" />
+            android:id="@+id/child_baking"
+            android:layout_alignTop="@+id/child_movie"
+            android:layout_toRightOf="@id/child_movie"
+            android:layout_marginLeft="50dp"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Serious"
-            android:id="@+id/serious"
-            android:layout_below="@+id/baking"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:id="@+id/child_serious_hobbies"
+            android:layout_below="@+id/child_baking"
+            android:layout_alignLeft="@id/child_baking" />
 
         <CheckBox
-            android:id="@+id/watching_series"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Watching Series"
-            android:layout_alignTop="@+id/baking"
-            android:layout_toRightOf="@id/baking"
-            android:layout_marginLeft="99dp" />
+            android:text="Watching Serious"
+            android:id="@+id/child_watching_serious"
+            android:layout_alignTop="@+id/child_movie"
+            android:layout_toRightOf="@id/child_baking"
+            android:layout_marginLeft="50dp"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Arts and Crafts"
-            android:id="@+id/arts_crafts"
-            android:layout_below="@+id/watching_series"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:id="@+id/child_arts_crafts"
+            android:layout_below="@+id/child_watching_serious"
+            android:layout_alignLeft="@id/child_watching_serious" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp">
 
         <TextView
             android:id="@+id/child_dislike"
@@ -150,10 +148,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="What activities does your child dislike?"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <CheckBox
-            android:id="@+id/dislike_movie"
+            android:id="@+id/child_movie_not"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Movie"
@@ -163,48 +161,46 @@
             android:checked="false" />
 
         <CheckBox
-            android:id="@+id/dislike_gaming"
+            android:id="@+id/child_gaming_not"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gaming"
-            android:layout_below="@+id/dislike_movie"
+            android:layout_below="@+id/child_movie_not"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <CheckBox
-            android:id="@+id/dislike_baking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Baking"
-            android:layout_alignTop="@+id/dislike_movie"
-            android:layout_toRightOf="@id/dislike_movie"
-            android:layout_marginLeft="99dp" />
+            android:id="@+id/child_baking_not"
+            android:layout_alignTop="@+id/child_movie_not"
+            android:layout_toRightOf="@id/child_movie_not"
+            android:layout_marginLeft="50dp"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Serious"
-            android:id="@+id/dislike_serious"
-            android:layout_below="@+id/dislike_baking"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:id="@+id/child_serious_hobbies_not"
+            android:layout_below="@+id/child_baking_not"
+            android:layout_alignLeft="@id/child_baking_not" />
 
         <CheckBox
-            android:id="@+id/dislike_watching_series"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Watching Series"
-            android:layout_alignTop="@+id/dislike_baking"
-            android:layout_toRightOf="@id/dislike_baking"
-            android:layout_marginLeft="99dp" />
+            android:text="Watching Serious"
+            android:id="@+id/child_watching_serious_not"
+            android:layout_alignTop="@+id/child_movie_not"
+            android:layout_toRightOf="@id/child_baking_not"
+            android:layout_marginLeft="50dp"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Arts and Crafts"
-            android:id="@+id/dislike_arts_crafts"
-            android:layout_below="@+id/dislike_watching_series"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:id="@+id/child_arts_crafts_not"
+            android:layout_below="@+id/child_watching_serious_not"
+            android:layout_alignLeft="@id/child_watching_serious_not" />
     </RelativeLayout>
 </LinearLayout>
