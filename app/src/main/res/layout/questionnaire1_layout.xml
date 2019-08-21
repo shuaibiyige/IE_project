@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="600dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,20 +16,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Gender"
-            android:layout_marginLeft="25dp"
-            android:textSize="25sp" />
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp" />
         <Spinner
             android:id="@+id/genderSpinner"
-            android:layout_width="150dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -37,20 +37,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Age"
-            android:layout_marginLeft="25dp"
-            android:textSize="25sp" />
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp" />
         <Spinner
             android:id="@+id/ageSpinner"
-            android:layout_width="150dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -58,20 +58,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Occupation"
-            android:layout_marginLeft="25dp"
-            android:textSize="25sp" />
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp" />
         <Spinner
             android:id="@+id/occupationSpinner"
-            android:layout_width="200dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -79,20 +79,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Do you have a car?"
-            android:layout_marginLeft="25dp"
-            android:textSize="25sp" />
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp" />
         <Spinner
             android:id="@+id/carSpinner"
-            android:layout_width="250dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -100,21 +100,21 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Do you have a pet?"
-            android:layout_marginLeft="25dp"
-            android:textSize="25sp" />
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp" />
         <Spinner
             android:id="@+id/petSpinner"
-            android:layout_width="250dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp">
 
         <TextView
             android:id="@+id/work_schedule"
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Work Schedule"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <CheckBox
             android:id="@+id/strict"
@@ -159,17 +159,15 @@
             android:id="@+id/flexible_day_and_night_schedule"
             android:layout_alignTop="@+id/strict"
             android:layout_toRightOf="@id/strict"
-            android:layout_marginLeft="99dp"/>
+            android:layout_marginLeft="80dp"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shifts - including night"
             android:id="@+id/Shifts_including_night"
-            android:layout_marginLeft="30dp"
-            android:layout_below="@+id/flexible_day_and_night_schedule"
-            android:layout_toRightOf="@id/flexible_day_schedule" />
+            android:layout_alignLeft="@id/flexible_day_and_night_schedule"
+            android:layout_below="@id/flexible_day_and_night_schedule" />
     </RelativeLayout>
-
 
 </LinearLayout>
