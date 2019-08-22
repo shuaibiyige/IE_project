@@ -64,14 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             nextFragment = new Schedule();
         }
-        else if (id == R.id.nav_slideshow)
-        {
-
-        }
-        else if (id == R.id.nav_tools)
-        {
-
-        }
 
         if (nextFragment != null)
         {

@@ -8,14 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="What is your eating habit?"
+            android:text="Eating habit:"
             android:layout_marginLeft="15dp"
             android:textSize="17sp" />
         <Spinner
@@ -26,31 +25,10 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Living area"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
-        <Spinner
-            android:id="@+id/livingSpinner"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"/>
-
-    </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="15dp">
 
         <TextView
@@ -59,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="How would you describe yourself? (Select up to 3)"
+            android:layout_marginBottom="10dp"
             android:textSize="17sp" />
 
         <CheckBox
@@ -110,7 +89,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp">
 
         <TextView
@@ -118,7 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="What are your hobbies?"
+            android:text="What are your hobbies? (Select up to 3)"
+            android:layout_marginBottom="10dp"
             android:textSize="17sp" />
 
         <CheckBox
@@ -132,15 +112,6 @@
             android:checked="false" />
 
         <CheckBox
-            android:id="@+id/gaming"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gaming"
-            android:layout_below="@+id/movie"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Baking"
@@ -152,16 +123,16 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Serious"
-            android:id="@+id/serious_hobbies"
-            android:layout_below="@+id/baking"
-            android:layout_alignLeft="@id/baking" />
+            android:text="Board game"
+            android:id="@+id/board_game"
+            android:layout_below="@+id/movie"
+            android:layout_alignLeft="@id/movie" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Watching Serious"
-            android:id="@+id/watching_serious"
+            android:text="Gaming"
+            android:id="@+id/gaming"
             android:layout_alignTop="@+id/movie"
             android:layout_toRightOf="@id/baking"
             android:layout_marginLeft="50dp"/>
@@ -171,14 +142,14 @@
             android:layout_height="wrap_content"
             android:text="Arts and Crafts"
             android:id="@+id/arts_crafts"
-            android:layout_below="@+id/watching_serious"
-            android:layout_alignLeft="@id/watching_serious" />
+            android:layout_below="@+id/baking"
+            android:layout_alignLeft="@id/baking" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp">
 
         <TextView
@@ -186,14 +157,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="What sports do you enjoy?"
+            android:text="What sports do you enjoy? (Select up to 3)"
+            android:layout_marginBottom="10dp"
             android:textSize="17sp" />
 
         <CheckBox
-            android:id="@+id/soccer"
+            android:id="@+id/footy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Soccer"
+            android:text="Footy"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/sports"
@@ -203,8 +175,8 @@
             android:id="@+id/badminton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gaming"
-            android:layout_below="@+id/soccer"
+            android:text="Badminton"
+            android:layout_below="@+id/footy"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -213,8 +185,8 @@
             android:layout_height="wrap_content"
             android:text="Basketball"
             android:id="@+id/basketball"
-            android:layout_alignTop="@+id/soccer"
-            android:layout_toRightOf="@id/soccer"
+            android:layout_alignTop="@+id/footy"
+            android:layout_toRightOf="@id/footy"
             android:layout_marginLeft="50dp"/>
 
         <CheckBox
@@ -226,6 +198,5 @@
             android:layout_alignLeft="@id/basketball" />
 
     </RelativeLayout>
-
 
 </LinearLayout>

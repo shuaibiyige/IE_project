@@ -1,7 +1,10 @@
 package com.example.ie_project;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +33,7 @@ public class Questionnaire extends AppCompatActivity
         previous = (Button) findViewById(R.id.previous_button);
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire1()).commit();
-        bnp.setProgress(20);
+        bnp.setProgress(33);
         previous.setVisibility(View.INVISIBLE);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +64,42 @@ public class Questionnaire extends AppCompatActivity
         {
             case 1:
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
-                bnp.setProgress(40);
+                bnp.setProgress(66);
                 previous.setVisibility(View.VISIBLE);
+                next.setText("Continue");
                 break;
             case 2:
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire3()).commit();
-                bnp.setProgress(60);
+                bnp.setProgress(100);
+                next.setText("Submit");
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(Questionnaire.this);
+                        dialog.setTitle("Almost there!");
+                        dialog.setMessage("Do you wish to continue?");
+                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                Intent intent = new Intent(Questionnaire.this, MainActivity.class);
+                                intent.putExtra("schedule", true);
+                                startActivity(intent);
+                            }
+                        });
+
+                        dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                Intent intent = new Intent(Questionnaire.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        dialog.show();
+                    }
+                });
                 break;
         }
     }
@@ -77,12 +110,14 @@ public class Questionnaire extends AppCompatActivity
         {
             case 2:
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire1()).commit();
-                bnp.setProgress(20);
+                bnp.setProgress(33);
                 previous.setVisibility(View.INVISIBLE);
+                next.setText("Continue");
                 break;
             case 3:
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
-                bnp.setProgress(40);
+                bnp.setProgress(66);
+                next.setText("Continue");
                 break;
         }
     }
