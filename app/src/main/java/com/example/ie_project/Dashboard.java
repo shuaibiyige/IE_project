@@ -14,7 +14,6 @@ public class Dashboard extends Fragment
     View dashboard;
     private Button questionnaire;
     private Button schedule;
-    private Button activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -23,7 +22,6 @@ public class Dashboard extends Fragment
 
         questionnaire = (Button) dashboard.findViewById(R.id.questionnaire);
         schedule = (Button) dashboard.findViewById(R.id.schedule);
-        activity = (Button) dashboard.findViewById(R.id.activity);
 
         Intent intent = getActivity().getIntent();
         boolean newUser = intent.getBooleanExtra("new user", false);
@@ -31,7 +29,6 @@ public class Dashboard extends Fragment
         if (newUser == true)
         {
             schedule.setVisibility(View.GONE);
-            activity.setVisibility(View.GONE);
             questionnaire.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

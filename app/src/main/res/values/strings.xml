@@ -11,4 +11,38 @@
     <string name="menu_schedule">Schedule &amp; Activity</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
+
+    <string-array name="start_time">
+        <item>select</item>
+        <item>5 pm</item>
+        <item>6 pm</item>
+        <item>7 pm</item>
+        <item>8 pm</item>
+        <item>9 pm</item>
+    </string-array>
+
+    <string-array name="end_time">
+        <item>select</item>
+        <item>5 pm</item>
+        <item>6 pm</item>
+        <item>7 pm</item>
+        <item>8 pm</item>
+        <item>9 pm</item>
+    </string-array>
+
+    <string-array name="age_child">
+        <item>select</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="age">
+        <item>select</item>
+        <item>30 - 34</item>
+        <item>35 - 39</item>
+        <item>40 - 44</item>
+        <item>45 - 49</item>
+        <item>50 and above</item>
+    </string-array>
 </resources>
