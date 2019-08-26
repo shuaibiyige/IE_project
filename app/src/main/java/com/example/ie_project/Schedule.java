@@ -29,12 +29,7 @@ public class Schedule extends Fragment
         schedule = inflater.inflate(R.layout.fragment_schedule, container, false);
         calendar = (MaterialCalendarView) schedule.findViewById(R.id.calendarView);
         submit = (ImageButton) schedule.findViewById(R.id.schedule_finish);
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getActivity(), "Toast", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
         Spinner spinner_start = (Spinner) schedule.findViewById(R.id.Start_time_spinner);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getActivity(), R.array.start_time, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

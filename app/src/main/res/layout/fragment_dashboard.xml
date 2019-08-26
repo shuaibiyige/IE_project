@@ -11,16 +11,26 @@
         android:textSize="30sp"
         android:layout_marginTop="200dp"/>
 
-    <Button
-        android:id="@+id/questionnaire"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Questionnaire"/>
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center">
 
-    <Button
-        android:id="@+id/schedule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Schedule"/>
+        <Button
+            android:id="@+id/questionnaire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Questionnaire"/>
+
+        <Button
+            android:id="@+id/schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/questionnaire"
+            android:layout_centerInParent="true"
+            android:text="Schedule"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
