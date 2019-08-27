@@ -1,31 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/dashboard_layout">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="this is the main page"
-        android:textSize="30sp"
-        android:layout_marginTop="200dp"/>
+    <ImageView
+        android:id="@+id/mainPage"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/logo"/>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/mainPage"
         android:layout_marginTop="50dp"
+        android:background="@drawable/square2"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center">
 
         <Button
             android:id="@+id/questionnaire"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Questionnaire"/>
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="Questionnaire" />
 
         <Button
             android:id="@+id/schedule"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/questionnaire"
             android:layout_centerInParent="true"
@@ -33,4 +39,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
