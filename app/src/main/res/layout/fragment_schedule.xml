@@ -65,6 +65,25 @@
                 android:layout_below="@+id/End_time"
                 android:layout_alignLeft="@id/End_time" />
 
+            <ImageView
+                android:id="@+id/activity_image_sport"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/Start_time_spinner"
+                android:layout_alignLeft="@+id/Start_time_spinner"
+                android:src="@drawable/sport"/>
+
+            <ImageView
+                android:id="@+id/activity_image_food"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="50dp"
+                android:layout_below="@+id/End_time_spinner"
+                android:layout_alignLeft="@+id/End_time_spinner"
+                android:src="@drawable/food"/>
+
         </RelativeLayout>
 
         <ImageButton
@@ -75,7 +94,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/button"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="5dp"/>
 
     </LinearLayout>
 

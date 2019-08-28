@@ -3,6 +3,7 @@ package com.example.ie_project;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,10 @@ public class Dashboard extends Fragment
 
         if (newUser == true)
         {
-            schedule.setVisibility(View.GONE);
+            //schedule.setVisibility(View.GONE);
+            questionnaire.setEnabled(true);
+            schedule.setEnabled(false);
+            schedule.setBackgroundColor(Color.parseColor("#dcdcdc"));
             questionnaire.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -39,7 +43,10 @@ public class Dashboard extends Fragment
         }
         else
         {
-            questionnaire.setVisibility(View.GONE);
+            //questionnaire.setVisibility(View.GONE);
+            schedule.setEnabled(true);
+            questionnaire.setEnabled(false);
+            questionnaire.setBackgroundColor(Color.parseColor("#dcdcdc"));
         }
 
         schedule.setOnClickListener(new View.OnClickListener() {

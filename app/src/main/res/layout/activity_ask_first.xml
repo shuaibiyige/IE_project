@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First time?"
+            android:text="Are you a new user?"
             android:textSize="30sp"/>
     </LinearLayout>
 
@@ -34,6 +34,7 @@
             android:id="@+id/no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
             android:text="no"/>
     </LinearLayout>
 

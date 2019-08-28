@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
@@ -21,6 +23,8 @@ public class Questionnaire1 extends Fragment
     private Button next;
     private NumberProgressBar bnp;
     private RadioGroup radioGroup;
+    private RadioButton radioButton;
+    private int checkedNumber;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -44,12 +48,6 @@ public class Questionnaire1 extends Fragment
             }
         });
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                
-            }
-        });
 
         return question1;
     }

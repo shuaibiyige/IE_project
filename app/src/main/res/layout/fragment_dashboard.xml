@@ -1,42 +1,46 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/cardview_shadow_end_color"
     android:id="@+id/dashboard_layout">
 
     <ImageView
         android:id="@+id/mainPage"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"
-        android:src="@drawable/logo"/>
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/homepage" />
 
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/mainPage"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/square2"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center">
 
         <Button
             android:id="@+id/questionnaire"
-            android:layout_width="150dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"
-            android:text="Questionnaire" />
+            android:text="Questionnaire"
+            android:textSize="20sp"
+            android:background="#ffebcd" />
 
         <Button
             android:id="@+id/schedule"
-            android:layout_width="150dp"
+            android:layout_width="180dp"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/questionnaire"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:background="#ffebcd"
+            android:textSize="20sp"
             android:text="Schedule"/>
 
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
