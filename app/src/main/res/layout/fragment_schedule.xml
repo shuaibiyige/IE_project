@@ -59,9 +59,10 @@
                 android:background="#00000000"
                 android:scaleType="centerInside"
                 android:src="@drawable/button"
-                android:layout_toRightOf="@id/End_time"
+                android:layout_below="@+id/End_time_spinner"
+                android:layout_toRightOf="@id/Start_time_spinner"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="45dp"/>
+                android:layout_marginLeft="20dp"/>
 
             <Spinner
                 android:id="@+id/Start_time_spinner"
