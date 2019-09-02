@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                if (checkEmail(email.getText().toString()) && email.getText().toString().trim().length() != 0 && password.getText().toString().trim().length() != 0)
+                if (checkEmail(email.getText().toString()) &&  password.getText().toString().trim().length() != 0)
                 {
                     String user_email = email.getText().toString();
                     String ueser_password = password.getText().toString();
@@ -52,8 +52,6 @@ public class Login extends AppCompatActivity
                 {
                     if (!checkEmail(email.getText().toString()))
                         Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
-                    else if (email.getText().toString().trim().length() == 0)
-                        Toast.makeText(getApplicationContext(), "Email can not be empty", Toast.LENGTH_SHORT).show();
                     else if (password.getText().toString().trim().length() == 0)
                         Toast.makeText(getApplicationContext(), "Password can not be empty", Toast.LENGTH_SHORT).show();
                 }
