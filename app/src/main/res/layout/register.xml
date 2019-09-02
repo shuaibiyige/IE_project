@@ -10,15 +10,15 @@
         android:layout_height="wrap_content"
         android:text="Sign up"
         android:textAllCaps="false"
-        android:textSize="42sp"
+        android:textSize="30sp"
         android:textColor="#FFF"
-        android:fontFamily="@font/calibri"
+        android:fontFamily="@font/gotham"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <EditText
         android:id="@+id/new_email"
