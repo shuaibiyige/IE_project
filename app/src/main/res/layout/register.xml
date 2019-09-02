@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/register_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:textAllCaps="false"
+        android:textSize="42sp"
+        android:textColor="#FFF"
+        android:fontFamily="@font/calibri"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <EditText
+        android:id="@+id/new_email"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:hint="Email address"
+        android:textColorHint="#87ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/new_firstName"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:hint="First Name"
+        android:textColorHint="#87ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/new_lastName"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:hint="Last Name"
+        android:textColorHint="#87ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.46"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/new_password"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:hint="Password"
+        android:textColorHint="#87ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/new_security"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:hint="Security Answer"
+        android:textColorHint="#87ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"/>
+
+    <Button
+        android:id="@+id/register_submit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textColor="#FFF"
+        android:background="@drawable/register_button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+</android.support.constraint.ConstraintLayout>

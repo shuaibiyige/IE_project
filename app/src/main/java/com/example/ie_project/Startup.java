@@ -35,7 +35,7 @@ public class Startup extends AppCompatActivity
             @Override
             public void onAnimationEnd(Animation animation)
             {
-                Intent intent = new Intent(Startup.this, AskFirst.class);
+                Intent intent = new Intent(Startup.this, Login.class);
                 startActivity(intent);
                 finish();
             }
