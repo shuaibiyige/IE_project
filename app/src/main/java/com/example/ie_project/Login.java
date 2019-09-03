@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity
 {
     private Button signIn;
-    private Button signUp;
+    private TextView signUp;
     private EditText email;
     private EditText password;
-    private Button forget;
+    private TextView forget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,33 +28,36 @@ public class Login extends AppCompatActivity
         getSupportActionBar().hide();
 
         signIn = (Button) findViewById(R.id.sign_in);
-        signUp = (Button) findViewById(R.id.sign_up);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        forget = (Button) findViewById(R.id.forget);
+        signUp = (TextView) findViewById(R.id.sign_up);
+        email = (EditText) findViewById(R.id.email_sign_in);
+        password = (EditText) findViewById(R.id.password_sign_in);
+        forget = (TextView) findViewById(R.id.forget);
 
         signIn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                if (checkEmail(email.getText().toString()) &&  password.getText().toString().trim().length() != 0)
-                {
-                    String user_email = email.getText().toString();
-                    String ueser_password = password.getText().toString();
+//                if (checkEmail(email.getText().toString()) &&  password.getText().toString().trim().length() != 0)
+//                {
+//                    String user_email = email.getText().toString();
+//                    String ueser_password = password.getText().toString();
+//
+//                    // save data
+//
+//                    Intent intent = new Intent(Login.this, MainActivity.class);
+//                    startActivity(intent);
+//                }
+//                else        // not valid
+//                {
+//                    if (!checkEmail(email.getText().toString()))
+//                        Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
+//                    else if (password.getText().toString().trim().length() == 0)
+//                        Toast.makeText(getApplicationContext(), "Password can not be empty", Toast.LENGTH_SHORT).show();
+//                }
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
 
-                    // save data
-
-                    Intent intent = new Intent(Login.this, MainActivity.class);
-                    startActivity(intent);
-                }
-                else        // not valid
-                {
-                    if (!checkEmail(email.getText().toString()))
-                        Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
-                    else if (password.getText().toString().trim().length() == 0)
-                        Toast.makeText(getApplicationContext(), "Password can not be empty", Toast.LENGTH_SHORT).show();
-                }
             }
         });
 

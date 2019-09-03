@@ -61,4 +61,13 @@
         <item>45 - 49</item>
         <item>50 and above</item>
     </string-array>
+
+    <string-array name="security">
+        <item>select</item>
+        <item>30 - 34</item>
+        <item>35 - 39</item>
+        <item>40 - 44</item>
+        <item>45 - 49</item>
+        <item>50 and above</item>
+    </string-array>
 </resources>

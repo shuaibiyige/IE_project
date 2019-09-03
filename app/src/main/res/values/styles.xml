@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.DarkActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
@@ -23,6 +23,24 @@
         <item name="colorControlHighlight">@color/textInputLayout</item>
         <item name="colorAccent">@color/textInputLayout</item>
         <item name="android:textColorHint">@color/textInputLayout</item>
+    </style>
+
+    <!-- Text style for "hello" -->
+    <!-- Add this snippet to styles.xml. -->
+    <style name="hello">
+        <item name="android:textColor">#ff707070</item>
+        <item name="android:textSize">70sp</item>
+        <item name="android:shadowColor">#29000000</item>
+        <!-- TextView shadow offsets do not respect scale. -->
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">3</item>
+    </style>
+
+    <!-- Text style for "sign_in_to" -->
+    <!-- Add this snippet to styles.xml. -->
+    <style name="sign_in_to">
+        <item name="android:textColor">#ffa2a1a1</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>
