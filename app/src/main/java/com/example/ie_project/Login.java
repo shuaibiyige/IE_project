@@ -1,9 +1,13 @@
 package com.example.ie_project;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,10 +19,9 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity
 {
     private Button signIn;
-    private TextView signUp;
+    private TextView signUp, hello, signIn_text, forget;
     private EditText email;
     private EditText password;
-    private TextView forget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +35,12 @@ public class Login extends AppCompatActivity
         email = (EditText) findViewById(R.id.email_sign_in);
         password = (EditText) findViewById(R.id.password_sign_in);
         forget = (TextView) findViewById(R.id.forget);
+        hello = (TextView) findViewById(R.id.hello);
+        signIn_text = (TextView) findViewById(R.id.signin_text);
+
+        hello.setTextSize(184/hello.getTextSize() * 70);
+        signIn_text.setTextSize(53/signIn_text.getTextSize() * 20);
+        forget.setTextSize(40/forget.getTextSize() * 15);
 
         signIn.setOnClickListener(new View.OnClickListener()
         {
@@ -97,4 +106,12 @@ public class Login extends AppCompatActivity
         }
         return flag;
     }
+
+    private int getDensity()
+    {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        //getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.densityDpi;
+    }
+
 }
