@@ -1,7 +1,9 @@
 package com.example.ie_project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -38,9 +40,13 @@ public class Login extends AppCompatActivity
         hello = (TextView) findViewById(R.id.hello);
         signIn_text = (TextView) findViewById(R.id.signin_text);
 
-        hello.setTextSize(184/hello.getTextSize() * 70);
-        signIn_text.setTextSize(53/signIn_text.getTextSize() * 20);
-        forget.setTextSize(40/forget.getTextSize() * 15);
+        int[] list = size();
+        int width = list[0];
+        int height = list[1];
+
+        hello.setTextSize((height / hello.getTextSize()) * 25);
+        signIn_text.setTextSize(height / signIn_text.getTextSize() * 2);
+        forget.setTextSize(height / forget.getTextSize());
 
         signIn.setOnClickListener(new View.OnClickListener()
         {
@@ -107,11 +113,21 @@ public class Login extends AppCompatActivity
         return flag;
     }
 
-    private int getDensity()
+    public int[] size()
     {
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        //getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.densityDpi;
+        int[] list = new int[2];
+        WindowManager wm = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;         // 屏幕宽度（像素）
+        int height = dm.heightPixels;       // 屏幕高度（像素）
+        float density = dm.density;         // 屏幕密度（0.75 / 1.0 / 1.5）
+        int densityDpi = dm.densityDpi;     // 屏幕密度dpi（120 / 160 / 240）
+        // 屏幕宽度算法:屏幕宽度（像素）/屏幕密度
+        int screenWidth = (int) (width / density);  // 屏幕宽度(dp)
+        int screenHeight = (int) (height / density);// 屏幕高度(dp)
+        list[0] = screenWidth;
+        list[1] = screenHeight;
+        return list;
     }
-
 }
