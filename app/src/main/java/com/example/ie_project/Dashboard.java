@@ -1,7 +1,9 @@
 package com.example.ie_project;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
@@ -90,6 +92,22 @@ public class Dashboard extends Fragment
 //                fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
 //            }
 //        });
+
+        questionnaire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent anotherIntent = new Intent(getActivity(), Questionnaire.class);
+                startActivity(anotherIntent);
+            }
+        });
+
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
+            }
+        });
 
         return dashboard;
     }
