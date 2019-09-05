@@ -16,6 +16,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -95,6 +101,14 @@ public class Login extends AppCompatActivity
 
             }
         });
+
+
+
+
+
+
+        basicReadWrite();
+
     }
 
     public boolean checkEmail(String email)
@@ -130,5 +144,39 @@ public class Login extends AppCompatActivity
         list[0] = screenWidth;
         list[1] = screenHeight;
         return list;
+    }
+
+    public void basicReadWrite()
+    {
+        // [START write_message]
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        String n= myRef.push().getKey();
+
+        User user = new User("jj", 2);
+
+        myRef.child("User").child(n).setValue(user);
+        // [END write_message]
+
+        // [START read_message]
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("a", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("a", "Failed to read value.", error.toException());
+            }
+        });
+        // [END read_message]
     }
 }
