@@ -40,27 +40,29 @@ public class Questionnaire3 extends Fragment
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                dialog.setTitle("Almost there!");
-                dialog.setMessage("Do you wish to continue?");
-                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        intent.putExtra("schedule", true);
-                        startActivity(intent);
-                    }
-                });
-                dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                dialog.show();
+//                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+//                dialog.setTitle("Almost there!");
+//                dialog.setMessage("Do you wish to continue?");
+//                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which)
+//                    {
+//                        Intent intent = new Intent(getActivity(), MainActivity.class);
+//                        intent.putExtra("schedule", true);
+//                        startActivity(intent);
+//                    }
+//                });
+//                dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which)
+//                    {
+//                        Intent intent = new Intent(getActivity(), MainActivity.class);
+//                        startActivity(intent);
+//                    }
+//                });
+//                dialog.show();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Successful()).commit();
+
             }
         });
 
