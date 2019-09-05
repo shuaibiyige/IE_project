@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
+import com.ramotion.foldingcell.FoldingCell;
 
 
 public class Questionnaire1 extends Fragment
@@ -29,22 +30,30 @@ public class Questionnaire1 extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         question1 = inflater.inflate(R.layout.questionnaire1_layout, container, false);
-        bnp = (NumberProgressBar) question1.findViewById(R.id.progress_bar1);
-        next = (Button) question1.findViewById(R.id.next_button1);
-        radioGroup = (RadioGroup) question1.findViewById(R.id.radioGroup_gender);
+//        bnp = (NumberProgressBar) question1.findViewById(R.id.progress_bar1);
+//        next = (Button) question1.findViewById(R.id.next_button1);
+//        radioGroup = (RadioGroup) question1.findViewById(R.id.radioGroup_gender);
+//
+//        final FragmentManager fragmentManager = getFragmentManager();
+//        bnp.setProgress(33);
+//
+//        Spinner age_spinner = (Spinner) question1.findViewById(R.id.ageSpinner);
+//        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getActivity(), R.array.age, android.R.layout.simple_spinner_item);
+//        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        age_spinner.setAdapter(adapter1);
+//
+//        next.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
+//            }
+//        });
 
-        final FragmentManager fragmentManager = getFragmentManager();
-        bnp.setProgress(33);
-
-        Spinner age_spinner = (Spinner) question1.findViewById(R.id.ageSpinner);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getActivity(), R.array.age, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        age_spinner.setAdapter(adapter1);
-
-        next.setOnClickListener(new View.OnClickListener() {
+        final FoldingCell fc = (FoldingCell) question1.findViewById(R.id.folding_cell);
+        fc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
+                fc.toggle(false);
             }
         });
 

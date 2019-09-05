@@ -92,7 +92,6 @@ public class Dashboard extends Fragment
 //                fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
 //            }
 //        });
-
         questionnaire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

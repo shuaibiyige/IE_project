@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#fff4f4f4">
 
     <ImageView
@@ -106,24 +106,24 @@
         android:paddingBottom="5dp"
         android:paddingLeft="20dp"/>
 
-<Button
-    android:id="@+id/sign_in"
-    android:layout_width="wrap_content"
-    android:layout_height="39dp"
-    android:text="Log In"
-    android:textAllCaps="false"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.75"
-    app:layout_constraintHorizontal_bias="0.5"
-    android:textColor="#ffffffff"
-    android:textSize="16sp"
-    android:shadowColor="#29000000"
-    android:shadowDx="0"
-    android:shadowDy="3"
-    android:background="@drawable/login_button"/>
+    <Button
+        android:id="@+id/sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:text="Log In"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:textColor="#ffffffff"
+        android:textSize="16sp"
+        android:shadowColor="#29000000"
+        android:shadowDx="0"
+        android:shadowDy="3"
+        android:background="@drawable/login_button"/>
 
     <TextView
         android:id="@+id/forget"
@@ -172,4 +172,4 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

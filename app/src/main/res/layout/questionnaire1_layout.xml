@@ -1,229 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:background="#fff4f4f4">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <ImageView
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/round2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationY="-400dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tell us about you"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="70dp"
-            android:src="@drawable/logo"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"/>
-
-    </RelativeLayout>
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/progress_bar1"
+    <TextView
+        android:id="@+id/signup_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
+        android:fontFamily="@font/gotham"
+        android:text="Tell us about you"
+        android:textAllCaps="false"
+        android:textColor="#ff707070"
+        android:textSize="30sp"
+        android:autoSizeMaxTextSize="55sp"
+        android:autoSizeMinTextSize="25sp"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
 
-        <TextView
-            android:layout_width="wrap_content"
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/folding_cell"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/cell_content_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Gender:"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="@drawable/fold_content">
 
-        <RadioGroup
-            android:id="@+id/radioGroup_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/male"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Male" />
+                android:gravity="center">
 
-            <RadioButton
-                android:id="@+id/female"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/boy_button"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/line"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/girl_button"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/gender_cell_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="Female"/>
-        </RadioGroup>
+                android:text="Gender"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:textColor="#ffffffff"
+                android:textSize="23sp"
+                android:fontFamily="@font/gotham"
+                android:background="@drawable/folder_style" />
+        </FrameLayout>
 
-    </LinearLayout>
+    </com.ramotion.foldingcell.FoldingCell>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Age:"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
-
-        <Spinner
-            android:id="@+id/ageSpinner"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Occupation:"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
-        <Spinner
-            android:id="@+id/occupationSpinner"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="27dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Pet:"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
-        <Spinner
-            android:id="@+id/petSpinner"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Own a car:"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
-        <RadioGroup
-            android:id="@+id/radioGroup_car"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/yes_car"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yes" />
-
-            <RadioButton
-                android:id="@+id/no_car"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Living area:"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
-        <EditText
-            android:id="@+id/living_area"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="How far are you willing to travel:"
-            android:layout_marginLeft="15dp"
-            android:textSize="17sp" />
-        <Spinner
-            android:id="@+id/far"
-            android:layout_width="243dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"/>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp">
-
-        <Button
-            android:id="@+id/next_button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
-            android:textSize="12sp"
-            android:text="Continue"/>
-
-    </RelativeLayout>
-
-</LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
