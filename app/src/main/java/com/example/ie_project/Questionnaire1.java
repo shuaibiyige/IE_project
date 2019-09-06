@@ -49,13 +49,13 @@ public class Questionnaire1 extends Fragment
 //            }
 //        });
 
-        final FoldingCell fc = (FoldingCell) question1.findViewById(R.id.folding_cell);
-        fc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fc.toggle(false);
-            }
-        });
+//        final FoldingCell fc = (FoldingCell) question1.findViewById(R.id.folding_cell);
+//        fc.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                fc.toggle(false);
+//            }
+//        });
 
 
         return question1;
