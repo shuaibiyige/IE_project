@@ -1,22 +1,11 @@
 package com.example.ie_project;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
-
-import android.view.MenuItem;
-
-import android.view.Menu;
 import android.widget.Button;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity// implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -26,9 +15,14 @@ public class MainActivity extends AppCompatActivity// implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
+        
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
+
+
         //ActionBar actionBar = getActionBar();
         //actionBar.setTitle("Leto's Aid");
-        getSupportActionBar();
+        //getSupportActionBar();
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitle("Leto's Aid");
@@ -40,17 +34,17 @@ public class MainActivity extends AppCompatActivity// implements NavigationView.
 //        toggle.syncState();
 //
 //        navigationView.setNavigationItemSelectedListener(this);
-        Intent intent = getIntent();
-        boolean goToSchedule = intent.getBooleanExtra("schedule", false);
-        if (goToSchedule)
-        {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
-        }
-        else {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
-        }
+//        Intent intent = getIntent();
+//        boolean goToSchedule = intent.getBooleanExtra("schedule", false);
+//        if (goToSchedule)
+//        {
+//            FragmentManager fragmentManager = getFragmentManager();
+//            fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
+//        }
+//        else {
+//            FragmentManager fragmentManager = getFragmentManager();
+//            fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
+//        }
     }
 
 

@@ -2,39 +2,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ie_project">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <supports-screens
-        android:smallScreens="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:xlargeScreens="true"/>
-
     <application
+        android:name=".JettApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".JettApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".Register"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Questionnaire"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".Schedule"></activity>
+        <activity
+            android:name=".Register"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Questionnaire"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".RecommendActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RecommendActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Startup"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,5 +39,13 @@
             </intent-filter>
         </activity>
     </application>
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

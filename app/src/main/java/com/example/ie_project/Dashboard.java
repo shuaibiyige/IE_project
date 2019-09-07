@@ -103,8 +103,8 @@ public class Dashboard extends Fragment
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
+                Intent intent = new Intent(getActivity(), Schedule.class);
+                startActivity(intent);
             }
         });
 
