@@ -52,7 +52,7 @@
 
     <LinearLayout
         android:id="@+id/lineLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@id/dashboard_back"
@@ -70,7 +70,7 @@
             android:text="To-Do List"
             android:textColor="#ffffffff"
             android:textAlignment="center"
-            android:textSize="40sp" />
+            android:textSize="35sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,6 +136,7 @@
                 android:textColor="#ffffffff"
                 android:textAlignment="center"
                 android:textSize="20dp"
+                android:maxLines="1"
                 android:layout_weight="1" />
 
             <ImageView

@@ -4,6 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <supports-screens
+        android:smallScreens="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:xlargeScreens="true"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,17 +18,23 @@
         android:supportsRtl="true"
         android:name=".JettApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".Register"></activity>
-        <activity android:name=".Questionnaire" />
-        <activity android:name=".Login" />
+        <activity android:name=".Register"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Questionnaire"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RecommendActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RecommendActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Startup"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

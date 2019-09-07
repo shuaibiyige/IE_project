@@ -54,9 +54,9 @@ public class Dashboard extends Fragment
         linearLayout.startAnimation(ani1);
         man_image.startAnimation(ani2);
 
-        int[] list = size();
-        int width = list[0];
-        int height = list[1];
+//        int[] list = size();
+//        int width = list[0];
+//        int height = list[1];
 //        man_image.getLayoutParams().height = height;
 //        man_image.getLayoutParams().width = width;
 //        man_image.requestLayout();
