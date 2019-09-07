@@ -43,9 +43,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/questionnaire_you_text"
-        android:layout_marginTop="10dp">
+        app:layout_constraintTop_toBottomOf="@id/questionnaire_you_text">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,8 +55,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:background="@drawable/question_card"
                 android:orientation="vertical">
 
@@ -63,10 +64,10 @@
                     android:id="@+id/gender_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Gender"
-                    android:textAlignment="center"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/gotham"
+                    android:text="Gender"
+                    android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
 
@@ -78,32 +79,27 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/boy_button"
                         android:layout_marginTop="10dp"
-                        />
+                        android:src="@drawable/boy_button" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="130dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/line"
                         android:layout_marginRight="40dp"
-                        android:layout_marginLeft="40dp"/>
+                        android:src="@drawable/line" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/girl_button"
                         android:layout_marginTop="10dp"
-                        />
+                        android:src="@drawable/girl_button" />
 
 
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
 
 
             <LinearLayout
@@ -117,10 +113,10 @@
                     android:id="@+id/age_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Age"
-                    android:textAlignment="center"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/gotham"
+                    android:text="Age"
+                    android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
 
@@ -129,6 +125,35 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
+                    <ImageView
+                        android:id="@+id/parent_age_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/age30" />
+
+                    <ImageView
+                        android:id="@+id/parent_age_35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/age35" />
+
+                    <ImageView
+                    android:id="@+id/parent_age_40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-265dp"
+                    android:layout_marginTop="60dp"
+                    android:src="@drawable/age40" />
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/parent_age_45"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="60dp"-->
+                        <!--android:src="@drawable/age45" />-->
 
 
 
@@ -136,7 +161,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -150,10 +174,10 @@
                     android:id="@+id/pet_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pet"
-                    android:textAlignment="center"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/gotham"
+                    android:text="Pet"
+                    android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
 
@@ -161,15 +185,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
+                    <ImageView
+                        android:id="@+id/dog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/dog" />
 
+                    <ImageView
+                        android:id="@+id/cat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/cat" />
 
+                    <ImageView
+                        android:id="@+id/other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-240dp"
+                        android:layout_marginTop="60dp"
+                        android:src="@drawable/other" />
 
-
+                    <!--<ImageView-->
+                        <!--android:id="@+id/other2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginTop="60dp"-->
+                        <!--android:src="@drawable/other" />-->
 
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -183,10 +232,10 @@
                     android:id="@+id/car_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Car"
-                    android:textAlignment="center"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/gotham"
+                    android:text="Car"
+                    android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
 
@@ -194,15 +243,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
+                    <ImageView
+                        android:id="@+id/have_car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/have_car" />
 
-
-
-
+                    <ImageView
+                        android:id="@+id/without_car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/no_car" />
 
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -216,10 +274,10 @@
                     android:id="@+id/habbit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Habbit"
-                    android:textAlignment="center"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/gotham"
+                    android:text="Habbit"
+                    android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
 
@@ -229,13 +287,9 @@
                     android:layout_gravity="center">
 
 
-
-
-
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -387,12 +441,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-
-
-
-
                 </LinearLayout>
-
             </LinearLayout>
 
 
