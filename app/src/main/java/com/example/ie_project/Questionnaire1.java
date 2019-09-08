@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,15 +31,26 @@ import com.ramotion.foldingcell.FoldingCell;
 
 public class Questionnaire1 extends Fragment
 {
-    private static final String TAG = "aaaaaa";
     View question1;
     private Button submit;
+    private int selectedItemCounter1 = 0;
+    private ImageView haveCar;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         question1 = inflater.inflate(R.layout.questionnaire1_layout, container, false);
 
         final FragmentManager fragmentManager = getFragmentManager();
+
+        initView();
+
+        haveCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 //        bnp = (NumberProgressBar) question1.findViewById(R.id.progress_bar1);
 //        next = (Button) question1.findViewById(R.id.next_button1);
@@ -83,14 +97,46 @@ public class Questionnaire1 extends Fragment
         return question1;
     }
 
-    private void getScreenSizeOfDevice2() {
-        Point point = new Point();
-        getActivity().getWindowManager().getDefaultDisplay().getRealSize(point);
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        double x = Math.pow(point.x/ dm.xdpi, 2);
-        double y = Math.pow(point.y / dm.ydpi, 2);
-        double screenInches = Math.sqrt(x + y);
-        Log.d(TAG, "Screen inches : " + screenInches);
+    public void initView()
+    {
+        CheckBox movie = (CheckBox) question1.findViewById(R.id.movie);
+        CheckBox baking = (CheckBox) question1.findViewById(R.id.baking);
+        CheckBox diy = (CheckBox) question1.findViewById(R.id.diy);
+        CheckBox gaming = (CheckBox) question1.findViewById(R.id.board_gaming);
+        CheckBox painting = (CheckBox) question1.findViewById(R.id.painting);
+        CheckBox cooking = (CheckBox) question1.findViewById(R.id.cooking);
+
+        haveCar = question1.findViewById(R.id.have_car);
+
+        listener1(movie);
+        listener1(gaming);
+        listener1(baking);
+        listener1(diy);
+        listener1(painting);
+        listener1(cooking);
+    }
+
+    public void listener1(final CheckBox check)
+    {
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if (isChecked)
+                {
+                    selectedItemCounter1++;
+                }
+                else
+                {
+                    selectedItemCounter1--;
+                }
+                if (selectedItemCounter1 > 3)
+                {
+                    buttonView.setChecked(false);
+                    selectedItemCounter1--;
+                }
+            }
+        });
     }
 
 }
