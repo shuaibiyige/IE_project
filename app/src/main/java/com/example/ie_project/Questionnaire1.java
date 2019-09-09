@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -28,13 +29,22 @@ import android.widget.Toast;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.ramotion.foldingcell.FoldingCell;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 public class Questionnaire1 extends Fragment
 {
     View question1;
-    private Button submit;
+    private Button next;
     private int selectedItemCounter1 = 0;
-    private ImageView haveCar;
+    private String gender;
+    private RadioGroup radioGroup;
+    private CheckBox dog, cat, other_pet;
+    private EditText other_pet_text;
+    private Set<String> petList;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -44,32 +54,44 @@ public class Questionnaire1 extends Fragment
 
         initView();
 
-        haveCar.setOnClickListener(new View.OnClickListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                RadioButton gender_radio = question1.findViewById(checkedId);
+                if (gender_radio.getId() == R.id.male_parent)
+                    gender = "male";
+                else
+                    gender = "female";
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+                recordCheckBox();
+
+
+
+
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
 
             }
         });
 
-//        bnp = (NumberProgressBar) question1.findViewById(R.id.progress_bar1);
-//        next = (Button) question1.findViewById(R.id.next_button1);
-//        radioGroup = (RadioGroup) question1.findViewById(R.id.radioGroup_gender);
-//
-//        final FragmentManager fragmentManager = getFragmentManager();
-//        bnp.setProgress(33);
-//
-//        Spinner age_spinner = (Spinner) question1.findViewById(R.id.ageSpinner);
-//        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getActivity(), R.array.age, android.R.layout.simple_spinner_item);
-//        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        age_spinner.setAdapter(adapter1);
-//
-//        next.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
-//            }
-//        });
+        other_pet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (other_pet.isChecked()) {
+                    other_pet_text.setVisibility(View.VISIBLE);
+                }
+                else {
+                    other_pet_text.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
 
 //        final FoldingCell fc = (FoldingCell) question1.findViewById(R.id.folding_cell);
 //        fc.setOnClickListener(new View.OnClickListener() {
@@ -79,41 +101,22 @@ public class Questionnaire1 extends Fragment
 //            }
 //        });
 
-//        getScreenSizeOfDevice2();
-//        ViewGroup.LayoutParams lp;
-//        LinearLayout l = question1.findViewById(R.id.l);
-//        lp = l.getLayoutParams();
-//        lp.width = (int)Math.round((5.24/5.14) * (l.getLayoutParams().width));
-//        Log.d(TAG, "line: " + l.getLayoutParams().width);
-
-
-        submit = (Button) question1.findViewById(R.id.submit_ques);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Successful()).commit();            }
-        });
-
         return question1;
     }
 
     public void initView()
     {
-        CheckBox movie = (CheckBox) question1.findViewById(R.id.movie);
-        CheckBox baking = (CheckBox) question1.findViewById(R.id.baking);
-        CheckBox diy = (CheckBox) question1.findViewById(R.id.diy);
-        CheckBox gaming = (CheckBox) question1.findViewById(R.id.board_gaming);
-        CheckBox painting = (CheckBox) question1.findViewById(R.id.painting);
-        CheckBox cooking = (CheckBox) question1.findViewById(R.id.cooking);
+        gender = "";
+        petList = new HashSet();
+        radioGroup = question1.findViewById(R.id.radioGroup_gender);
+        next = question1.findViewById(R.id.next_ques);
+        dog = question1.findViewById(R.id.dog);
+        cat = question1.findViewById(R.id.cat);
+        other_pet = question1.findViewById(R.id.other_pet);
+        other_pet_text = question1.findViewById(R.id.other_pet_text);
 
-        haveCar = question1.findViewById(R.id.have_car);
-
-        listener1(movie);
-        listener1(gaming);
-        listener1(baking);
-        listener1(diy);
-        listener1(painting);
-        listener1(cooking);
+//        listener1(dog);
+//        listener1(cat);
     }
 
     public void listener1(final CheckBox check)
@@ -124,19 +127,40 @@ public class Questionnaire1 extends Fragment
             {
                 if (isChecked)
                 {
-                    selectedItemCounter1++;
+                    //selectedItemCounter1++;
+                    petList.add(buttonView.getText().toString());
                 }
                 else
                 {
-                    selectedItemCounter1--;
-                }
-                if (selectedItemCounter1 > 3)
-                {
-                    buttonView.setChecked(false);
-                    selectedItemCounter1--;
+                    //selectedItemCounter1--;
+                    for (String ele: petList)
+                    {
+                        if (ele.equals(buttonView.getText().toString()))
+                            petList.remove(ele);            //if unchecked, remove from the list
+                    }
                 }
             }
         });
     }
 
+    public boolean isValid(String input)
+    {
+        if (input.trim().length() != 0)
+            return true;
+        else
+            return false;
+    }
+
+    public void recordCheckBox()
+    {
+        if (dog.isChecked())
+            petList.add("dog");
+        if (cat.isChecked())
+            petList.add("cat");
+        if (other_pet.isChecked())
+        {
+            if (isValid(other_pet_text.getText().toString()))
+                petList.add(other_pet_text.getText().toString().trim());
+        }
+    }
 }

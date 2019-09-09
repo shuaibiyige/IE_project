@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:background="#fff4f4f4">
+
+    <ImageView
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/round2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationY="-400dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/questionnaire_child_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham"
+        android:text="Tell us about your child"
+        android:textAllCaps="false"
+        android:textColor="#ff707070"
+        android:textSize="22sp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <HorizontalScrollView
+        android:id="@+id/scrollView_down"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/questionnaire_child_text"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/question_card"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/gender_child_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/gotham"
+                    android:textColor="#ffffffff"
+                    android:textSize="23sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup_gender_child"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:translationY="-15dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/male_child"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.5"
+                            android:scaleY="0.5"
+                            android:paddingLeft="15dp"
+                            android:drawableLeft="@drawable/boy_button" />
+
+                        <RadioButton
+                            android:id="@+id/female_child"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:scaleX="0.5"
+                            android:scaleY="0.5"
+                            android:drawableLeft="@drawable/girl_button"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/age_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham"
+                    android:text="Age"
+                    android:translationY="-20dp"
+                    android:textAlignment="center"
+                    android:textColor="#ffffffff"
+                    android:textSize="23sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:translationY="-20dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <RadioButton
+                            android:id="@+id/age_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:text="13"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                        <RadioButton
+                            android:id="@+id/age_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginLeft="40dp"
+                            android:text="14"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                        <RadioButton
+                            android:id="@+id/age_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginLeft="40dp"
+                            android:text="15"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/question_card2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Child_name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/gotham"
+                    android:text="Child's name"
+                    android:textAlignment="center"
+                    android:textColor="#ffffffff"
+                    android:textSize="23sp" />
+
+                <EditText
+                    android:id="@+id/child_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="child's name"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#ffffffff" />
+
+
+
+                <TextView
+                    android:id="@+id/dietary_restrictions_child"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham"
+                    android:text="Child's dietary restrictions"
+                    android:layout_marginTop="30dp"
+                    android:textAlignment="center"
+                    android:textColor="#ffffffff"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_restrictions_child"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <RadioButton
+                            android:id="@+id/restrictions_none_child"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="None"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
+
+                        <RadioButton
+                            android:id="@+id/restrictions_vegan_child"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/restrictions_none_child"
+                            android:layout_alignLeft="@id/restrictions_none_child"
+                            android:text="Vegan"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
+
+                        <RadioButton
+                            android:id="@+id/restrictions_vegetarian_child"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/restrictions_none_child"
+                            android:layout_below="@+id/restrictions_vegan_child"
+                            android:text="Vegetarian"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
+
+                        <RadioButton
+                            android:id="@+id/restrictions_other_child"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/restrictions_none_child"
+                            android:layout_below="@+id/restrictions_vegetarian_child"
+                            android:text="Other"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:layout_below="@id/restrictions_other_child"
+                            android:layout_alignLeft="@id/restrictions_other_child"
+                            android:hint="Type your restrictions"
+                            android:visibility="invisible"/>
+
+                    </RelativeLayout>
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/question_card"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/hobbies_title_child"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham"
+                    android:text="Child's hobbies"
+                    android:layout_marginTop="15dp"
+                    android:textAlignment="center"
+                    android:textColor="#ffffffff"
+                    android:textSize="23sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/reading_child"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reading Books"
+                        android:layout_marginTop="10dp"
+                        android:textSize="14sp"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:checked="false" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dancing"
+                        android:textSize="14sp"
+                        android:id="@+id/dancing_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/reading_child"
+                        android:layout_alignLeft="@+id/reading_child"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Music - vocal / instrument"
+                        android:textSize="14sp"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:id="@+id/music_child"
+                        android:layout_below="@+id/dancing_child"
+                        android:layout_alignLeft="@id/dancing_child" />
+
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sports / Games"
+                        android:textSize="14sp"
+                        android:id="@+id/sports_games_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/music_child"
+                        android:layout_alignLeft="@id/music_child" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Video games"
+                        android:textSize="14sp"
+                        android:id="@+id/video_games_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/sports_games_child"
+                        android:layout_alignLeft="@id/sports_games_child" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other"
+                        android:textSize="14sp"
+                        android:id="@+id/other_hobbies_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/video_games_child"
+                        android:layout_alignLeft="@id/video_games_child" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_below="@id/other_hobbies_child"
+                        android:layout_alignLeft="@id/other_hobbies_child"
+                        android:hint="Type your hobbies"
+                        android:visibility="invisible"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/question_card2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/describe_your_child"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham"
+                    android:text="Describe your child"
+                    android:layout_marginTop="15dp"
+                    android:textAlignment="center"
+                    android:textColor="#ffffffff"
+                    android:textSize="16sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adventure lover"
+                        android:textSize="16sp"
+                        android:id="@+id/adventure_lover_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Health conscious"
+                        android:textSize="16sp"
+                        android:id="@+id/health_conscious_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/adventure_lover_child"
+                        android:layout_alignLeft="@+id/adventure_lover_child" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tech savy"
+                        android:textSize="16sp"
+                        android:id="@+id/tech_savy_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/health_conscious_child"
+                        android:layout_alignLeft="@+id/health_conscious_child" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adept at arts &amp; crafts"
+                        android:textSize="16sp"
+                        android:id="@+id/arts_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/tech_savy_child"
+                        android:layout_alignLeft="@+id/tech_savy_child" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Indoorsy"
+                        android:textSize="16sp"
+                        android:id="@+id/indoorsy_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/arts_child"
+                        android:layout_alignLeft="@+id/arts_child" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other"
+                        android:textSize="16sp"
+                        android:id="@+id/describe_other_child"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/indoorsy_child"
+                        android:layout_alignLeft="@+id/indoorsy_child" />
+
+                    <EditText
+                        android:id="@+id/type_description_child"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_below="@id/describe_other_child"
+                        android:layout_alignLeft="@id/describe_other_child"
+                        android:hint="Type your description"
+                        android:visibility="invisible"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+    <Button
+        android:id="@+id/submit_ques"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:background="@drawable/submit_button"
+        android:textAllCaps="false"
+        android:text="Submit"
+        android:textSize="20sp"
+        android:textColor="#ffd88778"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollView_down"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/round_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        android:translationY="350dp"
+        android:elevation="-1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:map="http://schemas.android.com/tools"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:background="#fff4f4f4">
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.06" />
 
     <HorizontalScrollView
-        android:id="@+id/scroll_top"
+        android:id="@+id/question1_card"
         android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/question_card"
                 android:orientation="vertical">
@@ -65,7 +65,7 @@
                     android:id="@+id/gender_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/gotham"
                     android:text="Gender"
                     android:textAlignment="center"
@@ -77,30 +77,112 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-                    <ImageView
-                        android:layout_width="38dp"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/boy_button" />
-
-                    <ImageView
+                    <RadioGroup
+                        android:id="@+id/radioGroup_gender"
                         android:layout_width="wrap_content"
-                        android:layout_height="72dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="40dp"
-                        android:src="@drawable/line" />
+                        android:layout_height="wrap_content"
+                        android:translationY="-15dp"
+                        android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="41dp"
-                        android:layout_height="69dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/girl_button" />
+                        <RadioButton
+                            android:id="@+id/male_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.5"
+                            android:scaleY="0.5"
+                            android:paddingLeft="15dp"
+                            android:drawableLeft="@drawable/boy_button" />
 
+                        <RadioButton
+                            android:id="@+id/female_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:scaleX="0.5"
+                            android:scaleY="0.5"
+                            android:drawableLeft="@drawable/girl_button"/>
+                    </RadioGroup>
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/age_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham"
+                    android:text="Age"
+                    android:translationY="-20dp"
+                    android:textAlignment="center"
+                    android:textColor="#ffffffff"
+                    android:textSize="23sp" />
+
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:translationY="-20dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp">
+
+                        <RadioButton
+                            android:id="@+id/age_30_34"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:text="30-34"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                        <RadioButton
+                            android:id="@+id/age_35_39"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/age_30_34"
+                            android:layout_marginLeft="40dp"
+                            android:text="35-39"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                        <RadioButton
+                            android:id="@+id/age_40_44"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/age_30_34"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignLeft="@+id/age_30_34"
+                            android:text="40-44"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                        <RadioButton
+                            android:id="@+id/age_45up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/age_35_39"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignLeft="@+id/age_35_39"
+                            android:text="45 up"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                    </RelativeLayout>
+                </RadioGroup>
+
             </LinearLayout>
+
+
+
+
 
 
             <LinearLayout
@@ -111,71 +193,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/age_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/gotham"
-                    android:text="Age"
-                    android:textAlignment="center"
-                    android:textColor="#ffffffff"
-                    android:textSize="23sp" />
-
-                <LinearLayout
-                    android:layout_width="259dp"
-                    android:layout_height="44dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp">
-
-                    <ImageView
-                        android:id="@+id/parent_age_30"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/age_30"
-                        android:clickable="true"/>
-
-                    <ImageView
-                        android:id="@+id/parent_age_35"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/age_35" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="259dp"
-                    android:layout_height="44dp"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:id="@+id/parent_age_40"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/age_40" />
-
-                    <ImageView
-                        android:id="@+id/parent_age_45"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/age_45" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/question_card"
-                android:orientation="vertical">
-
-                <TextView
                     android:id="@+id/pet_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/gotham"
                     android:text="Pet"
                     android:textAlignment="center"
@@ -198,18 +219,18 @@
                         android:fontFamily="@font/gotham"
                         android:text="Dog"
                         android:textColor="#ffffffff"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <CheckBox
-                        android:id="@+id/rabbit"
+                        android:id="@+id/cat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="false"
                         android:fontFamily="@font/gotham"
-                        android:text="Rabbit"
+                        android:text="Cat"
                         android:textColor="#ffffffff"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -219,74 +240,81 @@
                     android:layout_gravity="center">
 
                     <CheckBox
-                        android:id="@+id/cat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Cat"
-                        android:textSize="18sp"
-                        android:textColor="#ffffffff"
-                        android:fontFamily="@font/gotham"
-                        android:checked="false"
-                        android:layout_marginRight="20dp"/>
-
-                    <CheckBox
-                        android:id="@+id/other"
+                        android:id="@+id/other_pet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Other"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
                         android:checked="false" />
 
+                    <EditText
+                        android:id="@+id/other_pet_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:hint="Type your pet"
+                        android:maxLines="1"
+                        android:visibility="invisible"/>
+
                 </LinearLayout>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/question_card2"
-                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/car_text"
+                    android:id="@+id/transport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/gotham"
-                    android:text="Car"
+                    android:text="Preferred mode of transport"
+                    android:layout_marginTop="40dp"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
-                    android:textSize="23sp" />
+                    android:textSize="15sp" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/radioGroup_transport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
 
-                    <ImageView
-                        android:id="@+id/have_car"
-                        android:layout_width="78dp"
-                        android:layout_height="69dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/have_car" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
 
-                    <ImageView
-                        android:id="@+id/without_car"
-                        android:layout_width="78dp"
-                        android:layout_height="69dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/no_car" />
+                        <RadioButton
+                            android:id="@+id/transport_private"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Private"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
 
-                </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/transport_public"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/transport_private"
+                            android:layout_marginLeft="40dp"
+                            android:text="Public"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp"/>
+
+                    </RelativeLayout>
+                </RadioGroup>
 
             </LinearLayout>
+
+
+
+
+
 
 
             <LinearLayout
@@ -297,12 +325,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/habbit_text"
+                    android:id="@+id/hobbies_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/gotham"
-                    android:text="Habbit"
+                    android:text="Hobbies"
+                    android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
@@ -312,11 +340,12 @@
                     android:layout_height="wrap_content">
 
                     <CheckBox
-                        android:id="@+id/movie"
+                        android:id="@+id/reading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Movie"
-                        android:textSize="12sp"
+                        android:text="Reading Books"
+                        android:layout_marginTop="10dp"
+                        android:textSize="14sp"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
                         android:layout_alignParentLeft="true"
@@ -326,411 +355,419 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Baking"
-                        android:textSize="12sp"
-                        android:id="@+id/baking"
-                        android:layout_marginLeft="30dp"
+                        android:text="Cooking / Baking"
+                        android:textSize="14sp"
+                        android:id="@+id/cooking_baking"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_alignTop="@+id/movie"
-                        android:layout_toRightOf="@id/movie" />
+                        android:layout_below="@+id/reading"
+                        android:layout_alignLeft="@+id/reading"/>
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cooking"
-                        android:textSize="12sp"
+                        android:text="Music - vocal / instrument"
+                        android:textSize="14sp"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:id="@+id/cooking"
-                        android:layout_below="@+id/movie"
-                        android:layout_alignLeft="@id/movie" />
+                        android:id="@+id/music"
+                        android:layout_below="@+id/cooking_baking"
+                        android:layout_alignLeft="@id/cooking_baking" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="DIY"
-                        android:textSize="12sp"
-                        android:id="@+id/diy"
+                        android:text="Collecting - any item"
+                        android:textSize="14sp"
+                        android:id="@+id/collecting"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/cooking"
-                        android:layout_alignLeft="@id/movie" />
+                        android:layout_below="@+id/music"
+                        android:layout_alignLeft="@id/music" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Painting"
-                        android:textSize="12sp"
-                        android:id="@+id/painting"
+                        android:text="Sports / Games"
+                        android:textSize="14sp"
+                        android:id="@+id/sports_games"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/baking"
-                        android:layout_alignLeft="@id/baking" />
+                        android:layout_below="@+id/collecting"
+                        android:layout_alignLeft="@id/collecting" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Board Gaming"
-                        android:textSize="12sp"
-                        android:id="@+id/board_gaming"
+                        android:text="Other"
+                        android:textSize="14sp"
+                        android:id="@+id/other_hobbies"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/painting"
-                        android:layout_alignLeft="@id/painting" />
+                        android:layout_below="@+id/sports_games"
+                        android:layout_alignLeft="@id/sports_games" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_below="@id/other_hobbies"
+                        android:layout_alignLeft="@id/other_hobbies"
+                        android:hint="Type your hobbies"
+                        android:visibility="invisible"/>
+
                 </RelativeLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-    </HorizontalScrollView>
 
 
 
 
-
-
-
-    <TextView
-        android:id="@+id/questionnaire_child_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/gotham"
-        android:text="Tell us about your child"
-        android:textAllCaps="false"
-        android:textColor="#ff707070"
-        android:textSize="22sp"
-        android:autoSizeMaxTextSize="30sp"
-        android:autoSizeMinTextSize="15sp"
-        android:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/questionnaire_you_text"
-        app:layout_constraintTop_toBottomOf="@id/scroll_top"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <HorizontalScrollView
-        android:id="@+id/scrollView_down"
-        android:scrollbars="none"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/questionnaire_child_text"
-        android:layout_marginTop="10dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/question_card"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/question_card2"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/gender_child_text"
+                    android:id="@+id/dietary_restrictions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Gender"
-                    android:textAlignment="center"
-                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/gotham"
+                    android:text="Your dietary restrictions"
+                    android:layout_marginTop="15dp"
+                    android:textAlignment="center"
                     android:textColor="#ffffffff"
-                    android:textSize="23sp" />
+                    android:textSize="16sp" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/radioGroup_restrictions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
 
-                    <ImageView
-                        android:layout_width="38dp"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/boy_button" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="72dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="40dp"
-                        android:src="@drawable/line" />
+                        <RadioButton
+                            android:id="@+id/restrictions_none"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="None"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="41dp"
-                        android:layout_height="69dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/girl_button" />
+                        <RadioButton
+                            android:id="@+id/restrictions_vegan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/restrictions_none"
+                            android:layout_alignLeft="@id/restrictions_none"
+                            android:text="Vegan"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
 
+                        <RadioButton
+                            android:id="@+id/restrictions_vegetarian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/restrictions_none"
+                            android:layout_below="@+id/restrictions_vegan"
+                            android:text="Vegetarian"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
 
-                </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/restrictions_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/restrictions_none"
+                            android:layout_below="@+id/restrictions_vegetarian"
+                            android:text="Other"
+                            android:fontFamily="@font/gotham"
+                            android:textColor="#ffffffff"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:layout_below="@id/restrictions_other"
+                            android:layout_alignLeft="@id/restrictions_other"
+                            android:hint="Type your restrictions"
+                            android:visibility="invisible"/>
+
+                    </RelativeLayout>
+                </RadioGroup>
 
             </LinearLayout>
 
 
 
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/question_card2"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/question_card"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/age_child_text"
+                    android:id="@+id/describe_yourself"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Age"
-                    android:textAlignment="center"
-                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/gotham"
+                    android:text="Describe yourself"
+                    android:layout_marginTop="15dp"
+                    android:textAlignment="center"
                     android:textColor="#ffffffff"
-                    android:textSize="23sp" />
+                    android:textSize="16sp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="25dp">
+                    android:layout_marginTop="10dp">
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="13"
-                        android:id="@+id/age_13"
+                        android:text="Adventure lover"
+                        android:textSize="15sp"
+                        android:id="@+id/adventure_lover"
                         android:textColor="#ffffffff"
-                        android:textSize="21sp"
-                        android:fontFamily="@font/gotham"/>
+                        android:fontFamily="@font/gotham"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="14"
-                        android:id="@+id/age_14"
-                        android:layout_marginLeft="15dp"
+                        android:text="Health conscious"
+                        android:textSize="15sp"
+                        android:id="@+id/health_conscious"
                         android:textColor="#ffffffff"
-                        android:textSize="21sp"
-                        android:fontFamily="@font/gotham"/>
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/adventure_lover"
+                        android:layout_alignLeft="@+id/adventure_lover" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15"
-                        android:id="@+id/age_15"
-                        android:layout_marginLeft="15dp"
+                        android:text="Tech savy"
+                        android:textSize="15sp"
+                        android:id="@+id/tech_savy"
                         android:textColor="#ffffffff"
-                        android:textSize="21sp"
-                        android:fontFamily="@font/gotham"/>
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/health_conscious"
+                        android:layout_alignLeft="@+id/health_conscious" />
 
-                </LinearLayout>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adept at arts &amp; crafts"
+                        android:textSize="15sp"
+                        android:id="@+id/arts"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/tech_savy"
+                        android:layout_alignLeft="@+id/tech_savy" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Indoorsy"
+                        android:textSize="15sp"
+                        android:id="@+id/indoorsy"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/arts"
+                        android:layout_alignLeft="@+id/arts" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other"
+                        android:textSize="15sp"
+                        android:id="@+id/describe_other"
+                        android:textColor="#ffffffff"
+                        android:fontFamily="@font/gotham"
+                        android:layout_below="@+id/indoorsy"
+                        android:layout_alignLeft="@+id/indoorsy" />
+
+                    <EditText
+                        android:id="@+id/type_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/describe_other"
+                        android:layout_alignLeft="@id/describe_other"
+                        android:hint="Type your description"
+                        android:visibility="invisible"/>
+
+                </RelativeLayout>
+
 
             </LinearLayout>
-
 
 
             <LinearLayout
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/question_card"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/question_card2"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/habbit_text_child"
+                    android:id="@+id/home_have"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/gotham"
-                    android:text="Habbit"
+                    android:text="Does your home have"
+                    android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
-                    android:textSize="23sp" />
+                    android:textSize="16sp" />
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp">
 
                     <CheckBox
-                        android:id="@+id/movie_child"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Movie"
-                        android:textSize="12sp"
+                        android:text="Swimming pool"
+                        android:textSize="16sp"
+                        android:id="@+id/swimming_pool"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="10dp"
-                        android:checked="false" />
+                        android:layout_marginLeft="10dp" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Baking"
-                        android:textSize="12sp"
-                        android:id="@+id/baking_child"
-                        android:layout_marginLeft="30dp"
+                        android:text="Sports court(s)"
+                        android:textSize="16sp"
+                        android:id="@+id/sports_court"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_alignTop="@+id/movie_child"
-                        android:layout_toRightOf="@id/movie_child" />
+                        android:layout_below="@+id/swimming_pool"
+                        android:layout_alignLeft="@+id/swimming_pool" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cooking"
-                        android:textSize="12sp"
+                        android:text="Video games"
+                        android:textSize="16sp"
+                        android:id="@+id/video_games"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:id="@+id/cooking_child"
-                        android:layout_below="@+id/movie_child"
-                        android:layout_alignLeft="@id/movie_child" />
+                        android:layout_below="@+id/sports_court"
+                        android:layout_alignLeft="@+id/sports_court" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="DIY"
-                        android:textSize="12sp"
-                        android:id="@+id/diy_child"
+                        android:text="Barbeque grill"
+                        android:textSize="16sp"
+                        android:id="@+id/barbeque"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/cooking_child"
-                        android:layout_alignLeft="@id/movie_child" />
+                        android:layout_below="@+id/video_games"
+                        android:layout_alignLeft="@+id/video_games" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Painting"
-                        android:textSize="12sp"
-                        android:id="@+id/painting_child"
+                        android:text="Games &amp; Puzzles"
+                        android:textSize="16sp"
+                        android:id="@+id/games_puzzles"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/baking_child"
-                        android:layout_alignLeft="@id/baking_child" />
+                        android:layout_below="@+id/barbeque"
+                        android:layout_alignLeft="@+id/barbeque" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Board Gaming"
-                        android:textSize="12sp"
-                        android:id="@+id/board_gaming_child"
+                        android:text="Other"
+                        android:textSize="16sp"
+                        android:id="@+id/home_other"
                         android:textColor="#ffffffff"
                         android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/painting_child"
-                        android:layout_alignLeft="@id/painting_child" />
+                        android:layout_below="@+id/games_puzzles"
+                        android:layout_alignLeft="@+id/games_puzzles" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_below="@id/home_other"
+                        android:layout_alignLeft="@id/home_other"
+                        android:hint="Type your answer"
+                        android:visibility="invisible"/>
+
                 </RelativeLayout>
 
             </LinearLayout>
+
+
 
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/question_card2"
-                android:layout_marginRight="20dp"
-                android:orientation="vertical">
+                android:layout_marginRight="30dp"
+                android:background="@drawable/question_card"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
                 <TextView
-                    android:id="@+id/eating_habbit_text_child"
+                    android:id="@+id/residence_area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/gotham"
-                    android:text="Eating Habbit"
+                    android:text="Residence area"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <CheckBox
-                        android:id="@+id/Chinese"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chinese"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="12sp"
-                        android:textColor="#ffffffff"
-                        android:fontFamily="@font/gotham"
-                        android:layout_alignParentLeft="true"
-                        android:checked="false" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="American"
-                        android:layout_marginLeft="30dp"
-                        android:textSize="12sp"
-                        android:id="@+id/American"
-                        android:textColor="#ffffffff"
-                        android:fontFamily="@font/gotham"
-                        android:layout_alignTop="@+id/Chinese"
-                        android:layout_toRightOf="@id/Chinese" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Korean"
-                        android:textColor="#ffffffff"
-                        android:fontFamily="@font/gotham"
-                        android:id="@+id/Korean"
-                        android:textSize="12sp"
-                        android:layout_below="@+id/Chinese"
-                        android:layout_alignLeft="@id/Chinese" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Japanese"
-                        android:textSize="12sp"
-                        android:id="@+id/Japanese"
-                        android:textColor="#ffffffff"
-                        android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/Korean"
-                        android:layout_alignLeft="@+id/Korean" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Australia"
-                        android:textSize="12sp"
-                        android:id="@+id/Australia"
-                        android:textColor="#ffffffff"
-                        android:fontFamily="@font/gotham"
-                        android:layout_below="@+id/American"
-                        android:layout_alignLeft="@id/American" />
-
-                </RelativeLayout>
 
             </LinearLayout>
-
-
-
 
 
         </LinearLayout>
     </HorizontalScrollView>
 
-
     <Button
-        android:id="@+id/submit_ques"
+        android:id="@+id/next_ques"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
         android:background="@drawable/submit_button"
         android:textAllCaps="false"
-        android:text="Submit"
+        android:text="Next"
         android:textSize="20sp"
         android:textColor="#ffd88778"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollView_down"
+        app:layout_constraintTop_toBottomOf="@id/question1_card"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageView
@@ -744,6 +781,5 @@
         app:layout_constraintVertical_bias="1"
         android:translationY="350dp"
         android:elevation="-1dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
