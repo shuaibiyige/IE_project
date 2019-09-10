@@ -118,17 +118,11 @@
 
 
                 <RadioGroup
-                    android:id="@+id/radioGroup_age"
+                    android:id="@+id/radioGroup_age1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:translationY="-20dp"
                     android:orientation="horizontal">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp">
 
                         <RadioButton
                             android:id="@+id/age_30_34"
@@ -144,38 +138,44 @@
                             android:id="@+id/age_35_39"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/age_30_34"
                             android:layout_marginLeft="40dp"
                             android:text="35-39"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
                             android:textSize="14sp"/>
 
-                        <RadioButton
-                            android:id="@+id/age_40_44"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/age_30_34"
-                            android:layout_marginTop="10dp"
-                            android:layout_alignLeft="@+id/age_30_34"
-                            android:text="40-44"
-                            android:fontFamily="@font/gotham"
-                            android:textColor="#ffffffff"
-                            android:textSize="14sp"/>
+                </RadioGroup>
 
-                        <RadioButton
-                            android:id="@+id/age_45up"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/age_35_39"
-                            android:layout_marginTop="10dp"
-                            android:layout_alignLeft="@+id/age_35_39"
-                            android:text="45 up"
-                            android:fontFamily="@font/gotham"
-                            android:textColor="#ffffffff"
-                            android:textSize="14sp"/>
+                <RadioGroup
+                    android:id="@+id/radioGroup_age2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:translationY="-20dp"
+                    android:orientation="horizontal">
 
-                    </RelativeLayout>
+                    <RadioButton
+                        android:id="@+id/age_40_44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:text="40-44"
+                        android:fontFamily="@font/gotham"
+                        android:textColor="#ffffffff"
+                        android:textSize="14sp"/>
+
+                    <RadioButton
+                        android:id="@+id/age_45up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="40dp"
+                        android:text="45 up"
+                        android:translationX="-2dp"
+                        android:fontFamily="@font/gotham"
+                        android:textColor="#ffffffff"
+                        android:textSize="14sp"/>
+
                 </RadioGroup>
 
             </LinearLayout>
@@ -280,16 +280,11 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-
                         <RadioButton
                             android:id="@+id/transport_private"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="40dp"
                             android:text="Private"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
@@ -306,7 +301,6 @@
                             android:textColor="#ffffffff"
                             android:textSize="14sp"/>
 
-                    </RelativeLayout>
                 </RadioGroup>
 
             </LinearLayout>
@@ -408,6 +402,7 @@
                         android:layout_alignLeft="@id/sports_games" />
 
                     <EditText
+                        android:id="@+id/other_hobbies_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -447,13 +442,8 @@
                     android:id="@+id/radioGroup_restrictions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_marginTop="10dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
 
                         <RadioButton
                             android:id="@+id/restrictions_none"
@@ -469,9 +459,8 @@
                             android:id="@+id/restrictions_vegan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/restrictions_none"
-                            android:layout_alignLeft="@id/restrictions_none"
                             android:text="Vegan"
+                            android:layout_marginLeft="20dp"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
                             android:textSize="15sp"/>
@@ -480,8 +469,7 @@
                             android:id="@+id/restrictions_vegetarian"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignLeft="@id/restrictions_none"
-                            android:layout_below="@+id/restrictions_vegan"
+                            android:layout_marginLeft="20dp"
                             android:text="Vegetarian"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
@@ -491,23 +479,21 @@
                             android:id="@+id/restrictions_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignLeft="@id/restrictions_none"
-                            android:layout_below="@+id/restrictions_vegetarian"
+                            android:layout_marginLeft="20dp"
                             android:text="Other"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
                             android:textSize="15sp"/>
 
                         <EditText
+                            android:id="@+id/other_restrictions_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
-                            android:layout_below="@id/restrictions_other"
-                            android:layout_alignLeft="@id/restrictions_other"
+                            android:layout_marginLeft="20dp"
                             android:hint="Type your restrictions"
                             android:visibility="invisible"/>
 
-                    </RelativeLayout>
                 </RadioGroup>
 
             </LinearLayout>
@@ -613,6 +599,7 @@
                         android:layout_below="@id/describe_other"
                         android:layout_alignLeft="@id/describe_other"
                         android:hint="Type your description"
+                        android:textSize="14sp"
                         android:visibility="invisible"/>
 
                 </RelativeLayout>
@@ -713,9 +700,10 @@
                         android:layout_alignLeft="@+id/games_puzzles" />
 
                     <EditText
+                        android:id="@+id/other_home_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_below="@id/home_other"
                         android:layout_alignLeft="@id/home_other"
                         android:hint="Type your answer"
