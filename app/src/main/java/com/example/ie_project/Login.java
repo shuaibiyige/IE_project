@@ -2,7 +2,9 @@ package com.example.ie_project;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -16,12 +18,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.common.api.Response;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -67,8 +75,11 @@ public class Login extends AppCompatActivity
 //
 //                    // save data
 //
-//                    Intent intent = new Intent(Login.this, MainActivity.class);
-//                    startActivity(intent);
+//
+//
+//
+////                    Intent intent = new Intent(Login.this, MainActivity.class);
+////                    startActivity(intent);
 //                }
 //                else        // not valid
 //                {
@@ -77,8 +88,11 @@ public class Login extends AppCompatActivity
 //                    else if (password.getText().toString().trim().length() == 0)
 //                        Toast.makeText(getApplicationContext(), "Password can not be empty", Toast.LENGTH_SHORT).show();
 //                }
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(Login.this, MainActivity.class);
+//                startActivity(intent);
+                loginRestAsyncTask getPassword = new loginRestAsyncTask();
+                getPassword.execute();
+
 
             }
         });
@@ -178,5 +192,19 @@ public class Login extends AppCompatActivity
 //            }
 //        });
         // [END read_message]
+    }
+
+    private class loginRestAsyncTask extends AsyncTask<String, Void, Void>
+    {
+        @Override
+        protected Void doInBackground (String...params)
+        {
+
+            String id = databaseConnection.login();
+            //System.out.println(id);
+            return null;
+        }
+
+
     }
 }

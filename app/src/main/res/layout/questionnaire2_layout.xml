@@ -125,7 +125,7 @@
 
 
                     <RadioGroup
-                        android:id="@+id/radioGroup_age"
+                        android:id="@+id/radioGroup_age_child"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -219,13 +219,9 @@
                     android:id="@+id/radioGroup_restrictions_child"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_marginTop="10dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
 
                         <RadioButton
                             android:id="@+id/restrictions_none_child"
@@ -241,8 +237,7 @@
                             android:id="@+id/restrictions_vegan_child"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/restrictions_none_child"
-                            android:layout_alignLeft="@id/restrictions_none_child"
+                            android:layout_marginLeft="20dp"
                             android:text="Vegan"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
@@ -252,8 +247,7 @@
                             android:id="@+id/restrictions_vegetarian_child"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignLeft="@id/restrictions_none_child"
-                            android:layout_below="@+id/restrictions_vegan_child"
+                            android:layout_marginLeft="20dp"
                             android:text="Vegetarian"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
@@ -263,23 +257,21 @@
                             android:id="@+id/restrictions_other_child"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignLeft="@id/restrictions_none_child"
-                            android:layout_below="@+id/restrictions_vegetarian_child"
+                            android:layout_marginLeft="20dp"
                             android:text="Other"
                             android:fontFamily="@font/gotham"
                             android:textColor="#ffffffff"
                             android:textSize="15sp"/>
 
                         <EditText
+                            android:id="@+id/restrictions_other_child_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_below="@id/restrictions_other_child"
-                            android:layout_alignLeft="@id/restrictions_other_child"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="20dp"
                             android:hint="Type your restrictions"
                             android:visibility="invisible"/>
 
-                    </RelativeLayout>
                 </RadioGroup>
 
 
@@ -385,6 +377,7 @@
                         android:layout_alignLeft="@id/video_games_child" />
 
                     <EditText
+                        android:id="@+id/other_hobbies_child_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -497,7 +490,7 @@
                         android:id="@+id/type_description_child"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_below="@id/describe_other_child"
                         android:layout_alignLeft="@id/describe_other_child"
                         android:hint="Type your description"
@@ -521,12 +514,13 @@
         android:background="@drawable/submit_button"
         android:textAllCaps="false"
         android:text="Submit"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="#ffd88778"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scrollView_down"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageView
