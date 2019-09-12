@@ -48,7 +48,6 @@ public class Login extends AppCompatActivity
     private EditText email;
     private EditText password;
     private RequestQueue requestQueue;
-    private List<String> identity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,7 +58,7 @@ public class Login extends AppCompatActivity
 
         requestQueue = Volley.newRequestQueue(this);
 
-        identity = new ArrayList<>();
+
         signIn = (Button) findViewById(R.id.sign_in);
         signUp = (TextView) findViewById(R.id.sign_up);
         email = (EditText) findViewById(R.id.email_sign_in);
@@ -83,6 +82,7 @@ public class Login extends AppCompatActivity
             {
                 if (checkEmail(email.getText().toString()) &&  password.getText().toString().trim().length() != 0)
                 {
+                    List<String> identity = new ArrayList<>();
                     String user_email = email.getText().toString();
                     String ueser_password = password.getText().toString();
                     identity.add(user_email);
@@ -176,14 +176,14 @@ public class Login extends AppCompatActivity
                 @Override
                 public void onResponse(String s)
                 {
-                    //String TAG = "LOGIN";
-                    //Log.e(TAG, s);
+                    String TAG = "LOGIN";
+                    Log.e(TAG, s);
                     int retCode = 0;
                     try
                     {
                         JSONObject jsonObject = new JSONObject(s);
                         retCode = jsonObject.getInt("success");
-                        //Log.d("retCode", retCode+"");
+                        Log.d("retCode", retCode+"");
                     }
                     catch (JSONException e)
                     {
