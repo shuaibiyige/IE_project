@@ -29,10 +29,6 @@ public class Schedule extends AppCompatActivity
     private ImageView yes_schedule;
     private TextView textView;
 
-    public Schedule() {
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -41,7 +37,7 @@ public class Schedule extends AppCompatActivity
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        calendar = (MaterialCalendarView) findViewById(R.id.calendarView);
+        calendar = findViewById(R.id.calendarView);
         calendar.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
         start_time_spinner = findViewById(R.id.Start_time_spinner);
         end_time_spinner = findViewById(R.id.End_time_spinner);

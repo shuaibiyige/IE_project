@@ -12,62 +12,76 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
 
-    <string-array name="start_time">
-        <item>select</item>
-        <item>10 am</item>
-        <item>11 am</item>
-        <item>12 pm</item>
-        <item>1 pm</item>
-        <item>2 pm</item>
-        <item>3 pm</item>
-        <item>4 pm</item>
-        <item>5 pm</item>
-        <item>6 pm</item>
-        <item>7 pm</item>
-        <item>8 pm</item>
-        <item>9 pm</item>
-        <item>10 pm</item>
-    </string-array>
+<!--    <string-array name="start_time">-->
+<!--        <item>select</item>-->
+<!--        <item>10 am</item>-->
+<!--        <item>11 am</item>-->
+<!--        <item>12 pm</item>-->
+<!--        <item>1 pm</item>-->
+<!--        <item>2 pm</item>-->
+<!--        <item>3 pm</item>-->
+<!--        <item>4 pm</item>-->
+<!--        <item>5 pm</item>-->
+<!--        <item>6 pm</item>-->
+<!--        <item>7 pm</item>-->
+<!--        <item>8 pm</item>-->
+<!--        <item>9 pm</item>-->
+<!--        <item>10 pm</item>-->
+<!--    </string-array>-->
 
-    <string-array name="end_time">
-        <item>select</item>
-        <item>10 am</item>
-        <item>11 am</item>
-        <item>12 pm</item>
-        <item>1 pm</item>
-        <item>2 pm</item>
-        <item>3 pm</item>
-        <item>4 pm</item>
-        <item>5 pm</item>
-        <item>6 pm</item>
-        <item>7 pm</item>
-        <item>8 pm</item>
-        <item>9 pm</item>
-        <item>10 pm</item>
-    </string-array>
+<!--    <string-array name="end_time">-->
+<!--        <item>select</item>-->
+<!--        <item>10 am</item>-->
+<!--        <item>11 am</item>-->
+<!--        <item>12 pm</item>-->
+<!--        <item>1 pm</item>-->
+<!--        <item>2 pm</item>-->
+<!--        <item>3 pm</item>-->
+<!--        <item>4 pm</item>-->
+<!--        <item>5 pm</item>-->
+<!--        <item>6 pm</item>-->
+<!--        <item>7 pm</item>-->
+<!--        <item>8 pm</item>-->
+<!--        <item>9 pm</item>-->
+<!--        <item>10 pm</item>-->
+<!--    </string-array>-->
 
-    <string-array name="age_child">
-        <item>select</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-    </string-array>
+<!--    <string-array name="age_child">-->
+<!--        <item>select</item>-->
+<!--        <item>13</item>-->
+<!--        <item>14</item>-->
+<!--        <item>15</item>-->
+<!--    </string-array>-->
 
-    <string-array name="age">
-        <item>select</item>
-        <item>30 - 34</item>
-        <item>35 - 39</item>
-        <item>40 - 44</item>
-        <item>45 - 49</item>
-        <item>50 and above</item>
-    </string-array>
+<!--    <string-array name="age">-->
+<!--        <item>select</item>-->
+<!--        <item>30 - 34</item>-->
+<!--        <item>35 - 39</item>-->
+<!--        <item>40 - 44</item>-->
+<!--        <item>45 - 49</item>-->
+<!--        <item>50 and above</item>-->
+<!--    </string-array>-->
 
-    <string-array name="security">
+<!--    <string-array name="security">-->
+<!--        <item>select</item>-->
+<!--        <item>30 - 34</item>-->
+<!--        <item>35 - 39</item>-->
+<!--        <item>40 - 44</item>-->
+<!--        <item>45 - 49</item>-->
+<!--        <item>50 and above</item>-->
+<!--    </string-array>-->
+
+    <string-array name="security_question">
         <item>select</item>
-        <item>30 - 34</item>
-        <item>35 - 39</item>
-        <item>40 - 44</item>
-        <item>45 - 49</item>
-        <item>50 and above</item>
+        <item>What is maiden name of your mother?</item>
+        <item>Who was your childhood hero?</item>
+        <item>What is the name of your first pet?</item>
+        <item>What was your first car?</item>
+        <item>Which city were you born?</item>
+        <item>What elementary school did you attend?</item>
+        <item>Who was your first best friend?</item>
+        <item>What is your favourite food?</item>
+        <item>What is your favourite book?</item>
+        <item>What is your favourite vacation spot?</item>
     </string-array>
 </resources>

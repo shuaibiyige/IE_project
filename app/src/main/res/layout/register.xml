@@ -30,8 +30,7 @@
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/email_text"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/email_text" />
 
     <EditText
         android:id="@+id/new_email"
@@ -125,8 +124,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.807" />
 
-
-
     <Spinner
         android:id="@+id/new_security"
         android:layout_width="280dp"
@@ -135,7 +132,6 @@
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
