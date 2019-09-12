@@ -1,5 +1,6 @@
 package com.example.ie_project;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,9 +19,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.common.api.Response;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -29,7 +35,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,6 +47,8 @@ public class Login extends AppCompatActivity
     private TextView signUp, hello, signIn_text, forget;
     private EditText email;
     private EditText password;
+    private RequestQueue requestQueue;
+    private List<String> identity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,6 +57,9 @@ public class Login extends AppCompatActivity
         setContentView(R.layout.login);
         getSupportActionBar().hide();
 
+        requestQueue = Volley.newRequestQueue(this);
+
+        identity = new ArrayList<>();
         signIn = (Button) findViewById(R.id.sign_in);
         signUp = (TextView) findViewById(R.id.sign_up);
         email = (EditText) findViewById(R.id.email_sign_in);
@@ -68,32 +81,23 @@ public class Login extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-//                if (checkEmail(email.getText().toString()) &&  password.getText().toString().trim().length() != 0)
-//                {
-//                    String user_email = email.getText().toString();
-//                    String ueser_password = password.getText().toString();
-//
-//                    // save data
-//
-//
-//
-//
-////                    Intent intent = new Intent(Login.this, MainActivity.class);
-////                    startActivity(intent);
-//                }
-//                else        // not valid
-//                {
-//                    if (!checkEmail(email.getText().toString()))
-//                        Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
-//                    else if (password.getText().toString().trim().length() == 0)
-//                        Toast.makeText(getApplicationContext(), "Password can not be empty", Toast.LENGTH_SHORT).show();
-//                }
-//                Intent intent = new Intent(Login.this, MainActivity.class);
-//                startActivity(intent);
-                loginRestAsyncTask getPassword = new loginRestAsyncTask();
-                getPassword.execute();
+                if (checkEmail(email.getText().toString()) &&  password.getText().toString().trim().length() != 0)
+                {
+                    String user_email = email.getText().toString();
+                    String ueser_password = password.getText().toString();
+                    identity.add(user_email);
+                    identity.add(ueser_password);
 
-
+                    LoginRestAsyncTask loginRestAsyncTask = new LoginRestAsyncTask();
+                    loginRestAsyncTask.execute(identity);
+                }
+                else        // not valid
+                {
+                    if (!checkEmail(email.getText().toString()))
+                        Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
+                    else if (password.getText().toString().trim().length() == 0)
+                        Toast.makeText(getApplicationContext(), "Password can not be empty", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -160,51 +164,72 @@ public class Login extends AppCompatActivity
         return list;
     }
 
-    public void basicReadWrite()
-    {
-        // [START write_message]
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        String n= myRef.push().getKey();
-
-        User user = new User("jj", 2);
-
-        myRef.child("User").child(n).setValue(user);
-        // [END write_message]
-
-        // [START read_message]
-        // Read from the database
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                Log.d("a", "Value is: " + value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("a", "Failed to read value.", error.toException());
-//            }
-//        });
-        // [END read_message]
-    }
-
-    private class loginRestAsyncTask extends AsyncTask<String, Void, Void>
+    private class LoginRestAsyncTask extends AsyncTask<List<String>, Void, Void>
     {
         @Override
-        protected Void doInBackground (String...params)
+        protected Void doInBackground (final List<String>...params)
         {
+            String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/login.php";
 
-            String id = databaseConnection.login();
-            //System.out.println(id);
+            com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+            {
+                @Override
+                public void onResponse(String s)
+                {
+                    //String TAG = "LOGIN";
+                    //Log.e(TAG, s);
+                    int retCode = 0;
+                    try
+                    {
+                        JSONObject jsonObject = new JSONObject(s);
+                        retCode = jsonObject.getInt("success");
+                        //Log.d("retCode", retCode+"");
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    if (retCode == 1)
+                    {
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        startActivity(intent);
+                        //Toast.makeText(getApplicationContext(),"yes",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"User not found",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            };
+
+            com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+                public String TAG = "LOG";
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(TAG, error.getMessage(), error);
+                }
+            };
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError
+                {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("email", params[0].get(0));
+                    map.put("pwd", params[0].get(1));
+                    return map;
+                }
+            };
+            requestQueue.add(stringRequest);
             return null;
+        }
+
+        protected void onPostExecute(Void param)
+        {
+            //Toast.makeText(getApplicationContext(), "Add consumption Successfully", Toast.LENGTH_SHORT).show();
         }
 
 
     }
+
 }
