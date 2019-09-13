@@ -1,17 +1,23 @@
 package com.example.ie_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.Style;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.ramotion.foldingcell.FoldingCell;
@@ -28,11 +34,14 @@ public class Schedule extends AppCompatActivity
     private List<String> newEndList;
     private ImageView yes_schedule;
     private TextView textView;
+    private MapView mapView1, mapView2;
+    private FoldingCell fc1, fc2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Mapbox.getInstance(this, "pk.eyJ1IjoiY2h1YWliaSIsImEiOiJjamw2bDYxYm0wdGZ1M3duNWlnd3lqbWFuIn0.XaGfJkYUWnSO9LlBb5EPYw");
         setContentView(R.layout.activity_schedule);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -45,8 +54,58 @@ public class Schedule extends AppCompatActivity
         textView = findViewById(R.id.select_free_time_text);
         startList = new ArrayList<>();
         newEndList = new ArrayList<>();
+        fc1 = findViewById(R.id.folding_cell1);
+        fc2 = findViewById(R.id.folding_cell2);
+        mapView1 = findViewById(R.id.mapView1);
+        mapView2 = findViewById(R.id.mapView2);
+
+        final Animation ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
+
 
         init(startList);
+
+        mapView1.onCreate(savedInstanceState);
+        mapView2.onCreate(savedInstanceState);
+
+        mapView1.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull MapboxMap mapboxMap)
+            {
+                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
+                {
+                    @Override
+                    public void onStyleLoaded(@NonNull Style style)
+                    {
+
+                    // Map is set up and the style has loaded. Now you can add data or make other map adjustments
+
+
+                    }
+                });
+                mapboxMap.getUiSettings().setAttributionEnabled(false);
+                mapboxMap.getUiSettings().setLogoEnabled(false);
+            }
+        });
+
+        mapView2.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull MapboxMap mapboxMap)
+            {
+                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
+                {
+                    @Override
+                    public void onStyleLoaded(@NonNull Style style)
+                    {
+
+                        // Map is set up and the style has loaded. Now you can add data or make other map adjustments
+
+
+                    }
+                });
+                mapboxMap.getUiSettings().setAttributionEnabled(false);
+                mapboxMap.getUiSettings().setLogoEnabled(false);
+            }
+        });
 
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, startList);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -88,21 +147,41 @@ public class Schedule extends AppCompatActivity
 
         yes_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 textView.setText("Select Activity");
 
+                if (fc1.getVisibility() == View.INVISIBLE)
+                {
+                    fc1.setVisibility(View.VISIBLE);
+                    fc1.setAnimation(ani2);
+                }
+                fc1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        fc1.toggle(false);
+                    }
+                });
+
+                if (fc2.getVisibility() == View.INVISIBLE)
+                {
+                    fc2.setVisibility(View.VISIBLE);
+                    fc2.setAnimation(ani2);
+                }
+                fc2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        fc2.toggle(false);
+                    }
+                });
 
 
             }
         });
 
-        final FoldingCell fc = (FoldingCell) findViewById(R.id.folding_cell);
-        fc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fc.toggle(false);
-            }
-        });
+
 
 
     }

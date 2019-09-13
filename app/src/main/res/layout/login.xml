@@ -82,7 +82,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:paddingLeft="20dp"/>
+        android:paddingLeft="20dp"
+        android:text="abc@gmail.com"/>
 
     <EditText
         android:id="@+id/password_sign_in"
@@ -104,7 +105,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:paddingLeft="20dp"/>
+        android:paddingLeft="20dp"
+        android:text="abc123"/>
 
     <Button
         android:id="@+id/sign_in"
