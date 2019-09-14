@@ -122,9 +122,6 @@ public class Login extends AppCompatActivity
 
 
 
-
-
-
         //basicReadWrite();
 
     }
@@ -176,14 +173,14 @@ public class Login extends AppCompatActivity
                 @Override
                 public void onResponse(String s)
                 {
-                    String TAG = "LOGIN";
-                    Log.e(TAG, s);
+                    //String TAG = "LOGIN";
+                    //Log.e(TAG, s);
                     int retCode = 0;
                     try
                     {
                         JSONObject jsonObject = new JSONObject(s);
                         retCode = jsonObject.getInt("success");
-                        Log.d("retCode", retCode+"");
+                        //Log.d("retCode", retCode+"");
                     }
                     catch (JSONException e)
                     {

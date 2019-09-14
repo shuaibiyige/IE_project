@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/dialog_title_background"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="Add activity to calendar?"
+            android:fontFamily="@font/gotham"
+            android:textColor="#ffffffff" />
+    </LinearLayout>
+
+
+   <TextView
+       android:id="@+id/dialog_date"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Date"
+       android:fontFamily="@font/gotham"
+       android:layout_gravity="center"
+       android:textSize="18sp"
+       android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/dialog_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:fontFamily="@font/gotham"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/dialog_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity"
+        android:fontFamily="@font/gotham"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"/>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/dialog_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
+            android:fontFamily="@font/gotham"
+            android:background="@drawable/dialog_yes"
+            android:paddingBottom="10dp"
+            android:layout_marginRight="40dp"
+            android:text="Yes" />
+
+        <Button
+            android:id="@+id/dialog_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ffde988c"
+            android:fontFamily="@font/gotham"
+            android:textSize="16sp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/dialog_no"
+            android:text="No" />
+        
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -2,13 +2,18 @@ package com.example.ie_project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +41,7 @@ public class Schedule extends AppCompatActivity
     private TextView textView;
     private MapView mapView1, mapView2;
     private FoldingCell fc1, fc2;
+    private Button select1, select2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +57,8 @@ public class Schedule extends AppCompatActivity
         start_time_spinner = findViewById(R.id.Start_time_spinner);
         end_time_spinner = findViewById(R.id.End_time_spinner);
         yes_schedule = findViewById(R.id.schedule_yes);
+        select1 = findViewById(R.id.activity_button1);
+        select2 = findViewById(R.id.activity_button2);
         textView = findViewById(R.id.select_free_time_text);
         startList = new ArrayList<>();
         newEndList = new ArrayList<>();
@@ -104,6 +112,20 @@ public class Schedule extends AppCompatActivity
                 });
                 mapboxMap.getUiSettings().setAttributionEnabled(false);
                 mapboxMap.getUiSettings().setLogoEnabled(false);
+            }
+        });
+
+        select1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog("date1", "time1", "activity1");
+            }
+        });
+
+        select2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog("date2", "time2", "activity2");
             }
         });
 
@@ -221,5 +243,44 @@ public class Schedule extends AppCompatActivity
         list.add("8 pm");
         list.add("9 pm");
         list.add("10 pm");
+    }
+
+    public void alertDialog(String date_text, String time_text, String activity_text)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog dialog = builder.create();
+        View dialogView = View.inflate(this, R.layout.activity_dialog, null);
+        dialog.setView(dialogView);
+        Window window = dialog.getWindow();
+        window.setBackgroundDrawable(new BitmapDrawable());        //erase white background
+        dialog.show();
+
+        Button yes = dialogView.findViewById(R.id.dialog_confirm);
+        Button no = dialogView.findViewById(R.id.dialog_cancel);
+        TextView date = (TextView) dialogView.findViewById(R.id.dialog_date);
+        TextView time = (TextView) dialogView.findViewById(R.id.dialog_time);
+        TextView activity = (TextView) dialogView.findViewById(R.id.dialog_activity);
+
+        date.setText(date_text);
+        time.setText(time_text);
+        activity.setText(activity_text);
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+            }
+        });
+
+
     }
 }
