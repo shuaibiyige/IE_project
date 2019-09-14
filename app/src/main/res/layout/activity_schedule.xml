@@ -218,10 +218,7 @@
                         android:layout_width="250dp"
                         android:layout_height="105dp"
                         android:layout_marginTop="10dp"
-                        android:layout_gravity="center"
-                        mapbox:mapbox_cameraTargetLat="40.73581"
-                        mapbox:mapbox_cameraTargetLng="-73.99155"
-                        mapbox:mapbox_cameraZoom="11" />
+                        android:layout_gravity="center" />
 
                     <Button
                         android:id="@+id/activity_button1"

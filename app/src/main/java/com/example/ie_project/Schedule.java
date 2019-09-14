@@ -19,6 +19,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -42,6 +45,7 @@ public class Schedule extends AppCompatActivity
     private MapView mapView1, mapView2;
     private FoldingCell fc1, fc2;
     private Button select1, select2;
+    private LatLng latLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,6 +70,7 @@ public class Schedule extends AppCompatActivity
         fc2 = findViewById(R.id.folding_cell2);
         mapView1 = findViewById(R.id.mapView1);
         mapView2 = findViewById(R.id.mapView2);
+        latLng = new LatLng(-37.814, 144.96332);            // focus on Melbourne by default
 
         final Animation ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
 
@@ -92,6 +97,9 @@ public class Schedule extends AppCompatActivity
                 });
                 mapboxMap.getUiSettings().setAttributionEnabled(false);
                 mapboxMap.getUiSettings().setLogoEnabled(false);
+
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
+                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });
 
@@ -112,6 +120,9 @@ public class Schedule extends AppCompatActivity
                 });
                 mapboxMap.getUiSettings().setAttributionEnabled(false);
                 mapboxMap.getUiSettings().setLogoEnabled(false);
+
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
+                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });
 
