@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<ScrollView
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:mapbox="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:background="#fff4f4f4">
@@ -18,11 +18,10 @@
             android:layout_height="wrap_content"
             android:src="@drawable/round2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:translationY="-400dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            android:translationY="-320dp" />
 
         <TextView
             android:id="@+id/select_free_time_text"
@@ -41,7 +40,7 @@
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.06" />
+            app:layout_constraintVertical_bias="0.03" />
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -55,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/select_free_time_text"
-            app:layout_constraintVertical_bias="0.06"/>
+            app:layout_constraintVertical_bias="0.02"/>
 
         <LinearLayout
             android:id="@+id/schedule_layout"
@@ -64,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.06"
+            app:layout_constraintVertical_bias="0.01"
             app:layout_constraintTop_toBottomOf="@+id/calendarView"
             android:gravity="center">
 
@@ -109,7 +108,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_bias="0.03"
             app:layout_constraintTop_toBottomOf="@+id/schedule_layout"
             android:gravity="center">
 
@@ -120,6 +119,17 @@
                 android:src="@drawable/yes_activity" />
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="740dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yes_layout"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:translationY="20dp">
 
 
         <com.ramotion.foldingcell.FoldingCell
@@ -272,6 +282,7 @@
             app:layout_constraintTop_toBottomOf="@+id/folding_cell1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.1"
+            android:translationY="20dp"
             android:visibility="invisible">
 
             <LinearLayout
@@ -401,6 +412,8 @@
             </RelativeLayout>
 
         </com.ramotion.foldingcell.FoldingCell>
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
