@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
@@ -26,15 +27,17 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Schedule extends AppCompatActivity
+public class Schedule extends AppCompatActivity implements OnDateSelectedListener
 {
     private MaterialCalendarView calendar;
     private Spinner start_time_spinner, end_time_spinner;
@@ -46,6 +49,7 @@ public class Schedule extends AppCompatActivity
     private FoldingCell fc1, fc2;
     private Button select1, select2;
     private LatLng latLng;
+    private Animation ani2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,7 +61,6 @@ public class Schedule extends AppCompatActivity
         actionBar.hide();
 
         calendar = findViewById(R.id.calendarView);
-        calendar.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
         start_time_spinner = findViewById(R.id.Start_time_spinner);
         end_time_spinner = findViewById(R.id.End_time_spinner);
         yes_schedule = findViewById(R.id.schedule_yes);
@@ -71,14 +74,15 @@ public class Schedule extends AppCompatActivity
         mapView1 = findViewById(R.id.mapView1);
         mapView2 = findViewById(R.id.mapView2);
         latLng = new LatLng(-37.814, 144.96332);            // focus on Melbourne by default
-
-        final Animation ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
-
+        ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
 
         init(startList);
 
         mapView1.onCreate(savedInstanceState);
         mapView2.onCreate(savedInstanceState);
+
+        calendar.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
+        calendar.setOnDateChangedListener(this);
 
         mapView1.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -213,10 +217,6 @@ public class Schedule extends AppCompatActivity
 
             }
         });
-
-
-
-
     }
 
     public void spinner2(ArrayAdapter<String> adapter, final Spinner spinner)
@@ -291,7 +291,11 @@ public class Schedule extends AppCompatActivity
                 dialog.dismiss();
             }
         });
+    }
 
-
+    @Override
+    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected)
+    {
+        Toast.makeText(this, String.valueOf(date.getDay()), Toast.LENGTH_SHORT).show();
     }
 }
