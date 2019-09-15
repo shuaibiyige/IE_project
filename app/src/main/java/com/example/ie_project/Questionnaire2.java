@@ -2,8 +2,12 @@ package com.example.ie_project;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +17,32 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.SignInButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 public class Questionnaire2 extends Fragment
@@ -29,12 +56,14 @@ public class Questionnaire2 extends Fragment
     private int age;
     //private int selectedItemCounter1 = 0;
     private Set<String> hobbiesList, descriptionList;
+    private RequestQueue requestQueue;
+    private int user_id;
+    private String dateTime;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         question2 = inflater.inflate(R.layout.questionnaire2_layout, container, false);
-        final FragmentManager fragmentManager = getFragmentManager();
-
+        requestQueue = Volley.newRequestQueue(getActivity());
 
         initView();
 
@@ -97,31 +126,82 @@ public class Questionnaire2 extends Fragment
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 if (isValid(child_name_edit.getText().toString()))
                     name = child_name_edit.getText().toString();
 
                 recordCheckBoxHobbies();
                 recordCheckBoxDescription();
 
+                String hobbies = "";
+                String descriptions = "";
+
+                for (String ele : hobbiesList)
+                {
+                    if (!hobbies.equals(""))
+                        hobbies = hobbies + ", " + ele;
+                    else
+                        hobbies = hobbies + ", " + ele;
+                }
+
+                for (String ele : descriptionList)
+                {
+                    if (!descriptions.equals(""))
+                        descriptions = descriptions + ", " + ele;
+                    else
+                        descriptions = ele;
+                }
 
 
+//                SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
+//                editor.putString("user_child_gender", gender);
+//                editor.putInt("user_child_age", age);
+//                editor.putString("user_child_name", name);
+//                editor.putString("user_child_hobbies", hobbies);
+//                editor.putString("user_child_restriction", restriction);
+//                editor.putString("user_child_description", descriptions);
+//                editor.apply();
 
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Successful()).commit();
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+                user_id = sharedPreferences.getInt("user_id", 0);
+                String user_gender = sharedPreferences.getString("user_gender", "male");
+                String user_age = sharedPreferences.getString("user_age", "");
+                String user_pet = sharedPreferences.getString("user_pet", "");
+                String user_restriction = sharedPreferences.getString("user_restriction", "");
+                String user_hobbies = sharedPreferences.getString("user_hobbies", "");
+                String user_description = sharedPreferences.getString("user_description", "");
+                String user_transport = sharedPreferences.getString("user_transport", "");
+                String user_home = sharedPreferences.getString("user_home", "");
+
+                List<String> list = new ArrayList<>();
+                list.add(user_age);                // 1
+                list.add(user_gender);             // 2
+                list.add(user_restriction);        // 3
+                list.add(user_hobbies);            // 4
+                list.add(user_description);        // 5
+                list.add(name);                    // 6
+                list.add(String.valueOf(age));     // 7
+                list.add(gender);                  // 8
+                list.add(restriction);             // 9
+                list.add(hobbies);                 // 10
+                list.add(descriptions);            // 11
+                list.add(user_transport);          // 12
+                list.add("area");                  // 13
+                list.add(user_pet);                // 14
+                list.add(user_home);               // 15
+
+                CheckRestAsyncTask checkRestAsyncTask = new CheckRestAsyncTask();
+                checkRestAsyncTask.execute(String.valueOf(user_id));
+
+                QuestionRestAsyncTask questionRestAsyncTask = new QuestionRestAsyncTask();
+                questionRestAsyncTask.execute(list);
+
             }
         });
 
         otherBoxChecked(other_hobbies, other_hobbies_text);
         otherBoxChecked(other_description, other_description_text);
-
-//        final FoldingCell fc = (FoldingCell) question1.findViewById(R.id.folding_cell);
-//        fc.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                fc.toggle(false);
-//            }
-//        });
-
 
 
         return question2;
@@ -133,6 +213,7 @@ public class Questionnaire2 extends Fragment
         age = 0;
         name = "";
         restriction = "";
+        dateTime = "";
         hobbiesList = new HashSet();
         descriptionList = new HashSet();
         submit = question2.findViewById(R.id.submit_ques);
@@ -155,6 +236,11 @@ public class Questionnaire2 extends Fragment
         indoorsy = question2.findViewById(R.id.indoorsy_child);
         other_description = question2.findViewById(R.id.describe_other_child);
         other_description_text = question2.findViewById(R.id.type_description_child);
+
+        long time = System.currentTimeMillis();          //long now = android.os.SystemClock.uptimeMillis();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date d1 = new Date(time);
+        dateTime = format.format(d1);
 
 //        listener1(movie);
 //        listener1(gaming);
@@ -246,6 +332,129 @@ public class Questionnaire2 extends Fragment
                 }
             }
         });
+    }
+
+    private class QuestionRestAsyncTask extends AsyncTask<List<String>, Void, Void>
+    {
+        @Override
+        protected Void doInBackground (final List<String>...params)
+        {
+            String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/addUserAnswer.php";
+
+            com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+            {
+                @Override
+                public void onResponse(String s)
+                {
+                    int retCode = 0;
+                    try
+                    {
+                        JSONObject jsonObject = new JSONObject(s);
+                        retCode = jsonObject.getInt("success");
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    if (retCode == 1)
+                    {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, new Successful()).commit();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"Submit failed",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            };
+
+            com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+                public String TAG = "LOG";
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(TAG, error.getMessage(), error);
+                }
+            };
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError
+                {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("user_id", String.valueOf(user_id));
+                    map.put("1", params[0].get(0));
+                    map.put("2", params[0].get(1));
+                    map.put("3", params[0].get(2));
+                    map.put("4", params[0].get(3));
+                    map.put("5", params[0].get(4));
+                    map.put("6", params[0].get(5));
+                    map.put("7", params[0].get(6));
+                    map.put("8", params[0].get(7));
+                    map.put("9", params[0].get(8));
+                    map.put("10", params[0].get(9));
+                    map.put("11", params[0].get(10));
+                    map.put("12", params[0].get(11));
+                    map.put("13", params[0].get(12));
+                    map.put("14", params[0].get(13));
+                    map.put("15", params[0].get(14));
+                    map.put("last_update", dateTime);
+
+                    return map;
+                }
+            };
+            requestQueue.add(stringRequest);
+            return null;
+        }
+    }
+
+
+    private class CheckRestAsyncTask extends AsyncTask<String, Void, Void>
+    {
+        @Override
+        protected Void doInBackground (final String...params)
+        {
+            String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/checkUserAnswer.php";
+
+            com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+            {
+                @Override
+                public void onResponse(String s)
+                {
+                    int retCode = 0;
+                    try
+                    {
+                        JSONObject jsonObject = new JSONObject(s);
+                        retCode = jsonObject.getInt("success");
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+            };
+
+            com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+                public String TAG = "LOG";
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(TAG, error.getMessage(), error);
+                }
+            };
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError
+                {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("user_id", params[0]);
+
+                    return map;
+                }
+            };
+            requestQueue.add(stringRequest);
+            return null;
+        }
     }
 
 }

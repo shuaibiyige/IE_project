@@ -173,14 +173,15 @@ public class Login extends AppCompatActivity
                 @Override
                 public void onResponse(String s)
                 {
-                    //String TAG = "LOGIN";
-                    //Log.e(TAG, s);
                     int retCode = 0;
+                    String user_name = "";
+                    int user_id = 0;
                     try
                     {
                         JSONObject jsonObject = new JSONObject(s);
                         retCode = jsonObject.getInt("success");
-                        //Log.d("retCode", retCode+"");
+                        user_name = jsonObject.getString("userName");
+                        user_id = jsonObject.getInt("userId");
                     }
                     catch (JSONException e)
                     {
@@ -189,9 +190,12 @@ public class Login extends AppCompatActivity
 
                     if (retCode == 1)
                     {
+                        SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+                        editor.putString("user_name", user_name);
+                        editor.putInt("user_id", user_id);
+                        editor.apply();
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
-                        //Toast.makeText(getApplicationContext(),"yes",Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Toast.makeText(getApplicationContext(),"User not found",Toast.LENGTH_SHORT).show();
@@ -220,12 +224,5 @@ public class Login extends AppCompatActivity
             requestQueue.add(stringRequest);
             return null;
         }
-
-        protected void onPostExecute(Void param)
-        {
-            //Toast.makeText(getApplicationContext(), "Add consumption Successfully", Toast.LENGTH_SHORT).show();
-        }
-
-
     }
 }

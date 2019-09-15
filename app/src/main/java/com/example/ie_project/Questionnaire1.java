@@ -34,6 +34,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class Questionnaire1 extends Fragment
 {
@@ -157,6 +159,53 @@ public class Questionnaire1 extends Fragment
                 recordCheckBoxDescription();
                 recordCheckBoxHome();
 
+                String pets = "";
+                String hobbies = "";
+                String descriptions = "";
+                String homes = "";
+
+                for (String ele : petList)
+                {
+                    if (!pets.equals(""))
+                        pets = pets + ", " + ele;
+                    else
+                        pets = ele;
+                }
+
+                for (String ele : hobbiesList)
+                {
+                    if (!hobbies.equals(""))
+                        hobbies = hobbies + ", " + ele;
+                    else
+                        hobbies = ele;
+                }
+
+                for (String ele : descriptionList)
+                {
+                    if (!descriptions.equals(""))
+                        descriptions = descriptions + ", " + ele;
+                    else
+                        descriptions = ele;
+                }
+
+                for (String ele : homeList)
+                {
+                    if (!homes.equals(""))
+                        homes = homes + ", " + ele;
+                    else
+                        homes = ele;
+                }
+
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
+                editor.putString("user_gender", gender);
+                editor.putString("user_age", age);
+                editor.putString("user_pet", pets);
+                editor.putString("user_transport", transport);
+                editor.putString("user_hobbies", hobbies);
+                editor.putString("user_restriction", restriction);
+                editor.putString("user_description", descriptions);
+                editor.putString("user_home", homes);
+                editor.apply();
 
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
 

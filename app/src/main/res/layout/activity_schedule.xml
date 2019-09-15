@@ -337,20 +337,13 @@
                         android:id="@+id/activity2_description"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:text="this is a description"
+                        android:text="this is a description, this is a description"
                         android:maxLines="2"
                         android:textColor="#ff707070"
                         android:fontFamily="@font/gotham"
                         android:gravity="center"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Location:"
-                        android:textColor="#ff707070"
-                        android:fontFamily="@font/gotham"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="16sp"/>
+                    
 
                     <com.mapbox.mapboxsdk.maps.MapView
                         android:id="@+id/mapView2"

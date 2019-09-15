@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
@@ -54,6 +55,10 @@ public class Dashboard extends Fragment
         linearLayout.startAnimation(ani1);
         man_image.startAnimation(ani2);
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        String user_name = sharedPreferences.getString("user_name", null);
+        welcome.setText("Hey, " + user_name);
+
 //        int[] list = size();
 //        int width = list[0];
 //        int height = list[1];
@@ -63,35 +68,7 @@ public class Dashboard extends Fragment
 //
 //        todo_text.setTextSize((height / todo_text.getTextSize()) * 6);
 
-//        if (newUser == true)
-//        {
-//            //schedule.setVisibility(View.GONE);
-//            questionnaire.setEnabled(true);
-//            schedule.setEnabled(false);
-//            schedule.setBackgroundColor(Color.parseColor("#dcdcdc"));
-//            questionnaire.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent anotherIntent = new Intent(getActivity(), Questionnaire.class);
-//                    startActivity(anotherIntent);
-//                }
-//            });
-//        }
-//        else
-//        {
-//            //questionnaire.setVisibility(View.GONE);
-//            schedule.setEnabled(true);
-//            questionnaire.setEnabled(false);
-//            questionnaire.setBackgroundColor(Color.parseColor("#dcdcdc"));
-//        }
-//
-//        schedule.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FragmentManager fragmentManager = getFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.content_main, new Schedule()).commit();
-//            }
-//        });
+
         questionnaire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -50,6 +50,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private Button select1, select2;
     private LatLng latLng;
     private Animation ani2;
+    private String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -296,6 +297,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected)
     {
+        date.getCalendar();
         Toast.makeText(this, String.valueOf(date.getDay()), Toast.LENGTH_SHORT).show();
     }
 }
