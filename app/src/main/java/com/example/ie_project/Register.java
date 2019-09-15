@@ -113,9 +113,9 @@ public class Register extends AppCompatActivity {
                 {
                     if (!checkEmail(email.getText().toString()))
                         Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
-                    if (user_name.trim().length() == 0)
+                    else if (user_name.trim().length() == 0)
                         Toast.makeText(getApplicationContext(), "Last name can not be empty", Toast.LENGTH_SHORT).show();
-                    if (user_password.trim().length() == 0)
+                    else if (user_password.trim().length() == 0)
                         Toast.makeText(getApplicationContext(), "Password can not be empty", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -169,7 +169,6 @@ public class Register extends AppCompatActivity {
                     {
                         Intent intent = new Intent(Register.this, MainActivity.class);
                         startActivity(intent);
-                        //Toast.makeText(getApplicationContext(),"yes",Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Toast.makeText(getApplicationContext(),"Register failed",Toast.LENGTH_SHORT).show();
@@ -201,12 +200,5 @@ public class Register extends AppCompatActivity {
             requestQueue.add(stringRequest);
             return null;
         }
-
-        protected void onPostExecute(Void param)
-        {
-            //Toast.makeText(getApplicationContext(), "Add consumption Successfully", Toast.LENGTH_SHORT).show();
-        }
-
-
     }
 }

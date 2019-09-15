@@ -343,7 +343,7 @@
                         android:fontFamily="@font/gotham"
                         android:gravity="center"/>
 
-                    
+
 
                     <com.mapbox.mapboxsdk.maps.MapView
                         android:id="@+id/mapView2"

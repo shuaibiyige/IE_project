@@ -35,13 +35,13 @@ import java.util.List;
 import java.util.Set;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 public class Questionnaire1 extends Fragment
 {
     View question1;
     private Button next;
-    //private int selectedItemCounter1 = 0;
     private String gender, transport, age, restriction;
     private RadioButton age_30, age_35, age_40, age_45up;
     private RadioGroup radioGroup_gender, radioGroup_transport, radioGroup_age1, radioGroup_age2, radioGroup_restrictions;
@@ -69,7 +69,6 @@ public class Questionnaire1 extends Fragment
                     gender = "female";
             }
         });
-
 
         radioGroup_transport.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -196,19 +195,32 @@ public class Questionnaire1 extends Fragment
                         homes = ele;
                 }
 
-                SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
-                editor.putString("user_gender", gender);
-                editor.putString("user_age", age);
-                editor.putString("user_pet", pets);
-                editor.putString("user_transport", transport);
-                editor.putString("user_hobbies", hobbies);
-                editor.putString("user_restriction", restriction);
-                editor.putString("user_description", descriptions);
-                editor.putString("user_home", homes);
-                editor.apply();
+                if (age != null && hobbiesList.size() != 0 && descriptionList.size() != 0 && petList.size() != 0 && transport != null)
+                {
 
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
+                    editor.putString("user_gender", gender);
+                    editor.putString("user_age", age);
+                    editor.putString("user_pet", pets);
+                    editor.putString("user_transport", transport);
+                    editor.putString("user_hobbies", hobbies);
+                    editor.putString("user_restriction", restriction);
+                    editor.putString("user_description", descriptions);
+                    editor.putString("user_home", homes);
+                    editor.apply();
 
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
+                }
+                else if (age == null)
+                    Toast.makeText(getActivity(),"age cannot be empty",Toast.LENGTH_SHORT).show();
+                else if (hobbiesList.size() == 0)
+                    Toast.makeText(getActivity(),"hobbies cannot be empty",Toast.LENGTH_SHORT).show();
+                else if (descriptionList.size() == 0)
+                    Toast.makeText(getActivity(),"description cannot be empty",Toast.LENGTH_SHORT).show();
+                else if (petList.size() == 0)
+                    Toast.makeText(getActivity(),"pet cannot be empty",Toast.LENGTH_SHORT).show();
+                else if (transport == null)
+                    Toast.makeText(getActivity(),"transport cannot be empty",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -222,14 +234,6 @@ public class Questionnaire1 extends Fragment
 
     public void initView()
     {
-        gender = "";
-        transport = "";
-        age = "";
-        restriction = "";
-        petList = new HashSet();
-        hobbiesList = new HashSet();
-        descriptionList = new HashSet();
-        homeList = new HashSet();
         age_30 = question1.findViewById(R.id.age_30_34);
         age_35 = question1.findViewById(R.id.age_35_39);
         age_40 = question1.findViewById(R.id.age_40_44);
@@ -305,6 +309,7 @@ public class Questionnaire1 extends Fragment
 
     public void recordCheckBoxPet()
     {
+        petList = new HashSet();
         if (dog.isChecked())
             petList.add("dog");
         if (cat.isChecked())
@@ -318,6 +323,7 @@ public class Questionnaire1 extends Fragment
 
     public void recordCheckBoxDescription()
     {
+        descriptionList = new HashSet();
         if (adventure.isChecked())
             descriptionList.add("adventure lover");
         if (health.isChecked())
@@ -337,6 +343,7 @@ public class Questionnaire1 extends Fragment
 
     public void recordCheckBoxHobbies()
     {
+        hobbiesList = new HashSet();
         if (reading.isChecked())
             hobbiesList.add("reading books");
         if (cooking.isChecked())
@@ -356,6 +363,7 @@ public class Questionnaire1 extends Fragment
 
     public void recordCheckBoxHome()
     {
+        homeList = new HashSet();
         if (swimming.isChecked())
             homeList.add("swimming pool");
         if (sport_court.isChecked())

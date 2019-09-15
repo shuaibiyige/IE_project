@@ -80,7 +80,6 @@ public class Questionnaire2 extends Fragment
             }
         });
 
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
@@ -128,75 +127,72 @@ public class Questionnaire2 extends Fragment
             @Override
             public void onClick(View v)
             {
-                if (isValid(child_name_edit.getText().toString()))
-                    name = child_name_edit.getText().toString();
-
                 recordCheckBoxHobbies();
                 recordCheckBoxDescription();
 
-                String hobbies = "";
-                String descriptions = "";
-
-                for (String ele : hobbiesList)
+                if (isValid(child_name_edit.getText().toString()) && age != 0 && hobbiesList.size() != 0 && descriptionList.size() != 0)
                 {
-                    if (!hobbies.equals(""))
-                        hobbies = hobbies + ", " + ele;
-                    else
-                        hobbies = hobbies + ", " + ele;
+                    name = child_name_edit.getText().toString();
+
+                    String hobbies = "";
+                    String descriptions = "";
+
+                    for (String ele : hobbiesList) {
+                        if (!hobbies.equals(""))
+                            hobbies = hobbies + ", " + ele;
+                        else
+                            hobbies = hobbies + ", " + ele;
+                    }
+
+                    for (String ele : descriptionList) {
+                        if (!descriptions.equals(""))
+                            descriptions = descriptions + ", " + ele;
+                        else
+                            descriptions = ele;
+                    }
+
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+                    user_id = sharedPreferences.getInt("user_id", 0);
+                    String user_gender = sharedPreferences.getString("user_gender", "unknown");
+                    String user_age = sharedPreferences.getString("user_age", "");
+                    String user_pet = sharedPreferences.getString("user_pet", "");
+                    String user_restriction = sharedPreferences.getString("user_restriction", "");
+                    String user_hobbies = sharedPreferences.getString("user_hobbies", "");
+                    String user_description = sharedPreferences.getString("user_description", "");
+                    String user_transport = sharedPreferences.getString("user_transport", "");
+                    String user_home = sharedPreferences.getString("user_home", "");
+
+                    List<String> list = new ArrayList<>();
+                    list.add(user_age);                // 1
+                    list.add(user_gender);             // 2
+                    list.add(user_restriction);        // 3
+                    list.add(user_hobbies);            // 4
+                    list.add(user_description);        // 5
+                    list.add(name);                    // 6
+                    list.add(String.valueOf(age));     // 7
+                    list.add(gender);                  // 8
+                    list.add(restriction);             // 9
+                    list.add(hobbies);                 // 10
+                    list.add(descriptions);            // 11
+                    list.add(user_transport);          // 12
+                    list.add("area");                  // 13
+                    list.add(user_pet);                // 14
+                    list.add(user_home);               // 15
+
+                    CheckRestAsyncTask checkRestAsyncTask = new CheckRestAsyncTask();
+                    checkRestAsyncTask.execute(String.valueOf(user_id));
+
+                    QuestionRestAsyncTask questionRestAsyncTask = new QuestionRestAsyncTask();
+                    questionRestAsyncTask.execute(list);
                 }
-
-                for (String ele : descriptionList)
-                {
-                    if (!descriptions.equals(""))
-                        descriptions = descriptions + ", " + ele;
-                    else
-                        descriptions = ele;
-                }
-
-
-//                SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
-//                editor.putString("user_child_gender", gender);
-//                editor.putInt("user_child_age", age);
-//                editor.putString("user_child_name", name);
-//                editor.putString("user_child_hobbies", hobbies);
-//                editor.putString("user_child_restriction", restriction);
-//                editor.putString("user_child_description", descriptions);
-//                editor.apply();
-
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
-                user_id = sharedPreferences.getInt("user_id", 0);
-                String user_gender = sharedPreferences.getString("user_gender", "male");
-                String user_age = sharedPreferences.getString("user_age", "");
-                String user_pet = sharedPreferences.getString("user_pet", "");
-                String user_restriction = sharedPreferences.getString("user_restriction", "");
-                String user_hobbies = sharedPreferences.getString("user_hobbies", "");
-                String user_description = sharedPreferences.getString("user_description", "");
-                String user_transport = sharedPreferences.getString("user_transport", "");
-                String user_home = sharedPreferences.getString("user_home", "");
-
-                List<String> list = new ArrayList<>();
-                list.add(user_age);                // 1
-                list.add(user_gender);             // 2
-                list.add(user_restriction);        // 3
-                list.add(user_hobbies);            // 4
-                list.add(user_description);        // 5
-                list.add(name);                    // 6
-                list.add(String.valueOf(age));     // 7
-                list.add(gender);                  // 8
-                list.add(restriction);             // 9
-                list.add(hobbies);                 // 10
-                list.add(descriptions);            // 11
-                list.add(user_transport);          // 12
-                list.add("area");                  // 13
-                list.add(user_pet);                // 14
-                list.add(user_home);               // 15
-
-                CheckRestAsyncTask checkRestAsyncTask = new CheckRestAsyncTask();
-                checkRestAsyncTask.execute(String.valueOf(user_id));
-
-                QuestionRestAsyncTask questionRestAsyncTask = new QuestionRestAsyncTask();
-                questionRestAsyncTask.execute(list);
-
+                else if (!isValid(child_name_edit.getText().toString()))
+                    Toast.makeText(getActivity(),"name cannot be empty",Toast.LENGTH_SHORT).show();
+                else if (age == 0)
+                    Toast.makeText(getActivity(),"age cannot be empty",Toast.LENGTH_SHORT).show();
+                else if (hobbiesList.size() == 0)
+                    Toast.makeText(getActivity()," hobbies cannot be empty",Toast.LENGTH_SHORT).show();
+                else if (descriptionList.size() == 0)
+                    Toast.makeText(getActivity(),"description cannot be empty",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -214,8 +210,7 @@ public class Questionnaire2 extends Fragment
         name = "";
         restriction = "";
         dateTime = "";
-        hobbiesList = new HashSet();
-        descriptionList = new HashSet();
+
         submit = question2.findViewById(R.id.submit_ques);
         radioGroup_gender = question2.findViewById(R.id.radioGroup_gender_child);
         radioGroup = question2.findViewById(R.id.radioGroup_age_child);
@@ -237,17 +232,10 @@ public class Questionnaire2 extends Fragment
         other_description = question2.findViewById(R.id.describe_other_child);
         other_description_text = question2.findViewById(R.id.type_description_child);
 
-        long time = System.currentTimeMillis();          //long now = android.os.SystemClock.uptimeMillis();
+        long time = System.currentTimeMillis();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date d1 = new Date(time);
         dateTime = format.format(d1);
-
-//        listener1(movie);
-//        listener1(gaming);
-//        listener1(baking);
-//        listener1(diy);
-//        listener1(painting);
-//        listener1(cooking);
     }
 
 //    public void listener1(final CheckBox check)
@@ -273,7 +261,7 @@ public class Questionnaire2 extends Fragment
 //        });
 //    }
 
-    public boolean isValid(String input)
+    public boolean isValid(String input)       // check if empty
     {
         if (input.trim().length() != 0)
             return true;
@@ -283,6 +271,7 @@ public class Questionnaire2 extends Fragment
 
     public void recordCheckBoxHobbies()
     {
+        hobbiesList = new HashSet();
         if (reading.isChecked())
             hobbiesList.add("reading books");
         if (dancing.isChecked())
@@ -302,6 +291,7 @@ public class Questionnaire2 extends Fragment
 
     public void recordCheckBoxDescription()
     {
+        descriptionList = new HashSet();
         if (adventure.isChecked())
             descriptionList.add("adventure lover");
         if (health.isChecked())
@@ -406,8 +396,7 @@ public class Questionnaire2 extends Fragment
             return null;
         }
     }
-
-
+    
     private class CheckRestAsyncTask extends AsyncTask<String, Void, Void>
     {
         @Override
