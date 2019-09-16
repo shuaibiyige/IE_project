@@ -55,9 +55,20 @@ public class Dashboard extends Fragment
         linearLayout.startAnimation(ani1);
         man_image.startAnimation(ani2);
 
+        tick_ques.setVisibility(View.INVISIBLE);
+        tick_schedule.setVisibility(View.INVISIBLE);
+        tick_feedback.setVisibility(View.INVISIBLE);
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
-        String user_name = sharedPreferences.getString("user_name", null);
+        String user_name = sharedPreferences.getString("user_name", "");
+        int isQuestionnaire = sharedPreferences.getInt("isQuestionnaire", 0);
+        int isSchedule = sharedPreferences.getInt("isSchedule", 0);
+
         welcome.setText("Hey, " + user_name);
+        if (isQuestionnaire == 1)
+            tick_ques.setVisibility(View.VISIBLE);
+        if (isSchedule == 1)
+            tick_schedule.setVisibility(View.VISIBLE);
 
 //        int[] list = size();
 //        int width = list[0];
@@ -105,5 +116,4 @@ public class Dashboard extends Fragment
         list[1] = screenHeight;
         return list;
     }
-
 }

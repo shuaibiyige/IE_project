@@ -41,4 +41,8 @@
         <item name="android:textColor">#ffa2a1a1</item>
     </style>
 
+    <style name="foldable_button">
+        <item name="android:radius">20dp</item>
+    </style>
+
 </resources>

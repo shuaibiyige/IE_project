@@ -1,9 +1,12 @@
 package com.example.ie_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -60,9 +63,11 @@ public class Register extends AppCompatActivity {
         submit = findViewById(R.id.register_submit);
         answer = findViewById(R.id.new_answer);
 
+        password.setTransformationMethod(PasswordTransformationMethod.getInstance());       // hidden the password
+        confirm_pwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
         requestQueue = Volley.newRequestQueue(this);
         String[] security_question_list = getResources().getStringArray(R.array.security_question);
-
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, security_question_list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -104,10 +109,6 @@ public class Register extends AppCompatActivity {
                 {
                     RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask();
                     registerAsyncTask.execute(user_info);
-
-
-//                    Intent intent = new Intent(Register.this, MainActivity.class);
-//                    startActivity(intent);
                 }
                 else
                 {
@@ -151,14 +152,13 @@ public class Register extends AppCompatActivity {
                 @Override
                 public void onResponse(String s)
                 {
-                    String TAG = "LOGIN";
-                    Log.e(TAG, s);
                     int retCode = 0;
+                    int user_id = 0;
                     try
                     {
                         JSONObject jsonObject = new JSONObject(s);
                         retCode = jsonObject.getInt("success");
-                        Log.d("retCode", retCode+"");
+                        user_id = jsonObject.getInt("userId");
                     }
                     catch (JSONException e)
                     {
@@ -167,6 +167,12 @@ public class Register extends AppCompatActivity {
 
                     if (retCode == 1)
                     {
+                        SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+                        editor.putString("user_name", params[0].get(1));
+                        editor.putInt("user_id", user_id);
+                        editor.putInt("isQuestionnaire", 0);          // new user not finish questionnaire yet
+                        editor.apply();
+
                         Intent intent = new Intent(Register.this, MainActivity.class);
                         startActivity(intent);
                     }

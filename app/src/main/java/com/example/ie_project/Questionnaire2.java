@@ -199,7 +199,6 @@ public class Questionnaire2 extends Fragment
         otherBoxChecked(other_hobbies, other_hobbies_text);
         otherBoxChecked(other_description, other_description_text);
 
-
         return question2;
     }
 
@@ -397,7 +396,7 @@ public class Questionnaire2 extends Fragment
         }
     }
     
-    private class CheckRestAsyncTask extends AsyncTask<String, Void, Void>
+    private class CheckRestAsyncTask extends AsyncTask<String, Void, Void>      // check if user answered the questionnaire before
     {
         @Override
         protected Void doInBackground (final String...params)

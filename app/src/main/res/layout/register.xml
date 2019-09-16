@@ -120,7 +120,7 @@
         android:layout_width="280dp"
         android:layout_height="39dp"
         android:background="@drawable/edit_text"
-        android:drawableRight="@drawable/open_eye"
+        android:drawableRight="@drawable/eye"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="18dp"

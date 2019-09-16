@@ -5,7 +5,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -34,6 +36,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -45,12 +48,13 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private List<String> newEndList;
     private ImageView yes_schedule;
     private TextView textView;
-    private MapView mapView1, mapView2;
+    //private MapView mapView1, mapView2;
     private FoldingCell fc1, fc2;
-    private Button select1, select2;
+    private Button select1, select2, viewMap1, viewMap2;
     private LatLng latLng;
     private Animation ani2;
     private String time;
+    private String startTime, endTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,67 +71,97 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         yes_schedule = findViewById(R.id.schedule_yes);
         select1 = findViewById(R.id.activity_button1);
         select2 = findViewById(R.id.activity_button2);
+        viewMap1 = findViewById(R.id.activity1_viewMap);
+        viewMap2 = findViewById(R.id.activity2_viewMap);
         textView = findViewById(R.id.select_free_time_text);
         startList = new ArrayList<>();
         newEndList = new ArrayList<>();
         fc1 = findViewById(R.id.folding_cell1);
         fc2 = findViewById(R.id.folding_cell2);
-        mapView1 = findViewById(R.id.mapView1);
-        mapView2 = findViewById(R.id.mapView2);
+        //mapView1 = findViewById(R.id.mapView1);
+        //mapView2 = findViewById(R.id.mapView2);
         latLng = new LatLng(-37.814, 144.96332);            // focus on Melbourne by default
         ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
 
         init(startList);
 
-        mapView1.onCreate(savedInstanceState);
-        mapView2.onCreate(savedInstanceState);
+        //mapView1.onCreate(savedInstanceState);
+        //mapView2.onCreate(savedInstanceState);
 
         calendar.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
         calendar.setOnDateChangedListener(this);
 
-        mapView1.getMapAsync(new OnMapReadyCallback() {
+//        mapView1.getMapAsync(new OnMapReadyCallback() {
+//            @Override
+//            public void onMapReady(@NonNull MapboxMap mapboxMap)
+//            {
+//                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
+//                {
+//                    @Override
+//                    public void onStyleLoaded(@NonNull Style style)
+//                    {
+//
+//                    // Map is set up and the style has loaded. Now you can add data or make other map adjustments
+//
+//
+//                    }
+//                });
+//                mapboxMap.getUiSettings().setAttributionEnabled(false);
+//                mapboxMap.getUiSettings().setLogoEnabled(false);
+//
+//                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
+//                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//            }
+//        });
+
+//        mapView2.getMapAsync(new OnMapReadyCallback() {
+//            @Override
+//            public void onMapReady(@NonNull MapboxMap mapboxMap)
+//            {
+//                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
+//                {
+//                    @Override
+//                    public void onStyleLoaded(@NonNull Style style)
+//                    {
+//
+//                        // Map is set up and the style has loaded. Now you can add data or make other map adjustments
+//
+//
+//                    }
+//                });
+//                mapboxMap.getUiSettings().setAttributionEnabled(false);
+//                mapboxMap.getUiSettings().setLogoEnabled(false);
+//
+//                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
+//                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//            }
+//        });
+
+        viewMap1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onMapReady(@NonNull MapboxMap mapboxMap)
+            public void onClick(View v)
             {
-                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
-                {
-                    @Override
-                    public void onStyleLoaded(@NonNull Style style)
-                    {
-
-                    // Map is set up and the style has loaded. Now you can add data or make other map adjustments
-
-
-                    }
-                });
-                mapboxMap.getUiSettings().setAttributionEnabled(false);
-                mapboxMap.getUiSettings().setLogoEnabled(false);
-
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
-                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                Uri gmmIntentUri = Uri.parse("geo:-37.814,144.96332");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");          // ensure that the Google Maps app for Android handles the Intent
+                if (mapIntent.resolveActivity(getPackageManager()) != null)
+                    startActivity(mapIntent);
+                else
+                    Toast.makeText(getApplicationContext(), "Map is not available", Toast.LENGTH_SHORT).show();
             }
         });
 
-        mapView2.getMapAsync(new OnMapReadyCallback() {
+        viewMap2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onMapReady(@NonNull MapboxMap mapboxMap)
+            public void onClick(View v)
             {
-                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
-                {
-                    @Override
-                    public void onStyleLoaded(@NonNull Style style)
-                    {
-
-                        // Map is set up and the style has loaded. Now you can add data or make other map adjustments
-
-
-                    }
-                });
-                mapboxMap.getUiSettings().setAttributionEnabled(false);
-                mapboxMap.getUiSettings().setLogoEnabled(false);
-
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
-                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                Uri gmmIntentUri = Uri.parse("geo:-37.814,144.96332");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");          // ensure that the Google Maps app for Android handles the Intent
+                if (mapIntent.resolveActivity(getPackageManager()) != null)
+                    startActivity(mapIntent);
+                else
+                    Toast.makeText(getApplicationContext(), "Map is not available", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -153,7 +187,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                String startTime = start_time_spinner.getItemAtPosition(position).toString();
+                startTime = start_time_spinner.getItemAtPosition(position).toString();
                 newEndList.clear();
                 init(newEndList);
                 int i = 0;
@@ -174,7 +208,6 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     final ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, data);
                     spinner2(adapter2, end_time_spinner);
                 }
-
             }
 
             @Override
@@ -187,35 +220,33 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                textView.setText("Select Activity");
+                if (!startTime.equals("select") && !endTime.equals("select")) {
+                    textView.setText("Select Activity");
 
-                if (fc1.getVisibility() == View.INVISIBLE)
-                {
-                    fc1.setVisibility(View.VISIBLE);
-                    fc1.setAnimation(ani2);
-                }
-                fc1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        fc1.toggle(false);
+                    if (fc1.getVisibility() == View.INVISIBLE) {
+                        fc1.setVisibility(View.VISIBLE);
+                        fc1.setAnimation(ani2);
                     }
-                });
+                    fc1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            fc1.toggle(false);
+                        }
+                    });
 
-                if (fc2.getVisibility() == View.INVISIBLE)
-                {
-                    fc2.setVisibility(View.VISIBLE);
-                    fc2.setAnimation(ani2);
-                }
-                fc2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        fc2.toggle(false);
+                    if (fc2.getVisibility() == View.INVISIBLE) {
+                        fc2.setVisibility(View.VISIBLE);
+                        fc2.setAnimation(ani2);
                     }
-                });
-
-
+                    fc2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            fc2.toggle(false);
+                        }
+                    });
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Please choose time", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -229,7 +260,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                String endTime = spinner.getItemAtPosition(position).toString();
+                endTime = spinner.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -297,7 +328,10 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected)
     {
-        date.getCalendar();
+        int year = date.getYear();
+        int month = date.getMonth();
+        int day = date.getDay();
+        Date a = date.getDate();
         Toast.makeText(this, String.valueOf(date.getDay()), Toast.LENGTH_SHORT).show();
     }
 }

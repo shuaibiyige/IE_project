@@ -132,33 +132,139 @@
             android:translationY="20dp">
 
 
-        <com.ramotion.foldingcell.FoldingCell
-            android:id="@+id/folding_cell1"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/yes_layout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.1"
-            android:visibility="invisible">
-
-            <LinearLayout
-                android:id="@+id/cell_content_view"
+            <com.ramotion.foldingcell.FoldingCell
+                android:id="@+id/folding_cell1"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:orientation="vertical"
-                android:background="@drawable/fold_content">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/yes_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.1"
+                android:visibility="invisible">
+
+                <LinearLayout
+                    android:id="@+id/cell_content_view"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:background="@drawable/fold_content">
+
+                    <RelativeLayout
+                        android:id="@+id/expended_title1"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/folder_style">
+
+                        <TextView
+                            android:id="@+id/activity1_content_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Activity"
+                            android:textAllCaps="false"
+                            android:layout_centerInParent="true"
+                            android:textColor="#ffffffff"
+                            android:textSize="20sp"
+                            android:translationX="-30dp"
+                            android:fontFamily="@font/gotham" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="30dp"
+                            android:translationY="3dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/dot"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/activity1_name"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="this is a name"
+                            android:textColor="#ff707070"
+                            android:fontFamily="@font/gotham"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/activity1_description"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="this is a description this is a description this is a description this is a description this is a description"
+                            android:maxLines="3"
+                            android:textColor="#ff707070"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="textStart"
+                            android:fontFamily="@font/gotham" />
+
+                        <TextView
+                            android:id="@+id/activity1_address"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="this is an address this is an address this is an address this is an address this is an address"
+                            android:maxLines="2"
+                            android:textColor="#ff707070"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="textStart"
+                            android:fontFamily="@font/gotham" />
+
+                        <LinearLayout
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/activity1_viewMap"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="View on map"
+                                android:background="@drawable/submit_button"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="30dp"
+                                android:fontFamily="@font/gotham"
+                                android:textAllCaps="false"
+                                android:textColor="#ff707070" />
+
+                            <Button
+                                android:id="@+id/activity_button1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Select"
+                                android:layout_weight="1"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/submit_button"
+                                android:fontFamily="@font/gotham"
+                                android:textAllCaps="false"
+                                android:textColor="#ff707070" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/expended_title1"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/folder_style">
 
                     <TextView
-                        android:id="@+id/activity1_content_title"
+                        android:id="@+id/activity1_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Activity"
@@ -180,124 +286,145 @@
 
                 </RelativeLayout>
 
+            </com.ramotion.foldingcell.FoldingCell>
+
+
+
+
+            <com.ramotion.foldingcell.FoldingCell
+                android:id="@+id/folding_cell2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/folding_cell1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.1"
+                android:translationY="20dp"
+                android:visibility="invisible">
+
                 <LinearLayout
+                    android:id="@+id/cell_content_view2"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:background="@drawable/fold_content">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Description:"
-                        android:textColor="#ff707070"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/gotham"
-                        android:layout_marginLeft="20dp"/>
-
-                    <TextView
-                        android:id="@+id/activity1_description"
+                    <RelativeLayout
+                        android:id="@+id/expended_title2"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:text="this is a description"
-                        android:maxLines="2"
-                        android:textColor="#ff707070"
-                        android:fontFamily="@font/gotham"
-                        android:gravity="center"/>
+                        android:background="@drawable/folder_style">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/activity2_content_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Activity"
+                            android:textAllCaps="false"
+                            android:layout_centerInParent="true"
+                            android:textColor="#ffffffff"
+                            android:textSize="20sp"
+                            android:translationX="-30dp"
+                            android:fontFamily="@font/gotham" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="30dp"
+                            android:translationY="3dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/dot"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:text="Location:"
-                        android:textColor="#ff707070"
-                        android:fontFamily="@font/gotham"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="16sp"/>
+                        android:orientation="vertical">
 
-                    <com.mapbox.mapboxsdk.maps.MapView
-                        android:id="@+id/mapView1"
-                        android:layout_width="250dp"
-                        android:layout_height="105dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_gravity="center" />
+                        <TextView
+                            android:id="@+id/activity2_name"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="this is a name"
+                            android:textColor="#ff707070"
+                            android:fontFamily="@font/gotham"
+                            android:gravity="center"/>
 
-                    <Button
-                        android:id="@+id/activity_button1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="39dp"
-                        android:background="@drawable/submit_button"
-                        android:text="Select"
-                        android:fontFamily="@font/gotham"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:textAllCaps="false"
-                        android:textColor="#ff707070"
-                        android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/activity2_description"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="this is a description this is a description this is a description this is a description this is a description"
+                            android:maxLines="3"
+                            android:textColor="#ff707070"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="textStart"
+                            android:fontFamily="@font/gotham" />
+
+                        <TextView
+                            android:id="@+id/activity2_address"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:text="this is an address this is an address this is an address this is an address this is an address"
+                            android:maxLines="2"
+                            android:textColor="#ff707070"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="textStart"
+                            android:fontFamily="@font/gotham" />
+
+                        <LinearLayout
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/activity2_viewMap"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="View on map"
+                                android:background="@drawable/submit_button"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="30dp"
+                                android:fontFamily="@font/gotham"
+                                android:textAllCaps="false"
+                                android:textColor="#ff707070" />
+
+                            <Button
+                                android:id="@+id/activity_button2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Select"
+                                android:layout_weight="1"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/submit_button"
+                                android:fontFamily="@font/gotham"
+                                android:textAllCaps="false"
+                                android:textColor="#ff707070" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/folder_style">
-
-                <TextView
-                    android:id="@+id/activity1_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Activity"
-                    android:textAllCaps="false"
-                    android:layout_centerInParent="true"
-                    android:textColor="#ffffffff"
-                    android:textSize="20sp"
-                    android:translationX="-30dp"
-                    android:fontFamily="@font/gotham" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp"
-                    android:translationY="3dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/dot"/>
-
-            </RelativeLayout>
-
-        </com.ramotion.foldingcell.FoldingCell>
-
-
-
-
-        <com.ramotion.foldingcell.FoldingCell
-            android:id="@+id/folding_cell2"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/folding_cell1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.1"
-            android:translationY="20dp"
-            android:visibility="invisible">
-
-            <LinearLayout
-                android:id="@+id/cell_content_view2"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:orientation="vertical"
-                android:background="@drawable/fold_content">
-
                 <RelativeLayout
-                    android:id="@+id/expended_title2"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/folder_style">
 
                     <TextView
-                        android:id="@+id/activity2_content_title"
+                        android:id="@+id/activity2_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Activity"
@@ -319,89 +446,7 @@
 
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Description:"
-                        android:textColor="#ff707070"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/gotham"
-                        android:layout_marginLeft="20dp"/>
-
-                    <TextView
-                        android:id="@+id/activity2_description"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="this is a description, this is a description"
-                        android:maxLines="2"
-                        android:textColor="#ff707070"
-                        android:fontFamily="@font/gotham"
-                        android:gravity="center"/>
-
-
-
-                    <com.mapbox.mapboxsdk.maps.MapView
-                        android:id="@+id/mapView2"
-                        android:layout_width="250dp"
-                        android:layout_height="105dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_gravity="center"
-                        mapbox:mapbox_cameraTargetLat="40.73581"
-                        mapbox:mapbox_cameraTargetLng="-73.99155"
-                        mapbox:mapbox_cameraZoom="11" />
-
-                    <Button
-                        android:id="@+id/activity_button2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="39dp"
-                        android:background="@drawable/submit_button"
-                        android:text="Select"
-                        android:fontFamily="@font/gotham"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:textAllCaps="false"
-                        android:textColor="#ff707070"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/folder_style">
-
-                <TextView
-                    android:id="@+id/activity2_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Activity"
-                    android:textAllCaps="false"
-                    android:layout_centerInParent="true"
-                    android:textColor="#ffffffff"
-                    android:textSize="20sp"
-                    android:translationX="-30dp"
-                    android:fontFamily="@font/gotham" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp"
-                    android:translationY="3dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/dot"/>
-
-            </RelativeLayout>
-
-        </com.ramotion.foldingcell.FoldingCell>
+            </com.ramotion.foldingcell.FoldingCell>
 
         </LinearLayout>
 

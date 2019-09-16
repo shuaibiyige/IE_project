@@ -270,9 +270,6 @@ public class Questionnaire1 extends Fragment
         games = question1.findViewById(R.id.games_puzzles);
         other_home = question1.findViewById(R.id.home_other);
         other_home_text = question1.findViewById(R.id.other_home_text);
-
-//        listener1(dog);
-//        listener1(cat);
     }
 
 //    public void listener1(final CheckBox check)
@@ -327,7 +324,7 @@ public class Questionnaire1 extends Fragment
         if (adventure.isChecked())
             descriptionList.add("adventure lover");
         if (health.isChecked())
-            descriptionList.add("health conscious");
+            descriptionList.add("Health conscious");
         if (tech.isChecked())
             descriptionList.add("tech savy");
         if (art.isChecked())

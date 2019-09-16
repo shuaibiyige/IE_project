@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -58,7 +59,6 @@ public class Login extends AppCompatActivity
 
         requestQueue = Volley.newRequestQueue(this);
 
-
         signIn = (Button) findViewById(R.id.sign_in);
         signUp = (TextView) findViewById(R.id.sign_up);
         email = (EditText) findViewById(R.id.email_sign_in);
@@ -66,6 +66,8 @@ public class Login extends AppCompatActivity
         forget = (TextView) findViewById(R.id.forget);
         hello = (TextView) findViewById(R.id.hello);
         signIn_text = (TextView) findViewById(R.id.signin_text);
+
+        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         int[] list = size();
         int width = list[0];
@@ -120,10 +122,6 @@ public class Login extends AppCompatActivity
             }
         });
 
-
-
-        //basicReadWrite();
-
     }
 
     public boolean checkEmail(String email)
@@ -175,6 +173,8 @@ public class Login extends AppCompatActivity
                 {
                     int retCode = 0;
                     String user_name = "";
+                    int isQuestionnaire = 0;
+                    int isSchedule = 0;
                     int user_id = 0;
                     try
                     {
@@ -182,6 +182,8 @@ public class Login extends AppCompatActivity
                         retCode = jsonObject.getInt("success");
                         user_name = jsonObject.getString("userName");
                         user_id = jsonObject.getInt("userId");
+                        isQuestionnaire = jsonObject.getInt("isQuestionnaire");
+                        //isSchedule = jsonObject.getInt("isSchedule");
                     }
                     catch (JSONException e)
                     {
@@ -193,12 +195,14 @@ public class Login extends AppCompatActivity
                         SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
                         editor.putString("user_name", user_name);
                         editor.putInt("user_id", user_id);
+                        editor.putInt("isQuestionnaire", isQuestionnaire);      // 0: not answered, 1: answered
+                        editor.putInt("isSchedule", isSchedule);
                         editor.apply();
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(),"User not found",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"User not found", Toast.LENGTH_SHORT).show();
                     }
                 }
             };
