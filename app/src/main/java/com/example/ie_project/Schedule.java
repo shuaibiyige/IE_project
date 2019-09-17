@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -73,6 +77,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private String startTime, endTime;
     private RequestQueue requestQueue;
     private int user_id;
+    private TextView activity_title1_view, activity_name1_view, activity_description1_view, activity_address1_view, activity_title2_view, activity_name2_view, activity_description2_view, activity_address2_view;
+    private String money1, latitude1, longitude1, money2, latitude2, longitude2, activity_title1, activity_name1, activity_description1, activity_address1, activity_title2, activity_name2, activity_description2, activity_address2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -85,6 +91,11 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED)
+//        {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
+//        }
+
         calendar = findViewById(R.id.calendarView);
         start_time_spinner = findViewById(R.id.Start_time_spinner);
         end_time_spinner = findViewById(R.id.End_time_spinner);
@@ -94,6 +105,16 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         viewMap1 = findViewById(R.id.activity1_viewMap);
         viewMap2 = findViewById(R.id.activity2_viewMap);
         textView = findViewById(R.id.select_free_time_text);
+
+        activity_title1_view = findViewById(R.id.activity1_title);
+        activity_title2_view = findViewById(R.id.activity2_title);
+        activity_name1_view = findViewById(R.id.activity1_name);
+        activity_name2_view = findViewById(R.id.activity2_name);
+        activity_description1_view = findViewById(R.id.activity1_description);
+        activity_description2_view = findViewById(R.id.activity2_description);
+        activity_address1_view = findViewById(R.id.activity1_address);
+        activity_address2_view = findViewById(R.id.activity2_address);
+
         startList = new ArrayList<>();
         newEndList = new ArrayList<>();
         fc1 = findViewById(R.id.folding_cell1);
@@ -242,8 +263,25 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                if (!startTime.equals("select") && !endTime.equals("select")) {
+                if (!startTime.equals("select") && !endTime.equals("select"))
+                {
                     textView.setText("Select Activity");
+
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+                    user_id = sharedPreferences.getInt("user_id", 0);
+
+                    String[] startArray = startTime.split(":");
+                    String[] endArray = endTime.split(":");
+                    duration = Integer.valueOf(endArray[0]) -  Integer.valueOf(startArray[0]);
+
+                    //int[] dataTransmission = new int[2];
+                    //dataTransmission[0] = user_id;
+                    //dataTransmission[1] = duration;
+
+                    ScheduleRestAsyncTask scheduleRestAsyncTask = new ScheduleRestAsyncTask();
+                    scheduleRestAsyncTask.execute(user_id, duration);
+
+
 
                     if (fc1.getVisibility() == View.INVISIBLE) {
                         fc1.setVisibility(View.VISIBLE);
@@ -334,20 +372,15 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
-                user_id = sharedPreferences.getInt("user_id", 0);
-
-                String[] startArray = startTime.split(":");
-                String[] endArray = endTime.split(":");
-                duration = Integer.valueOf(endArray[0]) -  Integer.valueOf(startArray[0]);
-
-                //int[] dataTransmission = new int[2];
-                //dataTransmission[0] = user_id;
-                //dataTransmission[1] = duration;
-
-
-                ScheduleRestAsyncTask scheduleRestAsyncTask = new ScheduleRestAsyncTask();
-                scheduleRestAsyncTask.execute(user_id, duration);
+//                CalendarEvent calendarEvent = new CalendarEvent("马上吃饭", "吃好吃的", "南信院二食堂", System.currentTimeMillis(), System.currentTimeMillis() + 60000, 0, null);
+//                int result = CalendarProviderManager.addCalendarEvent(this, calendarEvent);
+//                if (result == 0) {
+//                    Toast.makeText(getApplicationContext(), "插入成功", Toast.LENGTH_SHORT).show();
+//                } else if (result == -1) {
+//                    Toast.makeText(getApplicationContext(), "插入失败", Toast.LENGTH_SHORT).show();
+//                } else if (result == -2) {
+//                    Toast.makeText(getApplicationContext(), "没有权限", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 
@@ -387,6 +420,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     {
                         JSONObject jsonObject = new JSONObject(s);
                         retCode = jsonObject.getInt("success");
+
+
                     }
                     catch (JSONException e)
                     {
