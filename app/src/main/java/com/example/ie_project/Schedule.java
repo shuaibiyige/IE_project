@@ -4,18 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -54,6 +52,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -68,15 +67,13 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private List<String> newEndList;
     private ImageView yes_schedule;
     private TextView textView;
-    //private MapView mapView1, mapView2;
     private FoldingCell fc1, fc2;
     private Button select1, select2, viewMap1, viewMap2;
-    private LatLng latLng;
     private Animation ani2;
-    private int duration;
-    private String startTime, endTime;
+    private int duration, user_id, activity1_duration, activity2_duration;
+    private String startTime, endTime, chosenDate;
     private RequestQueue requestQueue;
-    private int user_id;
+    private CalendarDay calendarDay;
     private TextView activity_title1_view, activity_name1_view, activity_description1_view, activity_address1_view, activity_title2_view, activity_name2_view, activity_description2_view, activity_address2_view;
     private String money1, latitude1, longitude1, money2, latitude2, longitude2, activity_title1, activity_name1, activity_description1, activity_address1, activity_title2, activity_name2, activity_description2, activity_address2;
 
@@ -84,7 +81,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Mapbox.getInstance(this, "pk.eyJ1IjoiY2h1YWliaSIsImEiOiJjamw2bDYxYm0wdGZ1M3duNWlnd3lqbWFuIn0.XaGfJkYUWnSO9LlBb5EPYw");
+        //Mapbox.getInstance(this, "pk.eyJ1IjoiY2h1YWliaSIsImEiOiJjamw2bDYxYm0wdGZ1M3duNWlnd3lqbWFuIn0.XaGfJkYUWnSO9LlBb5EPYw");
         setContentView(R.layout.activity_schedule);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -119,12 +116,25 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         newEndList = new ArrayList<>();
         fc1 = findViewById(R.id.folding_cell1);
         fc2 = findViewById(R.id.folding_cell2);
-        //mapView1 = findViewById(R.id.mapView1);
-        //mapView2 = findViewById(R.id.mapView2);
-        latLng = new LatLng(-37.814, 144.96332);            // focus on Melbourne by default
+
         ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
         user_id = 0;
         duration = 0;
+        activity1_duration = 0;
+        activity2_duration = 0;
+        latitude1 = "";
+        longitude1 = "";
+        latitude2 = "";
+        longitude2 = "";
+        activity_title1 = "";
+        activity_name1 = "";
+        activity_description1 = "";
+        activity_address1 = "";
+        activity_title2 = "";
+        activity_name2 = "";
+        activity_description2 = "";
+        activity_address2 = "";
+        chosenDate = "";
 
         init(startList);
 
@@ -184,13 +194,18 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                Uri gmmIntentUri = Uri.parse("geo:-37.814,144.96332");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");          // ensure that the Google Maps app for Android handles the Intent
-                if (mapIntent.resolveActivity(getPackageManager()) != null)
-                    startActivity(mapIntent);
-                else
+                if (longitude1.equals("") || latitude1.equals(""))
                     Toast.makeText(getApplicationContext(), "Map is not available", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + latitude1 + "," + longitude1 + "(" + activity_name1 +")");
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");              // ensure that the Google Maps app for Android handles the Intent
+                    if (mapIntent.resolveActivity(getPackageManager()) != null)
+                        startActivity(mapIntent);
+                    else
+                        Toast.makeText(getApplicationContext(), "Map is not available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -198,27 +213,36 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                Uri gmmIntentUri = Uri.parse("geo:-37.814,144.96332");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");          // ensure that the Google Maps app for Android handles the Intent
-                if (mapIntent.resolveActivity(getPackageManager()) != null)
-                    startActivity(mapIntent);
-                else
+                if (longitude2.equals("") || latitude2.equals(""))
                     Toast.makeText(getApplicationContext(), "Map is not available", Toast.LENGTH_SHORT).show();
+                else {
+                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + latitude2 + "," + longitude2 + "(" + activity_name2 +")");
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");              // ensure that the Google Maps app for Android handles the Intent
+                    if (mapIntent.resolveActivity(getPackageManager()) != null)
+                        startActivity(mapIntent);
+                    else
+                        Toast.makeText(getApplicationContext(), "Map is not available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         select1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                alertDialog("date1", "time1", "activity1");
+            public void onClick(View v)
+            {
+                String activity_startTime = startTime.split(":")[0];
+                int cal = Integer.valueOf(activity_startTime) + activity1_duration;
+                String activity_endTime = cal + ":00";
+                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_name1);
             }
         });
 
         select2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                alertDialog("date2", "time2", "activity2");
+            public void onClick(View v)
+            {
+                alertDialog(chosenDate, "time2", activity_name2);
             }
         });
 
@@ -263,7 +287,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                if (!startTime.equals("select") && !endTime.equals("select"))
+                if (!startTime.equals("select") && !endTime.equals("select") && !chosenDate.equals(""))
                 {
                     textView.setText("Select Activity");
 
@@ -272,39 +296,56 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
                     String[] startArray = startTime.split(":");
                     String[] endArray = endTime.split(":");
-                    duration = Integer.valueOf(endArray[0]) -  Integer.valueOf(startArray[0]);
-
-                    //int[] dataTransmission = new int[2];
-                    //dataTransmission[0] = user_id;
-                    //dataTransmission[1] = duration;
+                    duration = Integer.valueOf(endArray[0]) - Integer.valueOf(startArray[0]);
 
                     ScheduleRestAsyncTask scheduleRestAsyncTask = new ScheduleRestAsyncTask();
                     scheduleRestAsyncTask.execute(user_id, duration);
 
+                    if (!activity_title1.equals("") && !activity_name1.equals("") && !activity_description1.equals(""))
+                    {
+                        activity_title1_view.setText(activity_title1);
+                        activity_name1_view.setText(activity_name1);
+                        activity_description1_view.setText(activity_description1);
 
+                        activity_title2_view.setText(activity_title2);
+                        activity_name2_view.setText(activity_name2);
+                        activity_description2_view.setText(activity_description2);
 
-                    if (fc1.getVisibility() == View.INVISIBLE) {
-                        fc1.setVisibility(View.VISIBLE);
-                        fc1.setAnimation(ani2);
-                    }
-                    fc1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            fc1.toggle(false);
+                        if (activity_address1.equals(""))
+                            activity_address1_view.setText("at home");
+                        else
+                            activity_address1_view.setText(activity_address1);
+
+                        if (activity_address2.equals(""))
+                            activity_address2_view.setText("at home");
+                        else
+                            activity_address2_view.setText(activity_address2);
+
+                        if (fc1.getVisibility() == View.INVISIBLE) {
+                            fc1.setVisibility(View.VISIBLE);
+                            fc1.setAnimation(ani2);
                         }
-                    });
+                        fc1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                fc1.toggle(false);
+                            }
+                        });
 
-                    if (fc2.getVisibility() == View.INVISIBLE) {
-                        fc2.setVisibility(View.VISIBLE);
-                        fc2.setAnimation(ani2);
-                    }
-                    fc2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            fc2.toggle(false);
+                        if (fc2.getVisibility() == View.INVISIBLE) {
+                            fc2.setVisibility(View.VISIBLE);
+                            fc2.setAnimation(ani2);
                         }
-                    });
+                        fc2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                fc2.toggle(false);
+                            }
+                        });
+                    }
                 }
+                else if (chosenDate.equals(""))
+                    Toast.makeText(getApplicationContext(), "Please choose a date", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext(), "Please choose time", Toast.LENGTH_SHORT).show();
             }
@@ -360,9 +401,9 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
         Button yes = dialogView.findViewById(R.id.dialog_confirm);
         Button no = dialogView.findViewById(R.id.dialog_cancel);
-        TextView date = (TextView) dialogView.findViewById(R.id.dialog_date);
-        TextView time = (TextView) dialogView.findViewById(R.id.dialog_time);
-        TextView activity = (TextView) dialogView.findViewById(R.id.dialog_activity);
+        TextView date = dialogView.findViewById(R.id.dialog_date);
+        TextView time = dialogView.findViewById(R.id.dialog_time);
+        TextView activity = dialogView.findViewById(R.id.dialog_activity);
 
         date.setText(date_text);
         time.setText(time_text);
@@ -372,15 +413,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-//                CalendarEvent calendarEvent = new CalendarEvent("马上吃饭", "吃好吃的", "南信院二食堂", System.currentTimeMillis(), System.currentTimeMillis() + 60000, 0, null);
-//                int result = CalendarProviderManager.addCalendarEvent(this, calendarEvent);
-//                if (result == 0) {
-//                    Toast.makeText(getApplicationContext(), "插入成功", Toast.LENGTH_SHORT).show();
-//                } else if (result == -1) {
-//                    Toast.makeText(getApplicationContext(), "插入失败", Toast.LENGTH_SHORT).show();
-//                } else if (result == -2) {
-//                    Toast.makeText(getApplicationContext(), "没有权限", Toast.LENGTH_SHORT).show();
-//                }
+                CreateConsumption createConsumption = new CreateConsumption();
+                createConsumption.execute();
             }
         });
 
@@ -399,8 +433,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         int year = date.getYear();
         int month = date.getMonth();
         int day = date.getDay();
-        Date a = date.getDate();
-        Toast.makeText(this, String.valueOf(date.getDay()), Toast.LENGTH_SHORT).show();
+        calendarDay = date;
+        chosenDate = year + "-" + month + "-" + day;
     }
 
     private class ScheduleRestAsyncTask extends AsyncTask<Integer, Void, Void>      // check if user answered the questionnaire before
@@ -415,19 +449,32 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 @Override
                 public void onResponse(String s)
                 {
-                    int retCode = 0;
+                    //int retCode = 0;
                     try
                     {
                         JSONObject jsonObject = new JSONObject(s);
-                        retCode = jsonObject.getInt("success");
+                        //retCode = jsonObject.getInt("success");
+                        activity_title1 = jsonObject.getString("title1");
+                        activity_name1 = jsonObject.getString("activity_name1");
+                        activity_description1 = jsonObject.getString("activity_description1");
+                        activity_address1 = jsonObject.getString("activity_address1");
+                        latitude1 =  jsonObject.getString("latitude1");
+                        longitude1 = jsonObject.getString("longitude1");
+                        activity1_duration = jsonObject.getInt("duration1");
 
-
+                        activity_title2 = jsonObject.getString("title2");
+                        activity_name2 = jsonObject.getString("activity_name2");
+                        activity_description2 = jsonObject.getString("activity_description2");
+                        activity_address2 = jsonObject.getString("activity_address2");
+                        latitude2 =  jsonObject.getString("latitude2");
+                        longitude2 = jsonObject.getString("longitude2");
+                        activity2_duration = jsonObject.getInt("duration2");
                     }
                     catch (JSONException e)
                     {
+                        Toast.makeText(getApplicationContext(),"Network is unavailable", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
-
                 }
             };
 
@@ -452,6 +499,40 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             };
             requestQueue.add(stringRequest);
             return null;
+        }
+    }
+
+    private class CreateConsumption extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected Void doInBackground (Void...params)
+        {
+            long calID = 0;
+            long startMillis = 0;
+            long endMillis = 0;
+            Calendar beginTime = Calendar.getInstance();
+            beginTime.set(2019, 9, 14, 7, 30);
+            startMillis = beginTime.getTimeInMillis();
+            Calendar endTime = Calendar.getInstance();
+            endTime.set(2019, 9, 14, 8, 45);
+            endMillis = endTime.getTimeInMillis();
+
+            ContentResolver cr = getContentResolver();
+            ContentValues values = new ContentValues();
+            values.put(CalendarContract.Events.DTSTART, Calendar.getInstance().getTimeInMillis());
+            values.put(CalendarContract.Events.DTEND, Calendar.getInstance().getTimeInMillis() + 60 * 60 * 1000);
+            values.put(CalendarContract.Events.TITLE, "Jazzercise");
+            values.put(CalendarContract.Events.DESCRIPTION, "Group workout");
+            values.put(CalendarContract.Events.CALENDAR_ID, 1);
+            values.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
+            Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+
+            return null;
+        }
+
+        protected void onPostExecute(Void param)
+        {
+            Toast.makeText(getApplicationContext(), "Add consumption Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 }

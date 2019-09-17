@@ -199,12 +199,12 @@
                             android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:text="this is a description this is a description this is a description this is a description this is a description"
-                            android:maxLines="3"
+                            android:maxLines="4"
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:layout_marginTop="10dp"
-                            android:textAlignment="textStart"
+                            android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
                         <TextView
@@ -217,7 +217,7 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:layout_marginTop="10dp"
-                            android:textAlignment="textStart"
+                            android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
                         <LinearLayout
@@ -271,7 +271,7 @@
                         android:textAllCaps="false"
                         android:layout_centerInParent="true"
                         android:textColor="#ffffffff"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:translationX="-30dp"
                         android:fontFamily="@font/gotham" />
 
@@ -364,7 +364,7 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:layout_marginTop="10dp"
-                            android:textAlignment="textStart"
+                            android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
                         <TextView
@@ -377,7 +377,7 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:layout_marginTop="10dp"
-                            android:textAlignment="textStart"
+                            android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
                         <LinearLayout
@@ -431,7 +431,7 @@
                         android:textAllCaps="false"
                         android:layout_centerInParent="true"
                         android:textColor="#ffffffff"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:translationX="-30dp"
                         android:fontFamily="@font/gotham" />
 
