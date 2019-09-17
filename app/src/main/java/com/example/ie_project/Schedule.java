@@ -5,10 +5,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -21,6 +25,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -35,9 +46,14 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.ramotion.foldingcell.FoldingCell;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Schedule extends AppCompatActivity implements OnDateSelectedListener
@@ -53,8 +69,10 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private Button select1, select2, viewMap1, viewMap2;
     private LatLng latLng;
     private Animation ani2;
-    private String time;
+    private int duration;
     private String startTime, endTime;
+    private RequestQueue requestQueue;
+    private int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,6 +82,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         setContentView(R.layout.activity_schedule);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         calendar = findViewById(R.id.calendarView);
         start_time_spinner = findViewById(R.id.Start_time_spinner);
@@ -82,6 +102,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         //mapView2 = findViewById(R.id.mapView2);
         latLng = new LatLng(-37.814, 144.96332);            // focus on Melbourne by default
         ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
+        user_id = 0;
+        duration = 0;
 
         init(startList);
 
@@ -273,19 +295,19 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     public void init(List<String> list)
     {
         list.add("select");
-        list.add("10 am");
-        list.add("11 am");
-        list.add("12 pm");
-        list.add("1 pm");
-        list.add("2 pm");
-        list.add("3 pm");
-        list.add("4 pm");
-        list.add("5 pm");
-        list.add("6 pm");
-        list.add("7 pm");
-        list.add("8 pm");
-        list.add("9 pm");
-        list.add("10 pm");
+        list.add("10:00");
+        list.add("11:00");
+        list.add("12:00");
+        list.add("13:00");
+        list.add("14:00");
+        list.add("15:00");
+        list.add("16:00");
+        list.add("17:00");
+        list.add("18:00");
+        list.add("19:00");
+        list.add("20:00");
+        list.add("21:00");
+        list.add("22:00");
     }
 
     public void alertDialog(String date_text, String time_text, String activity_text)
@@ -312,7 +334,20 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+                user_id = sharedPreferences.getInt("user_id", 0);
 
+                String[] startArray = startTime.split(":");
+                String[] endArray = endTime.split(":");
+                duration = Integer.valueOf(endArray[0]) -  Integer.valueOf(startArray[0]);
+
+                //int[] dataTransmission = new int[2];
+                //dataTransmission[0] = user_id;
+                //dataTransmission[1] = duration;
+
+
+                ScheduleRestAsyncTask scheduleRestAsyncTask = new ScheduleRestAsyncTask();
+                scheduleRestAsyncTask.execute(user_id, duration);
             }
         });
 
@@ -333,5 +368,55 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         int day = date.getDay();
         Date a = date.getDate();
         Toast.makeText(this, String.valueOf(date.getDay()), Toast.LENGTH_SHORT).show();
+    }
+
+    private class ScheduleRestAsyncTask extends AsyncTask<Integer, Void, Void>      // check if user answered the questionnaire before
+    {
+        @Override
+        protected Void doInBackground (final Integer...params)
+        {
+            String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/activityAdvice.php";
+
+            com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+            {
+                @Override
+                public void onResponse(String s)
+                {
+                    int retCode = 0;
+                    try
+                    {
+                        JSONObject jsonObject = new JSONObject(s);
+                        retCode = jsonObject.getInt("success");
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+            };
+
+            com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+                public String TAG = "LOG";
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(TAG, error.getMessage(), error);
+                }
+            };
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError
+                {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("user_id", String.valueOf(params[0]));
+                    map.put("duration", String.valueOf(params[1]));
+
+                    return map;
+                }
+            };
+            requestQueue.add(stringRequest);
+            return null;
+        }
     }
 }
