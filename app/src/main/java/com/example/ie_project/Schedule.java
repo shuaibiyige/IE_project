@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -34,14 +39,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
+import com.kyle.calendarprovider.calendar.CalendarEvent;
+
+import com.kyle.calendarprovider.calendar.CalendarProviderManager;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -51,6 +51,7 @@ import com.ramotion.foldingcell.FoldingCell;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -81,17 +82,16 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //Mapbox.getInstance(this, "pk.eyJ1IjoiY2h1YWliaSIsImEiOiJjamw2bDYxYm0wdGZ1M3duNWlnd3lqbWFuIn0.XaGfJkYUWnSO9LlBb5EPYw");
         setContentView(R.layout.activity_schedule);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED)
-//        {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
-//        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
+        }
 
         calendar = findViewById(R.id.calendarView);
         start_time_spinner = findViewById(R.id.Start_time_spinner);
@@ -138,57 +138,9 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
         init(startList);
 
-        //mapView1.onCreate(savedInstanceState);
-        //mapView2.onCreate(savedInstanceState);
-
         calendar.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
         calendar.setOnDateChangedListener(this);
 
-//        mapView1.getMapAsync(new OnMapReadyCallback() {
-//            @Override
-//            public void onMapReady(@NonNull MapboxMap mapboxMap)
-//            {
-//                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
-//                {
-//                    @Override
-//                    public void onStyleLoaded(@NonNull Style style)
-//                    {
-//
-//                    // Map is set up and the style has loaded. Now you can add data or make other map adjustments
-//
-//
-//                    }
-//                });
-//                mapboxMap.getUiSettings().setAttributionEnabled(false);
-//                mapboxMap.getUiSettings().setLogoEnabled(false);
-//
-//                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
-//                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//            }
-//        });
-
-//        mapView2.getMapAsync(new OnMapReadyCallback() {
-//            @Override
-//            public void onMapReady(@NonNull MapboxMap mapboxMap)
-//            {
-//                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded()
-//                {
-//                    @Override
-//                    public void onStyleLoaded(@NonNull Style style)
-//                    {
-//
-//                        // Map is set up and the style has loaded. Now you can add data or make other map adjustments
-//
-//
-//                    }
-//                });
-//                mapboxMap.getUiSettings().setAttributionEnabled(false);
-//                mapboxMap.getUiSettings().setLogoEnabled(false);
-//
-//                CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latLng.getLatitude(), latLng.getLongitude())).zoom(10).build();
-//                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//            }
-//        });
 
         viewMap1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,7 +186,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 String activity_startTime = startTime.split(":")[0];
                 int cal = Integer.valueOf(activity_startTime) + activity1_duration;
                 String activity_endTime = cal + ":00";
-                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_name1);
+                String[] time_cal = chosenDate.split("-");
+                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_name1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
             }
         });
 
@@ -242,7 +195,11 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                alertDialog(chosenDate, "time2", activity_name2);
+                String activity_startTime = startTime.split(":")[0];
+                int cal = Integer.valueOf(activity_startTime) + activity2_duration;
+                String activity_endTime = cal + ":00";
+                String[] time_cal = chosenDate.split("-");
+                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_name2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
             }
         });
 
@@ -389,7 +346,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         list.add("22:00");
     }
 
-    public void alertDialog(String date_text, String time_text, String activity_text)
+    public void alertDialog(String date_text, String time_text, final String activity_text, final String activity_des, final String activity_add, final int year, final int month, final int day, final int startHour, final int endHour)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final AlertDialog dialog = builder.create();
@@ -413,8 +370,22 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                CreateConsumption createConsumption = new CreateConsumption();
-                createConsumption.execute();
+                Calendar beginTime = Calendar.getInstance();
+                beginTime.set(year, month, day, startHour, 0);
+                long startMillis = beginTime.getTimeInMillis();
+                Calendar endTime = Calendar.getInstance();
+                endTime.set(year, month, day, endHour, 0);
+                long endMillis = endTime.getTimeInMillis();
+
+                CalendarEvent calendarEvent = new CalendarEvent(activity_text, activity_des, activity_add, startMillis, endMillis, 0, null);
+                int result = CalendarProviderManager.addCalendarEvent(getApplicationContext(), calendarEvent);
+                if (result == 0) {
+                    Toast.makeText(getApplicationContext(), "successful", Toast.LENGTH_SHORT).show();
+                } else if (result == -1) {
+                    Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT).show();
+                } else if (result == -2) {
+                    Toast.makeText(getApplicationContext(), "permission denied", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -499,40 +470,6 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             };
             requestQueue.add(stringRequest);
             return null;
-        }
-    }
-
-    private class CreateConsumption extends AsyncTask<Void, Void, Void>
-    {
-        @Override
-        protected Void doInBackground (Void...params)
-        {
-            long calID = 0;
-            long startMillis = 0;
-            long endMillis = 0;
-            Calendar beginTime = Calendar.getInstance();
-            beginTime.set(2019, 9, 14, 7, 30);
-            startMillis = beginTime.getTimeInMillis();
-            Calendar endTime = Calendar.getInstance();
-            endTime.set(2019, 9, 14, 8, 45);
-            endMillis = endTime.getTimeInMillis();
-
-            ContentResolver cr = getContentResolver();
-            ContentValues values = new ContentValues();
-            values.put(CalendarContract.Events.DTSTART, Calendar.getInstance().getTimeInMillis());
-            values.put(CalendarContract.Events.DTEND, Calendar.getInstance().getTimeInMillis() + 60 * 60 * 1000);
-            values.put(CalendarContract.Events.TITLE, "Jazzercise");
-            values.put(CalendarContract.Events.DESCRIPTION, "Group workout");
-            values.put(CalendarContract.Events.CALENDAR_ID, 1);
-            values.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
-            Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
-
-            return null;
-        }
-
-        protected void onPostExecute(Void param)
-        {
-            Toast.makeText(getApplicationContext(), "Add consumption Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 }
