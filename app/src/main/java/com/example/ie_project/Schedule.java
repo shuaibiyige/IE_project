@@ -71,7 +71,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private FoldingCell fc1, fc2;
     private Button select1, select2, viewMap1, viewMap2;
     private Animation ani2;
-    private int duration, user_id, activity1_duration, activity2_duration;
+    private int duration, user_id, activity1_duration, activity2_duration, retCode;
     private String startTime, endTime, chosenDate;
     private RequestQueue requestQueue;
     private CalendarDay calendarDay;
@@ -135,6 +135,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         activity_description2 = "";
         activity_address2 = "";
         chosenDate = "";
+        retCode = 0;
 
         init(startList);
 
@@ -187,7 +188,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 int cal = Integer.valueOf(activity_startTime) + activity1_duration;
                 String activity_endTime = cal + ":00";
                 String[] time_cal = chosenDate.split("-");
-                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_name1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
+                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
             }
         });
 
@@ -199,7 +200,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 int cal = Integer.valueOf(activity_startTime) + activity2_duration;
                 String activity_endTime = cal + ":00";
                 String[] time_cal = chosenDate.split("-");
-                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_name2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
+                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
             }
         });
 
@@ -257,49 +258,6 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
                     ScheduleRestAsyncTask scheduleRestAsyncTask = new ScheduleRestAsyncTask();
                     scheduleRestAsyncTask.execute(user_id, duration);
-
-                    if (!activity_title1.equals("") && !activity_name1.equals("") && !activity_description1.equals(""))
-                    {
-                        activity_title1_view.setText(activity_title1);
-                        activity_name1_view.setText(activity_name1);
-                        activity_description1_view.setText(activity_description1);
-
-                        activity_title2_view.setText(activity_title2);
-                        activity_name2_view.setText(activity_name2);
-                        activity_description2_view.setText(activity_description2);
-
-                        if (activity_address1.equals(""))
-                            activity_address1_view.setText("at home");
-                        else
-                            activity_address1_view.setText(activity_address1);
-
-                        if (activity_address2.equals(""))
-                            activity_address2_view.setText("at home");
-                        else
-                            activity_address2_view.setText(activity_address2);
-
-                        if (fc1.getVisibility() == View.INVISIBLE) {
-                            fc1.setVisibility(View.VISIBLE);
-                            fc1.setAnimation(ani2);
-                        }
-                        fc1.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                fc1.toggle(false);
-                            }
-                        });
-
-                        if (fc2.getVisibility() == View.INVISIBLE) {
-                            fc2.setVisibility(View.VISIBLE);
-                            fc2.setAnimation(ani2);
-                        }
-                        fc2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                fc2.toggle(false);
-                            }
-                        });
-                    }
                 }
                 else if (chosenDate.equals(""))
                     Toast.makeText(getApplicationContext(), "Please choose a date", Toast.LENGTH_SHORT).show();
@@ -408,10 +366,10 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         chosenDate = year + "-" + month + "-" + day;
     }
 
-    private class ScheduleRestAsyncTask extends AsyncTask<Integer, Void, Void>      // check if user answered the questionnaire before
+    private class ScheduleRestAsyncTask extends AsyncTask<Integer, Void, Integer>      // check if user answered the questionnaire before
     {
         @Override
-        protected Void doInBackground (final Integer...params)
+        protected Integer doInBackground (final Integer...params)
         {
             String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/activityAdvice.php";
 
@@ -420,11 +378,10 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 @Override
                 public void onResponse(String s)
                 {
-                    //int retCode = 0;
                     try
                     {
                         JSONObject jsonObject = new JSONObject(s);
-                        //retCode = jsonObject.getInt("success");
+                        retCode = jsonObject.getInt("success");
                         activity_title1 = jsonObject.getString("title1");
                         activity_name1 = jsonObject.getString("activity_name1");
                         activity_description1 = jsonObject.getString("activity_description1");
@@ -469,7 +426,53 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 }
             };
             requestQueue.add(stringRequest);
-            return null;
+            return retCode;
+        }
+
+        protected void onPostExecute(Integer result)
+        {
+            if (result == 1)
+            {
+                activity_title1_view.setText(activity_title1);
+                activity_name1_view.setText(activity_name1);
+                activity_description1_view.setText(activity_description1);
+
+                activity_title2_view.setText(activity_title2);
+                activity_name2_view.setText(activity_name2);
+                activity_description2_view.setText(activity_description2);
+
+                if (activity_address1.equals(""))
+                    activity_address1_view.setText("at home");
+                else
+                    activity_address1_view.setText(activity_address1);
+
+                if (activity_address2.equals(""))
+                    activity_address2_view.setText("at home");
+                else
+                    activity_address2_view.setText(activity_address2);
+
+                if (fc1.getVisibility() == View.INVISIBLE) {
+                    fc1.setVisibility(View.VISIBLE);
+                    fc1.setAnimation(ani2);
+                }
+                fc1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        fc1.toggle(false);
+                    }
+                });
+
+                if (fc2.getVisibility() == View.INVISIBLE) {
+                    fc2.setVisibility(View.VISIBLE);
+                    fc2.setAnimation(ani2);
+                }
+                fc2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        fc2.toggle(false);
+                    }
+                });
+            }
         }
     }
 }

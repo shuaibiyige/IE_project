@@ -237,29 +237,6 @@ public class Questionnaire2 extends Fragment
         dateTime = format.format(d1);
     }
 
-//    public void listener1(final CheckBox check)
-//    {
-//        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-//            {
-//                if (isChecked)
-//                {
-//                    selectedItemCounter1++;
-//                }
-//                else
-//                {
-//                    selectedItemCounter1--;
-//                }
-//                if (selectedItemCounter1 > 3)
-//                {
-//                    buttonView.setChecked(false);
-//                    selectedItemCounter1--;
-//                }
-//            }
-//        });
-//    }
-
     public boolean isValid(String input)       // check if empty
     {
         if (input.trim().length() != 0)
@@ -348,6 +325,9 @@ public class Questionnaire2 extends Fragment
 
                     if (retCode == 1)
                     {
+                        SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
+                        editor.putInt("isQuestionnaire", 1);        // 0: not answered, 1: answered
+                        editor.apply();
                         FragmentManager fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction().replace(R.id.content_frame, new Successful()).commit();
                     }
