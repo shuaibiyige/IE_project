@@ -736,6 +736,16 @@
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
 
+                <EditText
+                    android:id="@+id/residence_area_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Your address"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#ffffffff" />
+
 
                 <Button
                     android:id="@+id/next_ques"
@@ -743,7 +753,7 @@
                     android:layout_height="39dp"
                     android:background="@drawable/submit_button"
                     android:text="Next"
-                    android:layout_marginTop="230dp"
+                    android:layout_marginTop="180dp"
                     android:textAllCaps="false"
                     android:textColor="#ffd88778"
                     android:textSize="18sp" />

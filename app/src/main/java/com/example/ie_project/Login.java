@@ -215,7 +215,8 @@ public class Login extends AppCompatActivity
                 }
             };
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener) {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener)
+            {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError
                 {

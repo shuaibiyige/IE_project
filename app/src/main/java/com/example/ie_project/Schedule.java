@@ -71,7 +71,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private FoldingCell fc1, fc2;
     private Button select1, select2, viewMap1, viewMap2;
     private Animation ani2;
-    private int duration, user_id, activity1_duration, activity2_duration, retCode;
+    private int duration, user_id, activity1_duration, activity2_duration;
     private String startTime, endTime, chosenDate;
     private RequestQueue requestQueue;
     private CalendarDay calendarDay;
@@ -135,7 +135,6 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         activity_description2 = "";
         activity_address2 = "";
         chosenDate = "";
-        retCode = 0;
 
         init(startList);
 
@@ -241,7 +240,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             }
         });
 
-        yes_schedule.setOnClickListener(new View.OnClickListener() {
+        yes_schedule.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
@@ -256,8 +256,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     String[] endArray = endTime.split(":");
                     duration = Integer.valueOf(endArray[0]) - Integer.valueOf(startArray[0]);
 
-                    ScheduleRestAsyncTask scheduleRestAsyncTask = new ScheduleRestAsyncTask();
-                    scheduleRestAsyncTask.execute(user_id, duration);
+                    volley(user_id, duration);
                 }
                 else if (chosenDate.equals(""))
                     Toast.makeText(getApplicationContext(), "Please choose a date", Toast.LENGTH_SHORT).show();
@@ -337,11 +336,17 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
                 CalendarEvent calendarEvent = new CalendarEvent(activity_text, activity_des, activity_add, startMillis, endMillis, 0, null);
                 int result = CalendarProviderManager.addCalendarEvent(getApplicationContext(), calendarEvent);
-                if (result == 0) {
+                if (result == 0)
+                {
                     Toast.makeText(getApplicationContext(), "successful", Toast.LENGTH_SHORT).show();
-                } else if (result == -1) {
+                    dialog.dismiss();
+                }
+                else if (result == -1)
+                {
                     Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT).show();
-                } else if (result == -2) {
+                }
+                else if (result == -2)
+                {
                     Toast.makeText(getApplicationContext(), "permission denied", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -366,113 +371,106 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         chosenDate = year + "-" + month + "-" + day;
     }
 
-    private class ScheduleRestAsyncTask extends AsyncTask<Integer, Void, Integer>      // check if user answered the questionnaire before
+    public void volley(final int user_id, final int duration)
     {
-        @Override
-        protected Integer doInBackground (final Integer...params)
+        String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/activityAdvice.php";
+
+        com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
         {
-            String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/activityAdvice.php";
-
-            com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+            @Override
+            public void onResponse(String s)
             {
-                @Override
-                public void onResponse(String s)
+                try
                 {
-                    try
-                    {
-                        JSONObject jsonObject = new JSONObject(s);
-                        retCode = jsonObject.getInt("success");
-                        activity_title1 = jsonObject.getString("title1");
-                        activity_name1 = jsonObject.getString("activity_name1");
-                        activity_description1 = jsonObject.getString("activity_description1");
-                        activity_address1 = jsonObject.getString("activity_address1");
-                        latitude1 =  jsonObject.getString("latitude1");
-                        longitude1 = jsonObject.getString("longitude1");
-                        activity1_duration = jsonObject.getInt("duration1");
+                    JSONObject jsonObject = new JSONObject(s);
+                    //retCode = jsonObject.getInt("success");
+                    activity_title1 = jsonObject.getString("title1");
+                    activity_name1 = jsonObject.getString("activity_name1");
+                    activity_description1 = jsonObject.getString("activity_description1");
+                    activity_address1 = jsonObject.getString("activity_address1");
+                    latitude1 =  jsonObject.getString("latitude1");
+                    longitude1 = jsonObject.getString("longitude1");
+                    activity1_duration = jsonObject.getInt("duration1");
 
-                        activity_title2 = jsonObject.getString("title2");
-                        activity_name2 = jsonObject.getString("activity_name2");
-                        activity_description2 = jsonObject.getString("activity_description2");
-                        activity_address2 = jsonObject.getString("activity_address2");
-                        latitude2 =  jsonObject.getString("latitude2");
-                        longitude2 = jsonObject.getString("longitude2");
-                        activity2_duration = jsonObject.getInt("duration2");
-                    }
-                    catch (JSONException e)
+                    activity_title2 = jsonObject.getString("title2");
+                    activity_name2 = jsonObject.getString("activity_name2");
+                    activity_description2 = jsonObject.getString("activity_description2");
+                    activity_address2 = jsonObject.getString("activity_address2");
+                    latitude2 =  jsonObject.getString("latitude2");
+                    longitude2 = jsonObject.getString("longitude2");
+                    activity2_duration = jsonObject.getInt("duration2");
+
+                    if (!activity_name1.equals("") && !activity_name2.equals(""))
                     {
+                        activity_title1_view.setText(activity_title1);
+                        activity_name1_view.setText(activity_name1);
+                        activity_description1_view.setText(activity_description1);
+
+                        activity_title2_view.setText(activity_title2);
+                        activity_name2_view.setText(activity_name2);
+                        activity_description2_view.setText(activity_description2);
+
+                        if (activity_address1.equals(""))
+                            activity_address1_view.setText("at home");
+                        else
+                            activity_address1_view.setText(activity_address1);
+
+                        if (activity_address2.equals(""))
+                            activity_address2_view.setText("at home");
+                        else
+                            activity_address2_view.setText(activity_address2);
+
+                        if (fc1.getVisibility() == View.INVISIBLE) {
+                            fc1.setVisibility(View.VISIBLE);
+                            fc1.setAnimation(ani2);
+                        }
+                        fc1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                fc1.toggle(false);
+                            }
+                        });
+
+                        if (fc2.getVisibility() == View.INVISIBLE) {
+                            fc2.setVisibility(View.VISIBLE);
+                            fc2.setAnimation(ani2);
+                        }
+                        fc2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                fc2.toggle(false);
+                            }
+                        });
+                    }
+                }
+                catch (JSONException e)
+                {
                         Toast.makeText(getApplicationContext(),"Network is unavailable", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
-                }
-            };
-
-            com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
-                public String TAG = "LOG";
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(TAG, error.getMessage(), error);
-                }
-            };
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError
-                {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("user_id", String.valueOf(params[0]));
-                    map.put("duration", String.valueOf(params[1]));
-
-                    return map;
-                }
-            };
-            requestQueue.add(stringRequest);
-            return retCode;
-        }
-
-        protected void onPostExecute(Integer result)
-        {
-            if (result == 1)
-            {
-                activity_title1_view.setText(activity_title1);
-                activity_name1_view.setText(activity_name1);
-                activity_description1_view.setText(activity_description1);
-
-                activity_title2_view.setText(activity_title2);
-                activity_name2_view.setText(activity_name2);
-                activity_description2_view.setText(activity_description2);
-
-                if (activity_address1.equals(""))
-                    activity_address1_view.setText("at home");
-                else
-                    activity_address1_view.setText(activity_address1);
-
-                if (activity_address2.equals(""))
-                    activity_address2_view.setText("at home");
-                else
-                    activity_address2_view.setText(activity_address2);
-
-                if (fc1.getVisibility() == View.INVISIBLE) {
-                    fc1.setVisibility(View.VISIBLE);
-                    fc1.setAnimation(ani2);
-                }
-                fc1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        fc1.toggle(false);
-                    }
-                });
-
-                if (fc2.getVisibility() == View.INVISIBLE) {
-                    fc2.setVisibility(View.VISIBLE);
-                    fc2.setAnimation(ani2);
-                }
-                fc2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        fc2.toggle(false);
-                    }
-                });
             }
-        }
+        };
+
+        com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+            public String TAG = "LOG";
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage(), error);
+            }
+        };
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener)
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> map = new HashMap<>();
+                map.put("user_id", String.valueOf(user_id));
+                map.put("duration", String.valueOf(duration));
+
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }
