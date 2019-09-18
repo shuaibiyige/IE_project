@@ -88,6 +88,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
+        // require the calendar permission from the user
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, 1);
@@ -334,7 +335,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 endTime.set(year, month, day, endHour, 0);
                 long endMillis = endTime.getTimeInMillis();
 
-                CalendarEvent calendarEvent = new CalendarEvent(activity_text, activity_des, activity_add, startMillis, endMillis, 0, null);
+                CalendarEvent calendarEvent = new CalendarEvent(activity_text, activity_des, activity_add, startMillis, endMillis, 0, null);          // add the event to the calendar
                 int result = CalendarProviderManager.addCalendarEvent(getApplicationContext(), calendarEvent);
                 if (result == 0)
                 {

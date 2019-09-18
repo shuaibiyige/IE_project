@@ -54,7 +54,6 @@ public class Questionnaire2 extends Fragment
     private CheckBox reading, dancing, music, sport, video_game, other_hobbies, adventure, health, tech, art, indoorsy, other_description;
     private String name, restriction, gender;
     private int age;
-    //private int selectedItemCounter1 = 0;
     private Set<String> hobbiesList, descriptionList;
     private RequestQueue requestQueue;
     private int user_id;
@@ -245,7 +244,7 @@ public class Questionnaire2 extends Fragment
             return false;
     }
 
-    public void recordCheckBoxHobbies()
+    public void recordCheckBoxHobbies()              // add the hobbies to a list
     {
         hobbiesList = new HashSet();
         if (reading.isChecked())
@@ -265,7 +264,7 @@ public class Questionnaire2 extends Fragment
         }
     }
 
-    public void recordCheckBoxDescription()
+    public void recordCheckBoxDescription()             // add the descriptions to a list
     {
         descriptionList = new HashSet();
         if (adventure.isChecked())
@@ -285,7 +284,7 @@ public class Questionnaire2 extends Fragment
         }
     }
 
-    public void otherBoxChecked(final CheckBox checkBox, final EditText editText)
+    public void otherBoxChecked(final CheckBox checkBox, final EditText editText)            // if "other" is ticked, show the editText
     {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -398,7 +397,6 @@ public class Questionnaire2 extends Fragment
                     {
                         e.printStackTrace();
                     }
-
                 }
             };
 

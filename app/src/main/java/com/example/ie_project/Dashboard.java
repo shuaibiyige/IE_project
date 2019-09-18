@@ -65,8 +65,8 @@ public class Dashboard extends Fragment
         int isSchedule = sharedPreferences.getInt("isSchedule", 0);
 
         welcome.setText("Hey, " + user_name);
-        if (isQuestionnaire == 1)
-            tick_ques.setVisibility(View.VISIBLE);
+        if (isQuestionnaire == 1)                     // questionnaire is done
+            tick_ques.setVisibility(View.VISIBLE);    // show the tick
         if (isSchedule == 1)
             tick_schedule.setVisibility(View.VISIBLE);
 
@@ -83,7 +83,7 @@ public class Dashboard extends Fragment
         questionnaire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent anotherIntent = new Intent(getActivity(), Questionnaire.class);
+                Intent anotherIntent = new Intent(getActivity(), Questionnaire.class);         // go to questionnaire page
                 startActivity(anotherIntent);
             }
         });
@@ -91,7 +91,7 @@ public class Dashboard extends Fragment
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Schedule.class);
+                Intent intent = new Intent(getActivity(), Schedule.class);           // go to schedule page
                 startActivity(intent);
             }
         });

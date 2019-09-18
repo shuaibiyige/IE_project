@@ -91,9 +91,9 @@ public class Login extends AppCompatActivity
                     identity.add(ueser_password);
 
                     LoginRestAsyncTask loginRestAsyncTask = new LoginRestAsyncTask();
-                    loginRestAsyncTask.execute(identity);
+                    loginRestAsyncTask.execute(identity);              // get data from database
                 }
-                else        // not valid
+                else           // not valid
                 {
                     if (!checkEmail(email.getText().toString()))
                         Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
@@ -107,7 +107,7 @@ public class Login extends AppCompatActivity
         {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Register.class);
+                Intent intent = new Intent(Login.this, Register.class);       // go to signUp page
                 startActivity(intent);
             }
         });

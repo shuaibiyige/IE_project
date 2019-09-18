@@ -272,31 +272,7 @@ public class Questionnaire1 extends Fragment
         other_home_text = question1.findViewById(R.id.other_home_text);
     }
 
-//    public void listener1(final CheckBox check)
-//    {
-//        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-//            {
-//                if (isChecked)
-//                {
-//                    //selectedItemCounter1++;
-//                    petList.add(buttonView.getText().toString());
-//                }
-//                else
-//                {
-//                    //selectedItemCounter1--;
-//                    for (String ele: petList)
-//                    {
-//                        if (ele.equals(buttonView.getText().toString()))
-//                            petList.remove(ele);            //if unchecked, remove from the list
-//                    }
-//                }
-//            }
-//        });
-//    }
-
-    public boolean isValid(String input)
+    public boolean isValid(String input)          // check if the input is empty
     {
         if (input.trim().length() != 0)
             return true;
@@ -304,7 +280,7 @@ public class Questionnaire1 extends Fragment
             return false;
     }
 
-    public void recordCheckBoxPet()
+    public void recordCheckBoxPet()             // add the pets to a list
     {
         petList = new HashSet();
         if (dog.isChecked())
@@ -318,7 +294,7 @@ public class Questionnaire1 extends Fragment
         }
     }
 
-    public void recordCheckBoxDescription()
+    public void recordCheckBoxDescription()         // add the descriptions to a list
     {
         descriptionList = new HashSet();
         if (adventure.isChecked())
@@ -338,7 +314,7 @@ public class Questionnaire1 extends Fragment
         }
     }
 
-    public void recordCheckBoxHobbies()
+    public void recordCheckBoxHobbies()           // add the hobbies to a list
     {
         hobbiesList = new HashSet();
         if (reading.isChecked())
@@ -358,7 +334,7 @@ public class Questionnaire1 extends Fragment
         }
     }
 
-    public void recordCheckBoxHome()
+    public void recordCheckBoxHome()             // add the homes to a list
     {
         homeList = new HashSet();
         if (swimming.isChecked())
@@ -378,7 +354,7 @@ public class Questionnaire1 extends Fragment
         }
     }
 
-    public void otherBoxChecked(final CheckBox checkBox, final EditText editText)
+    public void otherBoxChecked(final CheckBox checkBox, final EditText editText)          // if "other" is ticked, show the editText
     {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
