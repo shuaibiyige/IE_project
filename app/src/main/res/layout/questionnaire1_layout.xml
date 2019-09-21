@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/question_card"
                 android:orientation="vertical">
 
@@ -188,7 +188,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/question_card2"
                 android:orientation="vertical">
 
@@ -720,7 +720,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/question_card"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
@@ -764,15 +764,40 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question1_card"
-        app:layout_constraintVertical_bias="0.25"
-        android:src="@drawable/swipe_right"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintVertical_bias="0.25">
+
+        <Button
+            android:id="@+id/questionnaire1_swipe_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            android:text="Swipe Left"
+            android:textColor="#ffd88778"
+            android:background="@drawable/submit_button"/>
+
+        <Button
+            android:id="@+id/questionnaire1_swipe_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_marginLeft="10dp"
+            android:text="Swipe Right"
+            android:textColor="#ffd88778"
+            android:background="@drawable/submit_button"/>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="600dp"

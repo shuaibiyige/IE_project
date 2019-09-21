@@ -1,5 +1,6 @@
 package com.example.ie_project;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -18,10 +20,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +52,11 @@ public class Questionnaire1 extends Fragment
     private CheckBox dog, cat, other_pet, reading, cooking, music, collecting, sport, other_hobbies, adventure, health, tech, art, indoorsy, other_description, swimming, sport_court, videoGame, barbeque, games, other_home;
     private EditText other_pet_text, other_hobbies_text, other_restrictions_text, other_description_text, other_home_text;
     private Set<String> petList, hobbiesList, descriptionList, homeList;
+    private HorizontalScrollView scrollView;
+    private Button swipe_right, swipe_left;
+    private int offset;
 
+    @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         question1 = inflater.inflate(R.layout.questionnaire1_layout, container, false);
@@ -56,6 +64,48 @@ public class Questionnaire1 extends Fragment
         final FragmentManager fragmentManager = getFragmentManager();
 
         initView();
+
+        offset = 0;
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        swipe_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        if (offset < 5500) {
+                            offset = offset + 930;
+                            scrollView.smoothScrollTo(offset, 0);
+                        }
+                    }});
+            }
+        });
+
+        swipe_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        if (offset > 0)
+                        {
+                            offset = offset - 930;
+                            scrollView.smoothScrollTo(offset, 0);
+                        }
+                    }});
+            }
+        });
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -270,6 +320,9 @@ public class Questionnaire1 extends Fragment
         games = question1.findViewById(R.id.games_puzzles);
         other_home = question1.findViewById(R.id.home_other);
         other_home_text = question1.findViewById(R.id.other_home_text);
+        scrollView = question1.findViewById(R.id.question1_card);
+        swipe_right = question1.findViewById(R.id.questionnaire1_swipe_right);
+        swipe_left = question1.findViewById(R.id.questionnaire1_swipe_left);
     }
 
     public boolean isValid(String input)          // check if the input is empty
