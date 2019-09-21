@@ -110,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/gotham"
-                    android:text="Age"
+                    android:text="Age*"
                     android:translationY="-20dp"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/gotham"
-                    android:text="Pet"
+                    android:text="Pet*"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
@@ -267,11 +267,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/gotham"
-                    android:text="Preferred mode of transport"
+                    android:text="Preferred mode of transport*"
                     android:layout_marginTop="40dp"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup_transport"
@@ -323,7 +323,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/gotham"
-                    android:text="Hobbies"
+                    android:text="Hobbies*"
                     android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
@@ -513,7 +513,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/gotham"
-                    android:text="Describe yourself"
+                    android:text="Describe yourself*"
                     android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
@@ -731,7 +731,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/gotham"
-                    android:text="Residence area"
+                    android:text="Residence area*"
                     android:textAlignment="center"
                     android:textColor="#ffffffff"
                     android:textSize="23sp" />
