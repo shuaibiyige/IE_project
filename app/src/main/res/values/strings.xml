@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IE_project</string>
+    <string name="app_name">Letos Aid</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -11,65 +11,6 @@
     <string name="menu_schedule">Schedule &amp; Activity</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
-
-<!--    <string-array name="start_time">-->
-<!--        <item>select</item>-->
-<!--        <item>10 am</item>-->
-<!--        <item>11 am</item>-->
-<!--        <item>12 pm</item>-->
-<!--        <item>1 pm</item>-->
-<!--        <item>2 pm</item>-->
-<!--        <item>3 pm</item>-->
-<!--        <item>4 pm</item>-->
-<!--        <item>5 pm</item>-->
-<!--        <item>6 pm</item>-->
-<!--        <item>7 pm</item>-->
-<!--        <item>8 pm</item>-->
-<!--        <item>9 pm</item>-->
-<!--        <item>10 pm</item>-->
-<!--    </string-array>-->
-
-<!--    <string-array name="end_time">-->
-<!--        <item>select</item>-->
-<!--        <item>10 am</item>-->
-<!--        <item>11 am</item>-->
-<!--        <item>12 pm</item>-->
-<!--        <item>1 pm</item>-->
-<!--        <item>2 pm</item>-->
-<!--        <item>3 pm</item>-->
-<!--        <item>4 pm</item>-->
-<!--        <item>5 pm</item>-->
-<!--        <item>6 pm</item>-->
-<!--        <item>7 pm</item>-->
-<!--        <item>8 pm</item>-->
-<!--        <item>9 pm</item>-->
-<!--        <item>10 pm</item>-->
-<!--    </string-array>-->
-
-<!--    <string-array name="age_child">-->
-<!--        <item>select</item>-->
-<!--        <item>13</item>-->
-<!--        <item>14</item>-->
-<!--        <item>15</item>-->
-<!--    </string-array>-->
-
-<!--    <string-array name="age">-->
-<!--        <item>select</item>-->
-<!--        <item>30 - 34</item>-->
-<!--        <item>35 - 39</item>-->
-<!--        <item>40 - 44</item>-->
-<!--        <item>45 - 49</item>-->
-<!--        <item>50 and above</item>-->
-<!--    </string-array>-->
-
-<!--    <string-array name="security">-->
-<!--        <item>select</item>-->
-<!--        <item>30 - 34</item>-->
-<!--        <item>35 - 39</item>-->
-<!--        <item>40 - 44</item>-->
-<!--        <item>45 - 49</item>-->
-<!--        <item>50 and above</item>-->
-<!--    </string-array>-->
 
     <string-array name="security_question">
         <item>select</item>
