@@ -96,6 +96,14 @@ public class Dashboard extends Fragment
             }
         });
 
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Feedback.class);           // go to feedback page
+                startActivity(intent);
+            }
+        });
+
         return dashboard;
     }
 

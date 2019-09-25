@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity// implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
+        getSupportActionBar().hide();
         
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
