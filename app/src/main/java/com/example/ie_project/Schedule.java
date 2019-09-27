@@ -138,10 +138,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         chosenDate = "";
 
         init(startList);
-
-        calendar.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
-        calendar.setOnDateChangedListener(this);
-
+        calendarInit();
 
         viewMap1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -366,7 +363,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected)
     {
         int year = date.getYear();
-        int month = date.getMonth();
+        int month = date.getMonth() + 1;
         int day = date.getDay();
         calendarDay = date;
         chosenDate = year + "-" + month + "-" + day;
@@ -473,5 +470,31 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+    public void calendarInit()
+    {
+        Calendar calendarRange = Calendar.getInstance();
+        int yearRange = calendarRange.get(Calendar.YEAR);
+        int endYearRange = yearRange;
+        int monthRange = calendarRange.get(Calendar.MONTH);                  // start from 0
+        int endMonthRange = monthRange;
+        int startDayRange = calendarRange.get(Calendar.DAY_OF_MONTH);
+        int endDayRange = startDayRange;
+        int maxDay = calendarRange.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        if (startDayRange + 6 > maxDay)
+        {
+            endMonthRange++;
+            endDayRange = startDayRange + 7 - maxDay;
+        }
+        if (endMonthRange > 11)
+            endYearRange++;
+
+        calendar.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS)
+                .setMinimumDate(CalendarDay.from(yearRange, monthRange, startDayRange))
+                .setMaximumDate(CalendarDay.from(endYearRange, endMonthRange, endDayRange))
+                .commit();
+        calendar.setOnDateChangedListener(this);
     }
 }

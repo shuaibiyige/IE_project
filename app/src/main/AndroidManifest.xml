@@ -10,7 +10,9 @@
         android:roundIcon="@drawable/logo_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Feedback"></activity>
+        <activity
+            android:name=".Feedback"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Schedule"
             android:screenOrientation="portrait" />
