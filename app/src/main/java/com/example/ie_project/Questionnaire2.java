@@ -1,9 +1,6 @@
 package com.example.ie_project;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,6 +16,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,14 +26,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.common.SignInButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,7 +40,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 
 public class Questionnaire2 extends Fragment
@@ -327,11 +324,11 @@ public class Questionnaire2 extends Fragment
                         SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
                         editor.putInt("isQuestionnaire", 1);        // 0: not answered, 1: answered
                         editor.apply();
-                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         fragmentManager.beginTransaction().replace(R.id.content_frame, new Successful()).commit();
                     }
                     else {
-                        Toast.makeText(getApplicationContext(),"Submit failed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"Submit failed",Toast.LENGTH_SHORT).show();
                     }
                 }
             };
@@ -422,5 +419,4 @@ public class Questionnaire2 extends Fragment
             return null;
         }
     }
-
 }

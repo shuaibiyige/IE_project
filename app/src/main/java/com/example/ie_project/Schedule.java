@@ -71,7 +71,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private FoldingCell fc1, fc2;
     private Button select1, select2, viewMap1, viewMap2;
     private Animation ani2;
-    private int duration, user_id, activity1_duration, activity2_duration;
+    private int duration, user_id, activity1_duration, activity2_duration, activity_id1, activity_id2;
     private String startTime, endTime, chosenDate;
     private RequestQueue requestQueue;
     private CalendarDay calendarDay;
@@ -135,6 +135,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         activity_name2 = "";
         activity_description2 = "";
         activity_address2 = "";
+        activity_id1 = 0;
+        activity_id2 = 0;
         chosenDate = "";
 
         init(startList);
@@ -185,7 +187,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 int cal = Integer.valueOf(activity_startTime) + activity1_duration;
                 String activity_endTime = cal + ":00";
                 String[] time_cal = chosenDate.split("-");
-                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
+                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal, activity_id1);
             }
         });
 
@@ -197,7 +199,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 int cal = Integer.valueOf(activity_startTime) + activity2_duration;
                 String activity_endTime = cal + ":00";
                 String[] time_cal = chosenDate.split("-");
-                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal);
+                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal, activity_id2);
             }
         });
 
@@ -301,7 +303,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         list.add("22:00");
     }
 
-    public void alertDialog(String date_text, String time_text, final String activity_text, final String activity_des, final String activity_add, final int year, final int month, final int day, final int startHour, final int endHour)
+    public void alertDialog(final String date_text, final String time_text, final String activity_text, final String activity_des, final String activity_add, final int year, final int month, final int day, final int startHour, final int endHour, final int activity_id)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final AlertDialog dialog = builder.create();
@@ -336,6 +338,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 int result = CalendarProviderManager.addCalendarEvent(getApplicationContext(), calendarEvent);
                 if (result == 0)
                 {
+                    transmitActivity(String.valueOf(activity_id), date_text, time_text);
+
                     Toast.makeText(getApplicationContext(), "successful", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
@@ -365,8 +369,19 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         int year = date.getYear();
         int month = date.getMonth() + 1;
         int day = date.getDay();
+        String dayFormat = "";
+        String monthFormat = "";
+        if (day < 10)
+            dayFormat = "0" + day;
+        else
+            dayFormat = "" + day;
+        if (month < 10)
+            monthFormat = "0" + month;
+        else
+            monthFormat = "" + month;
+
         calendarDay = date;
-        chosenDate = year + "-" + month + "-" + day;
+        chosenDate = year + "-" + monthFormat + "-" + dayFormat;
     }
 
     public void volley(final int user_id, final int duration)
@@ -382,6 +397,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 {
                     JSONObject jsonObject = new JSONObject(s);
                     //retCode = jsonObject.getInt("success");
+                    activity_id1 = jsonObject.getInt("recom_id1");
                     activity_title1 = jsonObject.getString("title1");
                     activity_name1 = jsonObject.getString("activity_name1");
                     activity_description1 = jsonObject.getString("activity_description1");
@@ -390,6 +406,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     longitude1 = jsonObject.getString("longitude1");
                     activity1_duration = jsonObject.getInt("duration1");
 
+                    activity_id2 = jsonObject.getInt("recom_id2");
                     activity_title2 = jsonObject.getString("title2");
                     activity_name2 = jsonObject.getString("activity_name2");
                     activity_description2 = jsonObject.getString("activity_description2");
@@ -471,6 +488,59 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         };
         requestQueue.add(stringRequest);
     }
+
+    public void transmitActivity(final String transmit_id, final String transmit_date, String transmit_time)
+    {
+        String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/addSchedule.php";
+
+        String[] time_list = transmit_time.split("-");
+        final String transmit_start = time_list[0];
+        final String transmit_end = time_list[1];
+
+        com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String s)
+            {
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(s);
+                    //retCode = jsonObject.getInt("success");
+                }
+                catch (JSONException e)
+                {
+                    Toast.makeText(getApplicationContext(),"Network is unavailable", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+            public String TAG = "LOG";
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage(), error);
+            }
+        };
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener)
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> map = new HashMap<>();
+                map.put("user_id", String.valueOf(user_id));
+                map.put("schedule_date", transmit_date);
+                map.put("start_time", transmit_start);
+                map.put("end_time", transmit_end);
+                map.put("recom_id", transmit_id);
+
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
 
     public void calendarInit()
     {

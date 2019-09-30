@@ -1,10 +1,7 @@
 package com.example.ie_project;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -14,39 +11,37 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.ramotion.foldingcell.FoldingCell;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import java.util.ArrayList;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
-
 
 public class Questionnaire1 extends Fragment
 {
     View question1;
     private Button next;
-    private String gender, transport, age, restriction;
+    private String gender, transport, age, restriction, area_long, area_lat;
     private RadioButton age_30, age_35, age_40, age_45up;
     private RadioGroup radioGroup_gender, radioGroup_transport, radioGroup_age1, radioGroup_age2, radioGroup_restrictions;
     private CheckBox dog, cat, other_pet, reading, cooking, music, collecting, sport, other_hobbies, adventure, health, tech, art, indoorsy, other_description, swimming, sport_court, videoGame, barbeque, games, other_home;
@@ -64,6 +59,7 @@ public class Questionnaire1 extends Fragment
         final FragmentManager fragmentManager = getFragmentManager();
 
         initView();
+        autoComplete(getContext());
 
         offset = 0;
 
@@ -323,6 +319,8 @@ public class Questionnaire1 extends Fragment
         scrollView = question1.findViewById(R.id.question1_card);
         swipe_right = question1.findViewById(R.id.questionnaire1_swipe_right);
         swipe_left = question1.findViewById(R.id.questionnaire1_swipe_left);
+        area_lat = "";
+        area_long = "";
     }
 
     public boolean isValid(String input)          // check if the input is empty
@@ -418,6 +416,43 @@ public class Questionnaire1 extends Fragment
                 else {
                     editText.setVisibility(View.INVISIBLE);
                 }
+            }
+        });
+    }
+
+    public void autoComplete(Context context)
+    {
+        String key = "AIzaSyAY-4RA1p8EumvdQ9jx1mrNuiHHh7CWKeY";
+
+        if (!Places.isInitialized())
+        {
+            Places.initialize(context.getApplicationContext(), key);
+        }
+
+        PlacesClient placesClient = Places.createClient(context);
+
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG));
+
+        autocompleteFragment.setHint("Search location");
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place)
+            {
+                System.out.println(place.getLatLng().latitude);
+                System.out.println(place.getLatLng().longitude);
+
+                area_lat = String.valueOf(place.getLatLng().latitude);
+                area_long = String.valueOf(place.getLatLng().longitude);
+
+                Toast.makeText(getContext(), area_lat, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Status status) {
+                Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
             }
         });
     }
