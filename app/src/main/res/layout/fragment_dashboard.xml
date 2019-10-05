@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fffcf9f7">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/round2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:translationY="-320dp" />
 
     <TextView
         android:id="@+id/welcome_name"
@@ -22,132 +30,103 @@
         app:layout_constraintVertical_bias="0.1"/>
 
     <ImageView
-        android:id="@+id/man_image"
-        android:layout_width="215dp"
-        android:layout_height="180dp"
-        android:src="@drawable/man"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome_name"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <ImageView
-        android:id="@+id/dashboard_back"
+        android:id="@+id/dashboard_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/brown"
-        android:elevation="-1dp"
-        android:scaleType="centerInside"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/setting"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/man_image"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintVertical_bias="0.05"/>
+
+    <TextView
+        android:id="@+id/dashboard_upcoming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upcoming"
+        android:fontFamily="@font/gotham"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.2" />
+
+    <com.roughike.swipeselector.SwipeSelector
+        android:id="@+id/upcomingSelector"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_upcoming"
+        android:background="@drawable/dashboard_background1"/>
+
+    <TextView
+        android:id="@+id/dashboard_completed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:fontFamily="@font/gotham"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingSelector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.2" />
+
+    <com.roughike.swipeselector.SwipeSelector
+        android:id="@+id/completedSelector"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_completed"
+        android:background="@drawable/dashboard_background2"/>
 
     <LinearLayout
-        android:id="@+id/lineLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@id/dashboard_back"
-        app:layout_constraintBottom_toBottomOf="@id/dashboard_back"
-        app:layout_constraintStart_toStartOf="@id/dashboard_back"
-        app:layout_constraintTop_toTopOf="@+id/dashboard_back"
-        android:translationY="-10dp">
+        app:layout_constraintTop_toBottomOf="@+id/completedSelector"
+        android:layout_marginTop="20dp">
 
-        <TextView
-            android:id="@+id/todo_text"
-            android:layout_width="wrap_content"
+
+        <ImageView
+            android:id="@+id/schedule_add_event"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/gotham"
-            android:text="To-Do List"
-            android:textColor="#ffffffff"
-            android:textAlignment="center"
-            android:textSize="35sp" />
+            android:src="@drawable/add_event"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:layout_weight="1"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/schedule_review"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:src="@drawable/dashboard_review"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:translationY="-5dp"
+            android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/questionnaire"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gotham"
-                android:text="Questionnaire"
-                android:textColor="#ffffffff"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                android:layout_weight="1"/>
-
-            <ImageView
-                android:id="@+id/tick_ques"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tick"
-                android:layout_gravity="center"
-                android:layout_weight="1"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/schedule_journey"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/schedule"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gotham"
-                android:text="Enter Schedule"
-                android:textColor="#ffffffff"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                android:layout_weight="1"/>
-
-            <ImageView
-                android:id="@+id/tick_sch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tick"
-                android:layout_gravity="center"
-                android:layout_weight="1"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/feedback"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gotham"
-                android:text="Provide feedback"
-                android:textColor="#ffffffff"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                android:maxLines="1"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/tick_feedback"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tick"
-                android:layout_weight="1"
-                android:layout_gravity="center" />
-        </LinearLayout>
+            android:src="@drawable/dashboard_journey"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:layout_weight="1"/>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

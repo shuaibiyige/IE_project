@@ -422,7 +422,7 @@ public class Questionnaire1 extends Fragment
 
     public void autoComplete(Context context)
     {
-        String key = "AIzaSyAY-4RA1p8EumvdQ9jx1mrNuiHHh7CWKeY";
+        String key = "AIzaSyC5px-ngAwb4uD7IExyGZjeTVpEQXYwies";
 
         if (!Places.isInitialized())
         {
@@ -431,7 +431,7 @@ public class Questionnaire1 extends Fragment
 
         PlacesClient placesClient = Places.createClient(context);
 
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        final AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG));
 
@@ -446,6 +446,7 @@ public class Questionnaire1 extends Fragment
 
                 area_lat = String.valueOf(place.getLatLng().latitude);
                 area_long = String.valueOf(place.getLatLng().longitude);
+                //autocompleteFragment.setText(place.getName());
 
                 Toast.makeText(getContext(), area_lat, Toast.LENGTH_SHORT).show();
             }

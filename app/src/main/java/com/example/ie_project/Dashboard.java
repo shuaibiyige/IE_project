@@ -22,15 +22,35 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.roughike.swipeselector.SwipeItem;
+import com.roughike.swipeselector.SwipeSelector;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Dashboard extends Fragment
 {
     View dashboard;
-    private ImageView tick_ques, tick_schedule, tick_feedback, man_image;
-    private TextView welcome, questionnaire, schedule, feedback, todo_text;
+    private ImageView setting, addEvent, review, journey;
+    private TextView welcome;
     private LinearLayout linearLayout;
+    private RequestQueue requestQueue;
+    private SwipeSelector upcomingSwipeSelector, completedSwipeSelector;
+    private List<Activity> upcoming, completed;
+    private int user_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -40,88 +60,135 @@ public class Dashboard extends Fragment
         Animation ani1 = AnimationUtils.loadAnimation(getActivity(), R.anim.register_anim);
         Animation ani2 = AnimationUtils.loadAnimation(getActivity(), R.anim.dashboard_image);
 
-        questionnaire = (TextView) dashboard.findViewById(R.id.questionnaire);
+        requestQueue = Volley.newRequestQueue(getActivity());
+        upcoming = new ArrayList<>();
+        completed = new ArrayList<>();
+
         welcome = (TextView) dashboard.findViewById(R.id.welcome_name);
-        tick_ques = (ImageView) dashboard.findViewById(R.id.tick_ques);
-        schedule = (TextView) dashboard.findViewById(R.id.schedule);
-        todo_text = (TextView) dashboard.findViewById(R.id.todo_text);
-        tick_schedule = (ImageView) dashboard.findViewById(R.id.tick_sch);
-        feedback = (TextView) dashboard.findViewById(R.id.feedback);
-        tick_feedback = (ImageView) dashboard.findViewById(R.id.tick_feedback);
-        linearLayout = (LinearLayout) dashboard.findViewById(R.id.lineLayout);
-        man_image = (ImageView) dashboard.findViewById(R.id.man_image);
+        addEvent = (ImageView) dashboard.findViewById(R.id.schedule_add_event);
+        review = (ImageView) dashboard.findViewById(R.id.schedule_review);
+        journey = (ImageView) dashboard.findViewById(R.id.schedule_journey);
+        setting = (ImageView) dashboard.findViewById(R.id.dashboard_setting);
+        upcomingSwipeSelector = (SwipeSelector) dashboard.findViewById(R.id.upcomingSelector);
+        completedSwipeSelector = (SwipeSelector) dashboard.findViewById(R.id.completedSelector);
 
-        welcome.startAnimation(ani1);
-        linearLayout.startAnimation(ani1);
-        man_image.startAnimation(ani2);
+        addEvent.startAnimation(ani2);
+        review.startAnimation(ani2);
+        journey.startAnimation(ani2);
 
-        tick_ques.setVisibility(View.INVISIBLE);
-        tick_schedule.setVisibility(View.INVISIBLE);
-        tick_feedback.setVisibility(View.INVISIBLE);
+        //swipeSelector(upcomingSwipeSelector);
+        //swipeSelector(completedSwipeSelector);
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
-        String user_name = sharedPreferences.getString("user_name", "");
-        int isQuestionnaire = sharedPreferences.getInt("isQuestionnaire", 0);
-        int isSchedule = sharedPreferences.getInt("isSchedule", 0);
-
-        welcome.setText("Hey, " + user_name);
-        if (isQuestionnaire == 1)                     // questionnaire is done
-            tick_ques.setVisibility(View.VISIBLE);    // show the tick
-        if (isSchedule == 1)
-            tick_schedule.setVisibility(View.VISIBLE);
-
-//        int[] list = size();
-//        int width = list[0];
-//        int height = list[1];
-//        man_image.getLayoutParams().height = height;
-//        man_image.getLayoutParams().width = width;
-//        man_image.requestLayout();
-//
-//        todo_text.setTextSize((height / todo_text.getTextSize()) * 6);
-
-
-        questionnaire.setOnClickListener(new View.OnClickListener() {
+        addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent anotherIntent = new Intent(getActivity(), Questionnaire.class);         // go to questionnaire page
-                startActivity(anotherIntent);
-            }
-        });
-
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(getActivity(), Schedule.class);           // go to schedule page
                 startActivity(intent);
             }
         });
 
-        feedback.setOnClickListener(new View.OnClickListener() {
+        setting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Feedback.class);           // go to feedback page
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), Settings.class);           // go to setting page
                 startActivity(intent);
             }
         });
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        String user_name = sharedPreferences.getString("user_name", "");
+        user_id = sharedPreferences.getInt("user_id", 0);
+        //int isQuestionnaire = sharedPreferences.getInt("isQuestionnaire", 0);
+        //int isSchedule = sharedPreferences.getInt("isSchedule", 0);
+
+        welcome.setText("Hey, " + user_name);
+
+//        if (isQuestionnaire == 1)                     // questionnaire is done
+//            tick_ques.setVisibility(View.VISIBLE);    // show the tick
+//        if (isSchedule == 1)
+//            tick_schedule.setVisibility(View.VISIBLE);
+
+//
+//        questionnaire.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent anotherIntent = new Intent(getActivity(), Questionnaire.class);         // go to questionnaire page
+//                startActivity(anotherIntent);
+//            }
+//        });
+
+//
+//        feedback.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), Feedback.class);           // go to feedback page
+//                startActivity(intent);
+//            }
+//        });
+
         return dashboard;
     }
 
-    public int[] size()
+    public void swipeSelector(SwipeSelector swipeSelector, List<Activity> activities)
     {
-        int[] list = new int[2];
-        WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;         // 屏幕宽度（像素）
-        int height = dm.heightPixels;       // 屏幕高度（像素）
-        float density = dm.density;         // 屏幕密度（0.75 / 1.0 / 1.5）
-        int densityDpi = dm.densityDpi;     // 屏幕密度dpi（120 / 160 / 240）
-        // 屏幕宽度算法:屏幕宽度（像素）/屏幕密度
-        int screenWidth = (int) (width / density);  // 屏幕宽度(dp)
-        int screenHeight = (int) (height / density);// 屏幕高度(dp)
-        list[0] = screenWidth;
-        list[1] = screenHeight;
-        return list;
+//        swipeSelector.setItems(
+//            new SwipeItem(0, "Slide one", "Description for slide one."),
+//            new SwipeItem(1, "Slide two", "Description for slide two."),
+//            new SwipeItem(2, "Slide three", "Description for slide three.")
+//        );
+
+        for (Activity activity : activities)
+        {
+            swipeSelector.setItems(new SwipeItem(0, activity.getDate(), activity.getName()));
+        }
+    }
+
+    public void getUpcoming()
+    {
+        String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/activityAdvice.php";
+
+        com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String s)
+            {
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(s);
+                    //retCode = jsonObject.getInt("success");
+                    //String activity_date = jsonObject.getString();
+                    //String activity_title = jsonObject.getString();
+                    //Activity activity = new Activity(activity_date, activity_title);
+                }
+                catch (JSONException e)
+                {
+                    Toast.makeText(getActivity(),"Network is unavailable", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+            public String TAG = "LOG";
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage(), error);
+            }
+        };
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener)
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> map = new HashMap<>();
+                map.put("user_id", String.valueOf(user_id));
+
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }
