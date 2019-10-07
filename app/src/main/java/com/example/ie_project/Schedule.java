@@ -531,7 +531,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 map.put("schedule_date", transmit_date);
                 map.put("start_time", transmit_start);
                 map.put("end_time", transmit_end);
-                map.put("recom_id", transmit_id);
+                map.put("re_id", transmit_id);
 
                 return map;
             }
@@ -556,6 +556,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             endMonthRange++;
             endDayRange = startDayRange + 7 - maxDay;
         }
+        else
+            endDayRange = startDayRange + 7;
         if (endMonthRange > 11)
             endYearRange++;
 

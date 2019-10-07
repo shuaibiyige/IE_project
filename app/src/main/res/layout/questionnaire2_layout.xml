@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/question_card"
                 android:orientation="vertical">
 
@@ -177,7 +177,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/question_card2"
                 android:orientation="vertical">
 
@@ -498,6 +498,18 @@
 
                 </RelativeLayout>
 
+                <Button
+                    android:id="@+id/submit_ques"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:background="@drawable/submit_button"
+                    android:textAllCaps="false"
+                    android:text="Submit"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="#ffd88778" />
+
             </LinearLayout>
 
 
@@ -507,21 +519,42 @@
     </HorizontalScrollView>
 
 
-    <Button
-        android:id="@+id/submit_ques"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:background="@drawable/submit_button"
-        android:textAllCaps="false"
-        android:text="Submit"
-        android:textSize="18sp"
-        android:textColor="#ffd88778"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollView_down"
-        app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_down"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintVertical_bias="0.25">
+
+        <Button
+            android:id="@+id/questionnaire2_swipe_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            android:text="Swipe Left"
+            android:textColor="#ffd88778"
+            android:background="@drawable/submit_button"/>
+
+        <Button
+            android:id="@+id/questionnaire2_swipe_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_marginLeft="10dp"
+            android:text="Swipe Right"
+            android:textColor="#ffd88778"
+            android:background="@drawable/submit_button"/>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="600dp"

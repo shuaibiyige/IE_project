@@ -433,7 +433,7 @@ public class Questionnaire1 extends Fragment
 
         final AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG));
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG, Place.Field.NAME));
 
         autocompleteFragment.setHint("Search location");
 
@@ -446,7 +446,8 @@ public class Questionnaire1 extends Fragment
 
                 area_lat = String.valueOf(place.getLatLng().latitude);
                 area_long = String.valueOf(place.getLatLng().longitude);
-                //autocompleteFragment.setText(place.getName());
+                //autocompleteFragment.setText("a");
+                Log.i("aa", "Place: " + place.getName() + ", " + place.getId());
 
                 Toast.makeText(getContext(), area_lat, Toast.LENGTH_SHORT).show();
             }

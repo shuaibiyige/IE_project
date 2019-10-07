@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintVertical_bias="0.1"/>
+        app:layout_constraintVertical_bias="0.05"/>
 
     <ImageView
         android:id="@+id/dashboard_setting"
@@ -93,12 +93,21 @@
         app:layout_constraintTop_toBottomOf="@+id/dashboard_completed"
         android:background="@drawable/dashboard_background2"/>
 
+    <Button
+        android:id="@+id/dashboard_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="feedback"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#fff2e4d8"
+        app:layout_constraintTop_toBottomOf="@+id/completedSelector"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/completedSelector"
         android:layout_marginTop="20dp">
-
 
         <ImageView
             android:id="@+id/schedule_add_event"

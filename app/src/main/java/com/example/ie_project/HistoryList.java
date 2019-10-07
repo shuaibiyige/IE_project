@@ -1,18 +1,18 @@
 package com.example.ie_project;
 
-public class Activity
+public class HistoryList
 {
     private String date;
     private String name;
-    private int id;
-    private int ts;
+    private float stars;
+    private int color;
 
-    public Activity(String date, String name, int id, int ts)
+    public HistoryList(String date, String name, float stars, int color)
     {
         this.date = date;
         this.name = name;
-        this.id = id;
-        this.ts = ts;
+        this.stars = stars;
+        this.color = color;
     }
 
     public String getDate() {
@@ -31,19 +31,19 @@ public class Activity
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public float getStars() {
+        return stars;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStars(float stars) {
+        this.stars = stars;
     }
 
-    public int getTs() {
-        return ts;
+    public int getColor() {
+        return color;
     }
 
-    public void setTs(int ts) {
-        this.ts = ts;
+    public void setColor(int color) {
+        this.color = color;
     }
 }
