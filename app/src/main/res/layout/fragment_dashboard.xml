@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/completedSelector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.9">
+        app:layout_constraintVertical_bias="0.95">
 
         <ImageView
             android:id="@+id/schedule_add_event"

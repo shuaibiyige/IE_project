@@ -70,7 +70,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
         mChart = findViewById(R.id.pieChart);
         start_button = findViewById(R.id.history_start);
         end_button = findViewById(R.id.history_end);
-        all_button = findViewById(R.id.history_all);
+        all_button = findViewById(R.id.history_search);
         back = findViewById(R.id.history_back);
 
         initData();
@@ -90,6 +90,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
         doneList = new ArrayList<HistoryList>();
         notDoneList = new ArrayList<HistoryList>();
         mData = new ArrayList<>();
+        getData("null", "null", "1");          // get all data
     }
 
     @Override
@@ -103,8 +104,11 @@ public class History extends AppCompatActivity implements View.OnClickListener
             case R.id.history_end:
                 datePicker(2);
                 break;
-            case R.id.history_all:
-                getData("null", "null", "1");
+            case R.id.history_search:
+                if (!start_button.getText().toString().equals("Start date") && !end_button.getText().toString().equals("End date"))
+                    getData(start_button.getText().toString(), end_button.getText().toString(), "0");
+                else
+                    Toast.makeText(getApplicationContext(),"Choose time interval first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.history_back:
                 Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -122,7 +126,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
             {
@@ -141,113 +145,105 @@ public class History extends AppCompatActivity implements View.OnClickListener
                 if (input == 1)
                 {
                     start_button.setText(time);
-                    //start_time = time;
+                    start_time = time;
+                    end_button.setText("End date");
                 }
                 else
                 {
                     end_button.setText(time);
-                    //end_time = time;
-                }
-                try
-                {
-//                    if (!compareDate(start_button.getText().toString(), end_button.getText().toString()))
-//                    {
-//                        Toast.makeText(getApplicationContext(), "invalid time interval", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                    {
-                    if (!start_button.getText().toString().equals("start date") && !end_button.getText().toString().equals("end date"))
-                        getData(start_button.getText().toString(), end_button.getText().toString(), "0");
-                    //}
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(getApplicationContext(), "unknown error", Toast.LENGTH_SHORT).show();
+                    end_time = time;
                 }
             }
         }, year, month, day);
-        datePickerDialog.show();
-    }
-
-    private boolean compareDate(String time1, String time2) throws ParseException
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date a = sdf.parse(time1);
-        Date b = sdf.parse(time2);
-        if(a.before(b))
-            return true;
-        else
-            return false;
+        if (input == 2 && !start_button.getText().toString().equals("Start date"))
+        {
+            calendar.set(Integer.valueOf(start_time.split("-")[0]), Integer.valueOf(start_time.split("-")[1]) - 1, Integer.valueOf(start_time.split("-")[2]));
+            datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+            datePickerDialog.show();
+        }
+        else if (input == 2 && start_button.getText().toString().equals("Start date"))
+        {
+            Toast.makeText(getApplicationContext(),"Choose start date first", Toast.LENGTH_SHORT).show();
+        }
+        else if (input == 1)
+            datePickerDialog.show();
     }
 
     private void pieChart(int done, int notDone)
     {
-        entries.clear();
+        if (done == 0 && notDone == 0)
+        {
+            Toast.makeText(getApplicationContext(), "no data found", Toast.LENGTH_SHORT).show();
+            mChart.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            mChart.setVisibility(View.VISIBLE);
+            entries.clear();
 
-        entries.add(new PieEntry(1, "Done"));
-        entries.add(new PieEntry(2, "Not Done"));
+            entries.add(new PieEntry(done, "Done"));
+            entries.add(new PieEntry(notDone, "Not Done"));
 
-        mChart.setUsePercentValues(true);
-        mChart.getDescription().setEnabled(false);
-        mChart.setExtraOffsets(5, 5, 5, 5);
-        mChart.setDragDecelerationFrictionCoef(0.95f);
+            mChart.setUsePercentValues(true);
+            mChart.getDescription().setEnabled(false);
+            mChart.setDrawEntryLabels(false);
 
-        mChart.setDrawHoleEnabled(true);
-        mChart.setHoleColor(Color.WHITE);
+            mChart.setExtraOffsets(5, 5, 5, 5);
+            mChart.setDragDecelerationFrictionCoef(0.95f);
 
-        mChart.setTransparentCircleColor(Color.WHITE);
-        mChart.setTransparentCircleAlpha(110);
-        mChart.setHoleRadius(50f);
-        mChart.setTransparentCircleRadius(31f);
+            mChart.setDrawHoleEnabled(false);
+            mChart.setHoleColor(Color.WHITE);
 
-        mChart.setDrawCenterText(true);
+            mChart.setTransparentCircleColor(Color.WHITE);
+            mChart.setTransparentCircleAlpha(110);
+            mChart.setHoleRadius(50f);
+            mChart.setTransparentCircleRadius(31f);
 
-        mChart.setRotationAngle(0);
-        mChart.setRotationEnabled(true);
-        mChart.setHighlightPerTapEnabled(true);
+            mChart.setDrawCenterText(false);
 
-        Legend l = mChart.getLegend();
-        l.setEnabled(true);
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+            mChart.setRotationAngle(0);
+            mChart.setRotationEnabled(true);
+            mChart.setHighlightPerTapEnabled(true);
 
-        mChart.setEntryLabelColor(Color.BLACK);
-        mChart.setEntryLabelTextSize(17f);
+            Legend l = mChart.getLegend();
+            l.setEnabled(true);
+            l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);       // label is on the right
+            l.setOrientation(Legend.LegendOrientation.VERTICAL);
+            l.setTextSize(17f);
 
-        PieDataSet dataSet = new PieDataSet(entries, "");
+            PieDataSet dataSet = new PieDataSet(entries, "");
 
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+            dataSet.setSliceSpace(3f);
+            dataSet.setSelectionShift(5f);
+            ArrayList<Integer> colors = new ArrayList<Integer>();
 
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.JOYFUL_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.COLORFUL_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.LIBERTY_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.PASTEL_COLORS)
+                colors.add(c);
 
-        colors.add(ColorTemplate.getHoloBlue());
+            colors.add(ColorTemplate.getHoloBlue());
 
-        dataSet.setColors(colors);
-        PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        //data.setValueTextSize(17f);
-        //data.setValueTextColor(Color.BLACK);
-        mChart.setData(data);
+            dataSet.setColors(colors);
+            PieData data = new PieData(dataSet);
+            data.setValueFormatter(new PercentFormatter());
+            data.setDrawValues(false);                   // hide drawn value
+            mChart.setData(data);
 
-        mChart.highlightValues(null);
+            mChart.highlightValues(null);
 
-        mChart.invalidate();
+            mChart.invalidate();
+        }
     }
 
     private void getData(final String start, final String end, final String status)
@@ -265,6 +261,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
                     int retCode = jsonObject.getInt("success");
                     doneList.clear();
                     notDoneList.clear();
+                    mData.clear();
 
                     if (retCode == 1)
                     {
