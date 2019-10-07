@@ -103,7 +103,7 @@ public class Dashboard extends Fragment
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), History.class);           // go to history page
+                Intent intent = new Intent(getActivity(), History.class);            // go to history page
                 startActivity(intent);
             }
         });
@@ -165,7 +165,7 @@ public class Dashboard extends Fragment
                 try
                 {
                     JSONObject jsonObject = new JSONObject(s);
-                    //int retCode = jsonObject.getInt("success");
+                    int retCode = jsonObject.getInt("success");
 
                     upcoming.clear();
                     completed.clear();

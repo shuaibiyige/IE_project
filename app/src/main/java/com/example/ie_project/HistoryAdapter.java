@@ -49,7 +49,10 @@ public class HistoryAdapter extends BaseAdapter
 
         date.setText(historyList.getDate());
         name.setText(historyList.getName());
-        ratingBar.setRating(historyList.getStars());
+        if (historyList.getStars() != 100)
+            ratingBar.setRating(historyList.getStars());
+        else
+            ratingBar.setRating(0);
         color.setBackgroundColor(historyList.getColor());
 
         return historyView;

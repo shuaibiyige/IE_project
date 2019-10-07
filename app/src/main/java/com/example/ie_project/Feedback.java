@@ -26,12 +26,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieEntry;
 import com.kyle.calendarprovider.calendar.CalendarEvent;
 import com.kyle.calendarprovider.calendar.CalendarProviderManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,6 +100,9 @@ public class Feedback extends AppCompatActivity
                 stars = ratingBar.getNumStars();
                 String learntText = learnt.getText().toString();
                 transmitActivity(String.valueOf(completed_ts), learntText, String.valueOf(stars), "null");
+
+                Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(anotherIntent);
             }
         });
     }
@@ -125,6 +130,9 @@ public class Feedback extends AppCompatActivity
                     transmitActivity(String.valueOf(completed_ts), "null", "null", whyNot.getText().toString());
 
                     dialog.dismiss();
+
+                    Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(anotherIntent);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "you haven't input anything", Toast.LENGTH_SHORT).show();
@@ -132,10 +140,9 @@ public class Feedback extends AppCompatActivity
         });
     }
 
-
     public void transmitActivity(final String ts_id, final String description, final String rating, final String not_done_reason)
     {
-        String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/addSchedule.php";
+        String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/rating.php";
 
         com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
         {
@@ -145,7 +152,12 @@ public class Feedback extends AppCompatActivity
                 try
                 {
                     JSONObject jsonObject = new JSONObject(s);
-                    //retCode = jsonObject.getInt("success");
+                    int retCode = jsonObject.getInt("success");
+
+                    if (retCode == 1)
+                    {
+                        Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 catch (JSONException e)
                 {

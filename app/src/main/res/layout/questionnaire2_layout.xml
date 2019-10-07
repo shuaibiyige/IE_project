@@ -539,7 +539,7 @@
             android:layout_weight="1"
             android:textAllCaps="false"
             android:layout_marginRight="10dp"
-            android:text="Swipe Left"
+            android:text="Previous"
             android:textColor="#ffd88778"
             android:background="@drawable/submit_button"/>
 
@@ -550,11 +550,17 @@
             android:layout_weight="1"
             android:textAllCaps="false"
             android:layout_marginLeft="10dp"
-            android:text="Swipe Right"
+            android:text="Next"
             android:textColor="#ffd88778"
             android:background="@drawable/submit_button"/>
 
     </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="* compulsory"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/"/>-->
 
     <ImageView
         android:layout_width="600dp"
