@@ -108,6 +108,15 @@ public class Dashboard extends Fragment
             }
         });
 
+        journey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), JourneyQuestionnaire.class);            // go to history page
+                startActivity(intent);
+            }
+        });
+
+
         goToFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
