@@ -213,7 +213,7 @@
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
@@ -226,7 +226,7 @@
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
@@ -238,7 +238,7 @@
                             android:layout_gravity="center_horizontal"
                             android:paddingBottom="5dp"
                             android:paddingLeft="30dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="5dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -379,7 +379,7 @@
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
@@ -392,7 +392,7 @@
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
@@ -402,7 +402,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/spinner"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:paddingBottom="5dp"
                             android:paddingLeft="30dp"/>
 

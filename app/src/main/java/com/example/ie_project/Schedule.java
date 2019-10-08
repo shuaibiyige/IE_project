@@ -220,7 +220,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     String activity_endTime = cal + ":00";
                     String[] time_cal = chosenDate.split("-");
 
-                    alertDialog(chosenDate, activity1_startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity1_startTime), cal, activity_id1);
+                    alertDialog(chosenDate, activity1_startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity1_startTime.split(":")[0]), cal, activity_id1);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Please choose the start time", Toast.LENGTH_SHORT).show();
@@ -237,7 +237,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     String activity_endTime = cal + ":00";
                     String[] time_cal = chosenDate.split("-");
 
-                    alertDialog(chosenDate, activity2_startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity2_startTime), cal, activity_id2);
+                    alertDialog(chosenDate, activity2_startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity2_startTime.split(":")[0]), cal, activity_id2);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Please choose the start time", Toast.LENGTH_SHORT).show();
@@ -435,10 +435,10 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             public void onClick(View v)
             {
                 Calendar beginTime = Calendar.getInstance();
-                beginTime.set(year, month, day, startHour, 0);
+                beginTime.set(year, month - 1, day, startHour, 0);
                 long startMillis = beginTime.getTimeInMillis();
                 Calendar endTime = Calendar.getInstance();
-                endTime.set(year, month, day, endHour, 0);
+                endTime.set(year, month - 1 , day, endHour, 0);
                 long endMillis = endTime.getTimeInMillis();
 
                 CalendarEvent calendarEvent = new CalendarEvent(activity_text, activity_des, activity_add, startMillis, endMillis, 0, null);          // add the event to the calendar
@@ -525,7 +525,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     if (!activity_name1.equals("") && !activity_name2.equals(""))
                     {
                         activity_title1_view.setText(activity_title1);
-                        activity_name1_view.setText(activity_name1 + " (" + activity1_duration + " hour)");
+                        activity_name1_view.setText(activity_name1);
                         activity_description1_view.setText(activity_description1);
 
                         activity_title2_view.setText(activity_title2);
@@ -533,12 +533,12 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                         activity_description2_view.setText(activity_description2);
 
                         if (activity_address1.equals(""))
-                            activity_address1_view.setText("at home");
+                            activity_address1_view.setText("At home" + " (" + activity1_duration + " hour)");
                         else
                             activity_address1_view.setText(activity_address1);
 
                         if (activity_address2.equals(""))
-                            activity_address2_view.setText("at home");
+                            activity_address2_view.setText("At home" + " (" + activity2_duration + " hour)");
                         else
                             activity_address2_view.setText(activity_address2);
 
