@@ -14,9 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -49,10 +47,8 @@ import com.ramotion.foldingcell.FoldingCell;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,20 +57,20 @@ import java.util.Map;
 public class Schedule extends AppCompatActivity implements OnDateSelectedListener
 {
     private MaterialCalendarView calendar;
-    private Spinner start_time_spinner, end_time_spinner;
-    private List<String> startList;
-    private List<String> newEndList;
+    private Spinner start_time_spinner, end_time_spinner, innerSpinner1, innerSpinner2, typeSpinner, moneySpinner, travelSpinner;
+    private List<String> startList, newEndList;
     private ImageView yes_schedule;
     private TextView textView;
     private FoldingCell fc1, fc2;
     private Button select1, select2, viewMap1, viewMap2;
     private Animation ani2;
-    private int duration, user_id, activity1_duration, activity2_duration, activity_id1, activity_id2;
-    private String startTime, endTime, chosenDate;
+    private int user_id, activity1_duration, activity2_duration, activity_id1, activity_id2;
+    private String startTime, endTime, chosenDate, activity_type, activity_money, activity_travel;
     private RequestQueue requestQueue;
     private CalendarDay calendarDay;
     private TextView activity_title1_view, activity_name1_view, activity_description1_view, activity_address1_view, activity_title2_view, activity_name2_view, activity_description2_view, activity_address2_view;
     private String money1, latitude1, longitude1, money2, latitude2, longitude2, activity_title1, activity_name1, activity_description1, activity_address1, activity_title2, activity_name2, activity_description2, activity_address2;
+    private String activity1_startTime, activity2_startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -110,6 +106,11 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         activity_description2_view = findViewById(R.id.activity2_description);
         activity_address1_view = findViewById(R.id.activity1_address);
         activity_address2_view = findViewById(R.id.activity2_address);
+        innerSpinner1 = findViewById(R.id.schedule_activity1_spinner);
+        innerSpinner2 = findViewById(R.id.schedule_activity2_spinner);
+        typeSpinner = findViewById(R.id.schedule_type);
+        moneySpinner = findViewById(R.id.schedule_money);
+        travelSpinner = findViewById(R.id.schedule_travel);
 
         startList = new ArrayList<>();
         newEndList = new ArrayList<>();
@@ -118,7 +119,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
         ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
         user_id = 0;
-        duration = 0;
+        //duration = 0;
         activity1_duration = 0;
         activity2_duration = 0;
         latitude1 = "";
@@ -136,9 +137,15 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         activity_id1 = 0;
         activity_id2 = 0;
         chosenDate = "";
+        activity1_startTime = "select";
+        activity2_startTime = "select";
+        activity_type = "Type";
+        activity_money = "Money";
+        activity_travel = "Travel";
 
         init(startList);
         calendarInit();
+        initNewSpinner();
 
         viewMap1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,15 +184,46 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             }
         });
 
+        innerSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                activity1_startTime = innerSpinner1.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        innerSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                activity2_startTime = innerSpinner2.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         select1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                String activity_startTime = startTime.split(":")[0];
-                int cal = Integer.valueOf(activity_startTime) + activity1_duration;
-                String activity_endTime = cal + ":00";
-                String[] time_cal = chosenDate.split("-");
-                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal, activity_id1);
+                if (!activity1_startTime.equals("select"))
+                {
+                    int cal = Integer.valueOf(activity1_startTime.split(":")[0]) + activity1_duration;
+                    String activity_endTime = cal + ":00";
+                    String[] time_cal = chosenDate.split("-");
+
+                    alertDialog(chosenDate, activity1_startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity1_startTime), cal, activity_id1);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Please choose the start time", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -193,11 +231,16 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                String activity_startTime = startTime.split(":")[0];
-                int cal = Integer.valueOf(activity_startTime) + activity2_duration;
-                String activity_endTime = cal + ":00";
-                String[] time_cal = chosenDate.split("-");
-                alertDialog(chosenDate, startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity_startTime), cal, activity_id2);
+                if (!activity2_startTime.equals("select"))
+                {
+                    int cal = Integer.valueOf(activity2_startTime.split(":")[0]) + activity2_duration;
+                    String activity_endTime = cal + ":00";
+                    String[] time_cal = chosenDate.split("-");
+
+                    alertDialog(chosenDate, activity2_startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity2_startTime), cal, activity_id2);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Please choose the start time", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -243,7 +286,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
             @Override
             public void onClick(View v)
             {
-                if (!startTime.equals("select") && !endTime.equals("select") && !chosenDate.equals(""))
+                if (!startTime.equals("select") && !endTime.equals("select") && !chosenDate.equals("") && !activity_type.equals("Type") && !activity_money.equals("Money") && !activity_travel.equals("Travel"))
                 {
                     textView.setText("Select Activity");
 
@@ -252,14 +295,22 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
                     String[] startArray = startTime.split(":");
                     String[] endArray = endTime.split(":");
-                    duration = Integer.valueOf(endArray[0]) - Integer.valueOf(startArray[0]);
+                    int duration = Integer.valueOf(endArray[0]) - Integer.valueOf(startArray[0]);
 
-                    volley(user_id, duration);
+                    volley(user_id, duration, activity_money, activity_travel, activity_type);
                 }
                 else if (chosenDate.equals(""))
                     Toast.makeText(getApplicationContext(), "Please choose a date", Toast.LENGTH_SHORT).show();
-                else
+                else if (startTime.equals("select") || endTime.equals("select"))
                     Toast.makeText(getApplicationContext(), "Please choose time", Toast.LENGTH_SHORT).show();
+                else if (activity_type.equals("Type"))
+                    Toast.makeText(getApplicationContext(), "Enter type preference", Toast.LENGTH_SHORT).show();
+                else if (activity_money.equals("Money"))
+                    Toast.makeText(getApplicationContext(), "Enter spending preference", Toast.LENGTH_SHORT).show();
+                else if (activity_travel.equals("Travel"))
+                    Toast.makeText(getApplicationContext(), "Enter travel preference", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(), "Some preferences are empty", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -299,6 +350,64 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         list.add("20:00");
         list.add("21:00");
         list.add("22:00");
+    }
+
+    private void innerSpinner(Spinner spinner, int inner_startTime, int duration)
+    {
+        List<String> list = new ArrayList<>();
+        list.add("select");
+        list.add(inner_startTime + ":00");
+        for (int i = 1; i <= duration; i++)
+        {
+            int inner_endTime = inner_startTime + i;
+            list.add(inner_endTime + ":00");
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private void initNewSpinner()
+    {
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                activity_type = typeSpinner.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        moneySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                activity_money = moneySpinner.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        travelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                activity_travel = travelSpinner.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void alertDialog(final String date_text, final String time_text, final String activity_text, final String activity_des, final String activity_add, final int year, final int month, final int day, final int startHour, final int endHour, final int activity_id)
@@ -382,7 +491,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         chosenDate = year + "-" + monthFormat + "-" + dayFormat;
     }
 
-    public void volley(final int user_id, final int duration)
+    public void volley(final int user_id, final int duration, final String moneyData, final String travelData, final String typeData)
     {
         String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/activityAdvice.php";
 
@@ -416,7 +525,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     if (!activity_name1.equals("") && !activity_name2.equals(""))
                     {
                         activity_title1_view.setText(activity_title1);
-                        activity_name1_view.setText(activity_name1);
+                        activity_name1_view.setText(activity_name1 + " (" + activity1_duration + " hour)");
                         activity_description1_view.setText(activity_description1);
 
                         activity_title2_view.setText(activity_title2);
@@ -432,6 +541,9 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                             activity_address2_view.setText("at home");
                         else
                             activity_address2_view.setText(activity_address2);
+
+                        innerSpinner(innerSpinner1, Integer.valueOf(startTime.split(":")[0]), duration);
+                        innerSpinner(innerSpinner2, Integer.valueOf(startTime.split(":")[0]), duration);
 
                         if (fc1.getVisibility() == View.INVISIBLE) {
                             fc1.setVisibility(View.VISIBLE);
@@ -455,12 +567,16 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                             }
                         });
                     }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"No activities found", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 catch (JSONException e)
                 {
-                        Toast.makeText(getApplicationContext(),"Network is unavailable", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
+                    Toast.makeText(getApplicationContext(),"Network is unavailable", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
         };
 
@@ -480,6 +596,9 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 Map<String, String> map = new HashMap<>();
                 map.put("user_id", String.valueOf(user_id));
                 map.put("duration", String.valueOf(duration));
+                map.put("type", typeData);
+                map.put("money", moneyData);
+                map.put("travel", travelData);
 
                 return map;
             }

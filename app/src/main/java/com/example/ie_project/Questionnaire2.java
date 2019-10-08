@@ -56,9 +56,9 @@ public class Questionnaire2 extends Fragment
     private RequestQueue requestQueue;
     private int user_id;
     private String dateTime;
-    private HorizontalScrollView scrollView;
-    private Button swipe_right, swipe_left;
-    private int offset;
+//    private HorizontalScrollView scrollView;
+//    private Button swipe_right, swipe_left;
+//    private int offset;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -66,40 +66,40 @@ public class Questionnaire2 extends Fragment
         requestQueue = Volley.newRequestQueue(getActivity());
 
         initView();
-        offset = 0;
-
-        swipe_right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run()
-                    {
-                        if (offset < 2500) {
-                            offset = offset + 930;
-                            scrollView.smoothScrollTo(offset, 0);
-                        }
-                    }});
-            }
-        });
-
-        swipe_left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run()
-                    {
-                        if (offset > 0)
-                        {
-                            offset = offset - 930;
-                            scrollView.smoothScrollTo(offset, 0);
-                        }
-                    }});
-            }
-        });
+//        offset = 0;
+//
+//        swipe_right.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                scrollView.post(new Runnable() {
+//                    @Override
+//                    public void run()
+//                    {
+//                        if (offset < 2500) {
+//                            offset = offset + 930;
+//                            scrollView.smoothScrollTo(offset, 0);
+//                        }
+//                    }});
+//            }
+//        });
+//
+//        swipe_left.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                scrollView.post(new Runnable() {
+//                    @Override
+//                    public void run()
+//                    {
+//                        if (offset > 0)
+//                        {
+//                            offset = offset - 930;
+//                            scrollView.smoothScrollTo(offset, 0);
+//                        }
+//                    }});
+//            }
+//        });
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -264,9 +264,9 @@ public class Questionnaire2 extends Fragment
         indoorsy = question2.findViewById(R.id.indoorsy_child);
         other_description = question2.findViewById(R.id.describe_other_child);
         other_description_text = question2.findViewById(R.id.type_description_child);
-        scrollView = question2.findViewById(R.id.scrollView_down);
-        swipe_right = question2.findViewById(R.id.questionnaire2_swipe_right);
-        swipe_left = question2.findViewById(R.id.questionnaire2_swipe_left);
+//        scrollView = question2.findViewById(R.id.scrollView_down);
+//        swipe_right = question2.findViewById(R.id.questionnaire2_swipe_right);
+//        swipe_left = question2.findViewById(R.id.questionnaire2_swipe_left);
 
         long time = System.currentTimeMillis();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

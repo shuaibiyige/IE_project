@@ -55,7 +55,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
     private ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
     private RequestQueue requestQueue;
     private List<HistoryList> doneList, notDoneList;
-    private int user_id, done_percentage, notDone_percentage;
+    private int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -85,8 +85,6 @@ public class History extends AppCompatActivity implements View.OnClickListener
     {
         SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         user_id = sharedPreferences.getInt("user_id", 0);
-        done_percentage = 0;
-        notDone_percentage = 0;
         doneList = new ArrayList<HistoryList>();
         notDoneList = new ArrayList<HistoryList>();
         mData = new ArrayList<>();

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -47,9 +48,9 @@ public class Questionnaire1 extends Fragment
     private CheckBox dog, cat, other_pet, reading, cooking, music, collecting, sport, other_hobbies, adventure, health, tech, art, indoorsy, other_description, swimming, sport_court, videoGame, barbeque, games, other_home;
     private EditText other_pet_text, other_hobbies_text, other_restrictions_text, other_description_text, other_home_text;
     private Set<String> petList, hobbiesList, descriptionList, homeList;
-    private HorizontalScrollView scrollView;
-    private Button swipe_right, swipe_left;
-    private int offset;
+    //private HorizontalScrollView scrollView;
+    //private Button swipe_right, swipe_left;
+    //private int offset;
 
     @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -59,49 +60,48 @@ public class Questionnaire1 extends Fragment
         final FragmentManager fragmentManager = getFragmentManager();
 
         initView();
-        autoComplete(getContext());
 
-        offset = 0;
-
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return true;
-            }
-        });
-
-        swipe_right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run()
-                    {
-                        if (offset < 5500) {
-                            offset = offset + 930;
-                            scrollView.smoothScrollTo(offset, 0);
-                        }
-                    }});
-            }
-        });
-
-        swipe_left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run()
-                    {
-                        if (offset > 0)
-                        {
-                            offset = offset - 930;
-                            scrollView.smoothScrollTo(offset, 0);
-                        }
-                    }});
-            }
-        });
+//        offset = 0;
+//
+//        scrollView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                return true;
+//            }
+//        });
+//
+//        swipe_right.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                scrollView.post(new Runnable() {
+//                    @Override
+//                    public void run()
+//                    {
+//                        if (offset < 4500) {
+//                            offset = offset + 930;
+//                            scrollView.smoothScrollTo(offset, 0);
+//                        }
+//                    }});
+//            }
+//        });
+//
+//        swipe_left.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                scrollView.post(new Runnable() {
+//                    @Override
+//                    public void run()
+//                    {
+//                        if (offset > 0)
+//                        {
+//                            offset = offset - 930;
+//                            scrollView.smoothScrollTo(offset, 0);
+//                        }
+//                    }});
+//            }
+//        });
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -316,9 +316,9 @@ public class Questionnaire1 extends Fragment
         games = question1.findViewById(R.id.games_puzzles);
         other_home = question1.findViewById(R.id.home_other);
         other_home_text = question1.findViewById(R.id.other_home_text);
-        scrollView = question1.findViewById(R.id.question1_card);
-        swipe_right = question1.findViewById(R.id.questionnaire1_swipe_right);
-        swipe_left = question1.findViewById(R.id.questionnaire1_swipe_left);
+//        scrollView = question1.findViewById(R.id.question1_card);
+//        swipe_right = question1.findViewById(R.id.questionnaire1_swipe_right);
+//        swipe_left = question1.findViewById(R.id.questionnaire1_swipe_left);
         area_lat = "";
         area_long = "";
     }
@@ -420,42 +420,21 @@ public class Questionnaire1 extends Fragment
         });
     }
 
-    public void autoComplete(Context context)
+    public int size()
     {
-        String key = "AIzaSyC5px-ngAwb4uD7IExyGZjeTVpEQXYwies";
-
-        if (!Places.isInitialized())
-        {
-            Places.initialize(context.getApplicationContext(), key);
-        }
-
-        PlacesClient placesClient = Places.createClient(context);
-
-        final AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG, Place.Field.NAME));
-
-        autocompleteFragment.setHint("Search location");
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place)
-            {
-                System.out.println(place.getLatLng().latitude);
-                System.out.println(place.getLatLng().longitude);
-
-                area_lat = String.valueOf(place.getLatLng().latitude);
-                area_long = String.valueOf(place.getLatLng().longitude);
-                //autocompleteFragment.setText("a");
-                Log.i("aa", "Place: " + place.getName() + ", " + place.getId());
-
-                Toast.makeText(getContext(), area_lat, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(Status status) {
-                Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        int[] list = new int[2];
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;         // 屏幕宽度（像素）
+        int height = dm.heightPixels;       // 屏幕高度（像素）
+        float density = dm.density;         // 屏幕密度（0.75 / 1.0 / 1.5）
+        int densityDpi = dm.densityDpi;     // 屏幕密度dpi（120 / 160 / 240）
+        // 屏幕宽度算法:屏幕宽度（像素）/屏幕密度
+        int screenWidth = (int) (width / density);  // 屏幕宽度(dp)
+        int screenHeight = (int) (height / density);// 屏幕高度(dp)
+        list[0] = screenWidth;
+        list[1] = screenHeight;
+        return width;
     }
 }

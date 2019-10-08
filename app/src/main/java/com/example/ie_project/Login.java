@@ -134,13 +134,13 @@ public class Login extends AppCompatActivity
         WindowManager wm = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;         // 屏幕宽度（像素）
-        int height = dm.heightPixels;       // 屏幕高度（像素）
-        float density = dm.density;         // 屏幕密度（0.75 / 1.0 / 1.5）
-        int densityDpi = dm.densityDpi;     // 屏幕密度dpi（120 / 160 / 240）
-        // 屏幕宽度算法:屏幕宽度（像素）/屏幕密度
-        int screenWidth = (int) (width / density);  // 屏幕宽度(dp)
-        int screenHeight = (int) (height / density);// 屏幕高度(dp)
+        int width = dm.widthPixels;         // screen width（pixel）
+        int height = dm.heightPixels;       // screen height（pixel）
+        float density = dm.density;         // screen density（0.75 / 1.0 / 1.5）
+        int densityDpi = dm.densityDpi;     // screen density dpi（120 / 160 / 240）
+        // screen width algorithm:screen width（pixel）/screen density
+        int screenWidth = (int) (width / density);    // screen width(dp)
+        int screenHeight = (int) (height / density);  // screen height(dp)
         list[0] = screenWidth;
         list[1] = screenHeight;
         return list;

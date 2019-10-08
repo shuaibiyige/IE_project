@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
-        android:clipToPadding="false"
-        android:background="#fff4f4f4">
+        android:clipToPadding="false">
 
         <ImageView
             android:layout_width="600dp"
@@ -53,19 +52,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/select_free_time_text"
-            app:layout_constraintVertical_bias="0.02"/>
+            app:layout_constraintVertical_bias="0"/>
 
         <LinearLayout
             android:id="@+id/schedule_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_bias="0.01"
             app:layout_constraintTop_toBottomOf="@+id/calendarView"
             android:gravity="center">
-
 
             <Spinner
                 android:id="@+id/Start_time_spinner"
@@ -86,7 +82,6 @@
                 android:src="@drawable/to"
                 android:layout_weight="1" />
 
-
             <Spinner
                 android:id="@+id/End_time_spinner"
                 android:layout_width="80dp"
@@ -101,50 +96,66 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/yes_layout"
+            android:id="@+id/schedule_layout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.03"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:layout_constraintTop_toBottomOf="@+id/schedule_layout"
-            android:gravity="center">
+            android:layout_marginTop="20dp">
 
-            <ImageView
-                android:id="@+id/schedule_yes"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/schedule_type"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/yes_activity" />
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:background="@drawable/spinner"
+                android:entries="@array/type"/>
 
+            <Spinner
+                android:id="@+id/schedule_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/spinner"
+                android:entries="@array/money"/>
+
+            <Spinner
+                android:id="@+id/schedule_travel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:background="@drawable/spinner"
+                android:paddingBottom="5dp"
+                android:entries="@array/travel"/>
         </LinearLayout>
 
-
-        <LinearLayout
+        <ImageView
+            android:id="@+id/schedule_yes"
             android:layout_width="match_parent"
-            android:layout_height="740dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/yes_layout"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:translationY="20dp">
+            android:layout_height="wrap_content"
+            android:src="@drawable/yes_activity"
+            app:layout_constraintTop_toBottomOf="@+id/schedule_layout2"
+            android:layout_marginTop="15dp"/>
 
 
             <com.ramotion.foldingcell.FoldingCell
                 android:id="@+id/folding_cell1"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/yes_layout"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/schedule_yes"
+                android:layout_marginTop="15dp"
                 android:visibility="invisible">
 
                 <LinearLayout
                     android:id="@+id/cell_content_view"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:orientation="vertical"
@@ -152,7 +163,7 @@
 
                     <RelativeLayout
                         android:id="@+id/expended_title1"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/folder_style">
 
@@ -180,13 +191,13 @@
                     </RelativeLayout>
 
                     <LinearLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/activity1_name"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="this is a name"
                             android:textColor="#ff707070"
@@ -195,9 +206,9 @@
 
                         <TextView
                             android:id="@+id/activity1_description"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="this is a description this is a description this is a description this is a description this is a description"
+                            android:text="this is a description"
                             android:maxLines="4"
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
@@ -208,9 +219,9 @@
 
                         <TextView
                             android:id="@+id/activity1_address"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="this is an address this is an address this is an address this is an address this is an address"
+                            android:text="this is an address"
                             android:maxLines="2"
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
@@ -219,11 +230,20 @@
                             android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
-                        <LinearLayout
-                            android:layout_width="300dp"
+                        <Spinner
+                            android:id="@+id/schedule_activity1_spinner"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="center_horizontal">
+                            android:background="@drawable/spinner"
+                            android:layout_gravity="center_horizontal"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"
+                            android:layout_marginTop="10dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
                             <Button
                                 android:id="@+id/activity1_viewMap"
@@ -252,13 +272,12 @@
 
                         </LinearLayout>
 
-
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/folder_style">
 
@@ -292,19 +311,17 @@
 
             <com.ramotion.foldingcell.FoldingCell
                 android:id="@+id/folding_cell2"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/folding_cell1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.1"
-                android:translationY="20dp"
+                android:layout_marginTop="15dp"
                 android:visibility="invisible">
 
                 <LinearLayout
                     android:id="@+id/cell_content_view2"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:orientation="vertical"
@@ -312,7 +329,7 @@
 
                     <RelativeLayout
                         android:id="@+id/expended_title2"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/folder_style">
 
@@ -340,13 +357,13 @@
                     </RelativeLayout>
 
                     <LinearLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/activity2_name"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="this is a name"
                             android:textColor="#ff707070"
@@ -355,9 +372,9 @@
 
                         <TextView
                             android:id="@+id/activity2_description"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="this is a description this is a description this is a description this is a description this is a description"
+                            android:text="this is a description"
                             android:maxLines="3"
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
@@ -368,9 +385,9 @@
 
                         <TextView
                             android:id="@+id/activity2_address"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="this is an address this is an address this is an address this is an address this is an address"
+                            android:text="this is an address"
                             android:maxLines="2"
                             android:textColor="#ff707070"
                             android:paddingLeft="10dp"
@@ -379,11 +396,20 @@
                             android:textAlignment="center"
                             android:fontFamily="@font/gotham" />
 
-                        <LinearLayout
-                            android:layout_width="300dp"
+                        <Spinner
+                            android:id="@+id/schedule_activity2_spinner"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="center_horizontal">
+                            android:background="@drawable/spinner"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="30dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
                             <Button
                                 android:id="@+id/activity2_viewMap"
@@ -418,7 +444,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/folder_style">
 
@@ -447,8 +473,10 @@
 
             </com.ramotion.foldingcell.FoldingCell>
 
-        </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/folding_cell2"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

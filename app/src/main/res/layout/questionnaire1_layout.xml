@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/questionnaire_you_text">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -708,104 +708,78 @@
                         android:hint="Type your answer"
                         android:visibility="invisible"/>
 
+                    <Button
+                        android:id="@+id/next_ques"
+                        android:layout_width="wrap_content"
+                        android:layout_height="39dp"
+                        android:background="@drawable/submit_button"
+                        android:text="Next"
+                        android:textAllCaps="false"
+                        android:layout_below="@+id/other_home_text"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#ffd88778"
+                        android:textSize="18sp" />
+
                 </RelativeLayout>
 
             </LinearLayout>
 
-
-
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/question_card"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:id="@+id/residence_area"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/gotham"
-                    android:text="Residence area*"
-                    android:textAlignment="center"
-                    android:textColor="#ffffffff"
-                    android:textSize="23sp" />
-
-<!--                <EditText-->
-<!--                    android:id="@+id/residence_area_edit"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:hint="Your address"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:layout_marginLeft="20dp"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:textColor="#ffffffff" />-->
-
-                <fragment
-                    android:id="@+id/autocomplete_fragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment" />
-
-
-                <Button
-                    android:id="@+id/next_ques"
-                    android:layout_width="wrap_content"
-                    android:layout_height="39dp"
-                    android:background="@drawable/submit_button"
-                    android:text="Next"
-                    android:layout_marginTop="130dp"
-                    android:textAllCaps="false"
-                    android:textColor="#ffd88778"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-
         </LinearLayout>
     </HorizontalScrollView>
 
-    <LinearLayout
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/question1_card"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        app:layout_constraintVertical_bias="0.25">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/questionnaire1_swipe_left"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:text="Previous"-->
+<!--            android:textColor="#ffd88778"-->
+<!--            android:background="@drawable/submit_button"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/questionnaire1_swipe_right"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:text="Next"-->
+<!--            android:textColor="#ffd88778"-->
+<!--            android:background="@drawable/submit_button"/>-->
+
+<!--    </LinearLayout>-->
+
+    <ImageView
+        android:id="@+id/questionnaire1_swipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/swipe_right"
         app:layout_constraintTop_toBottomOf="@+id/question1_card"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintVertical_bias="0.25">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
 
-        <Button
-            android:id="@+id/questionnaire1_swipe_left"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            android:layout_marginRight="10dp"
-            android:text="Previous"
-            android:textColor="#ffd88778"
-            android:background="@drawable/submit_button"/>
-
-        <Button
-            android:id="@+id/questionnaire1_swipe_right"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            android:layout_marginLeft="10dp"
-            android:text="Next"
-            android:textColor="#ffd88778"
-            android:background="@drawable/submit_button"/>
-
-    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="* - mandatory question"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/questionnaire1_swipe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
 
     <ImageView
         android:layout_width="600dp"
