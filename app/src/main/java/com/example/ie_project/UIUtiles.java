@@ -16,6 +16,7 @@ public class UIUtiles
     public static UIUtiles getInstance(Context context){
         if(ourInstance==null){
             ourInstance = new UIUtiles(context);
+            //666
         }
         return ourInstance;
     }
