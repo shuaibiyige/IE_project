@@ -45,44 +45,55 @@
         app:layout_constraintVertical_bias="0.07" />
 
 
-    <com.github.mikephil.charting.charts.RadarChart
-        android:id="@+id/radarChart"
-        android:layout_height="370dp"
-        android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_history_title_text" />
-
     <LinearLayout
-        android:id="@+id/journey_summary_buttons"
+        android:id="@+id/cohesion_scoll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:gravity="center"
+        android:layout_height="370dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radarChart"
+        app:layout_constraintTop_toBottomOf="@+id/journey_history_title_text"
         app:layout_constraintVertical_bias="0.05">
-
-        <Button
-            android:id="@+id/journey_summary_back"
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/settings_button"
-            android:text="Back"
-            android:textColor="#ffffffff"
-            android:fontFamily="@font/gotham"
-             />
-
-        <Button
-            android:id="@+id/journey_summary_learn_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/settings_button"
-            android:text="MORE"
-            android:textColor="#ffffffff"
-            android:fontFamily="@font/gotham"/>
-
+            android:scrollbars="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COHESION:\nWhat is cohesion?
+\nCohesion evaluates what is perceived as parental emotional warmth and bonding, intimacy, mutual
+support, care and reliability. Cohesion is deemed to be a core construct of the parent-child
+relationship.
+\nWhat to do to improve cohesion?
+\nEmbed a sense of stability with each other by means of simple practices. Consistent implementation
+of such practices can induce better quality bonding and help the child open-up more frequently and/or
+willingly.
+\nExamples of practices that can improve cohesion:
+\n1. Having regular meals together
+\n2. Establishing daily/weekly/monthly family rituals such as movie nights, spa evenings,
+biking/walking exploration tours etc…
+\n3. Actively expressing interest in your child’s life and volunteering to share information about
+yours to illustrate genuine willingness to be part of each other’s life (without judgement)"/>
+        </ScrollView>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/journey_cohesion_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textColor="#ffffffff"
+        android:fontFamily="@font/gotham"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="80dp"
+        android:background="@drawable/settings_button"
+        app:layout_constraintTop_toBottomOf="@+id/cohesion_scoll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

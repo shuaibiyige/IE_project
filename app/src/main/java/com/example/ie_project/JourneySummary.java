@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,10 +39,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JourneySummary extends AppCompatActivity
+public class JourneySummary extends AppCompatActivity implements View.OnClickListener
 {
     private RadarChart chart;
     private int confirm1, confirm2;
+    private Button back,learnMore;
     private RequestQueue requestQueue;
     private ArrayList<RadarEntry> pre = new ArrayList<>();
     private ArrayList<RadarEntry> cur = new ArrayList<>();
@@ -51,6 +54,12 @@ public class JourneySummary extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.journey_summary);
         getSupportActionBar().hide();
+
+        back = findViewById(R.id.journey_summary_back);
+        learnMore = findViewById(R.id.journey_summary_learn_more);
+
+        back.setOnClickListener(this);
+        learnMore.setOnClickListener(this);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -107,6 +116,25 @@ public class JourneySummary extends AppCompatActivity
         l.setYEntrySpace(5f);    // 图例Y间距
         l.setTextSize(10f);
         //l.setTextColor(Color.WHITE);
+    }
+
+   @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.journey_summary_back:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
+                startActivity(intent);
+                break;
+            case R.id.journey_summary_learn_more:
+                Intent intent2 = new Intent(getApplicationContext(), JourneyLearnMore.class);     // go to journey page
+                startActivity(intent2);
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void setData(ArrayList<RadarEntry> previous, ArrayList<RadarEntry> current)

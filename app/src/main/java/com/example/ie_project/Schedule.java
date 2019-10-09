@@ -220,7 +220,11 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     String activity_endTime = cal + ":00";
                     String[] time_cal = chosenDate.split("-");
 
-                    alertDialog(chosenDate, activity1_startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity1_startTime.split(":")[0]), cal, activity_id1);
+
+                    if(activity1_startTime.equals(activity2_startTime) )
+                        Toast.makeText(getApplicationContext(), "Please choose another start time", Toast.LENGTH_SHORT).show();
+                    else
+                        alertDialog(chosenDate, activity1_startTime + "-" + activity_endTime, activity_title1, activity_description1, activity_address1, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity1_startTime.split(":")[0]), cal, activity_id1);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Please choose the start time", Toast.LENGTH_SHORT).show();
@@ -237,7 +241,10 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                     String activity_endTime = cal + ":00";
                     String[] time_cal = chosenDate.split("-");
 
-                    alertDialog(chosenDate, activity2_startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity2_startTime.split(":")[0]), cal, activity_id2);
+                    if(activity1_startTime.equals(activity2_startTime) )
+                        Toast.makeText(getApplicationContext(), "Please choose another start time", Toast.LENGTH_SHORT).show();
+                    else
+                        alertDialog(chosenDate, activity2_startTime + "-" + activity_endTime, activity_title2, activity_description2, activity_address2, Integer.valueOf(time_cal[0]), Integer.valueOf(time_cal[1]), Integer.valueOf(time_cal[2]), Integer.valueOf(activity2_startTime.split(":")[0]), cal, activity_id2);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Please choose the start time", Toast.LENGTH_SHORT).show();

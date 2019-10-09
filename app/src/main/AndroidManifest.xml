@@ -37,6 +37,10 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".JourneyCohesion"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".JourneyQuestionnaire"
             android:screenOrientation="portrait" />
