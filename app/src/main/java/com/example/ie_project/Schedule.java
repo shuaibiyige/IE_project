@@ -71,6 +71,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private TextView activity_title1_view, activity_name1_view, activity_description1_view, activity_address1_view, activity_title2_view, activity_name2_view, activity_description2_view, activity_address2_view;
     private String money1, latitude1, longitude1, money2, latitude2, longitude2, activity_title1, activity_name1, activity_description1, activity_address1, activity_title2, activity_name2, activity_description2, activity_address2;
     private String activity1_startTime, activity2_startTime;
+    private CalendarEvent calendarEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -119,7 +120,6 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
 
         ani2 = AnimationUtils.loadAnimation(this, R.anim.dashboard_image);
         user_id = 0;
-        //duration = 0;
         activity1_duration = 0;
         activity2_duration = 0;
         latitude1 = "";
@@ -449,23 +449,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 endTime.set(year, month - 1 , day, endHour, 0);
                 long endMillis = endTime.getTimeInMillis();
 
-                CalendarEvent calendarEvent = new CalendarEvent(activity_text, activity_des, activity_add, startMillis, endMillis, 0, null);          // add the event to the calendar
-                int result = CalendarProviderManager.addCalendarEvent(getApplicationContext(), calendarEvent);
-                if (result == 0)
-                {
-                    transmitActivity(String.valueOf(activity_id), date_text, time_text);
-
-                    Toast.makeText(getApplicationContext(), "successful", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                }
-                else if (result == -1)
-                {
-                    Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT).show();
-                }
-                else if (result == -2)
-                {
-                    Toast.makeText(getApplicationContext(), "permission denied", Toast.LENGTH_SHORT).show();
-                }
+                calendarEvent = new CalendarEvent(activity_text, activity_des, activity_add, startMillis, endMillis, 0, null);          // add the event to the calendar
+                transmitActivity(String.valueOf(activity_id), date_text, time_text, dialog);
             }
         });
 
@@ -614,7 +599,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         requestQueue.add(stringRequest);
     }
 
-    public void transmitActivity(final String transmit_id, final String transmit_date, String transmit_time)
+    public void transmitActivity(final String transmit_id, final String transmit_date, String transmit_time, final AlertDialog dialog)
     {
         String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/addSchedule.php";
 
@@ -630,7 +615,27 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                 try
                 {
                     JSONObject jsonObject = new JSONObject(s);
-                    //retCode = jsonObject.getInt("success");
+                    int retCode = jsonObject.getInt("success");
+
+                    if (retCode != 0)
+                    {
+                        int result = CalendarProviderManager.addCalendarEvent(getApplicationContext(), calendarEvent);
+                        if (result == 0)
+                        {
+                            dialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "successful", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (result == -1)
+                        {
+                            Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (result == -2)
+                        {
+                            Toast.makeText(getApplicationContext(), "permission denied", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        Toast.makeText(getApplicationContext(), "Please choose another time", Toast.LENGTH_SHORT).show();
                 }
                 catch (JSONException e)
                 {
