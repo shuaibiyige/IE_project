@@ -95,22 +95,24 @@ public class JourneySummary extends AppCompatActivity
         yAxis.setLabelCount(9, false);    // Y坐标值标签个数
         yAxis.setTextSize(9f);
         yAxis.setAxisMinimum(0f);
-        yAxis.setAxisMaximum(80f);
+        yAxis.setAxisMaximum(10f);
         yAxis.setDrawLabels(false);
 
         Legend l = chart.getLegend();
         //l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
         l.setXEntrySpace(7f);    // 图例X间距
         l.setYEntrySpace(5f);    // 图例Y间距
+        l.setTextSize(10f);
         //l.setTextColor(Color.WHITE);
     }
 
     private void setData(ArrayList<RadarEntry> previous, ArrayList<RadarEntry> current)
     {
         RadarDataSet set1 = new RadarDataSet(previous, "Previous");
+
         set1.setColor(Color.rgb(103, 110, 129));
         set1.setFillColor(Color.rgb(103, 110, 129));
         set1.setDrawFilled(true);
@@ -120,6 +122,7 @@ public class JourneySummary extends AppCompatActivity
         set1.setDrawHighlightIndicators(false);
 
         RadarDataSet set2 = new RadarDataSet(current, "Current");
+
         set2.setColor(Color.rgb(121, 162, 175));
         set2.setFillColor(Color.rgb(121, 162, 175));
         set2.setDrawFilled(true);
@@ -152,7 +155,7 @@ public class JourneySummary extends AppCompatActivity
         readDataFromDbCurrent(user_id);
         readDataFromDbPrevious(user_id);
         //if (confirm1 == 1 && confirm2 == 1)
-            setData(pre, cur);
+            //setData(pre, cur);
     }
 
     private void readDataFromDbCurrent(final int id)
@@ -171,6 +174,7 @@ public class JourneySummary extends AppCompatActivity
 
                     if (retCode == 1)
                     {
+                        cur.clear();
                         int identification = jsonObject.getInt("identification");
                         int rejection = jsonObject.getInt("rejection");
                         int autonomy = jsonObject.getInt("autonomy");
@@ -232,6 +236,7 @@ public class JourneySummary extends AppCompatActivity
 
                     if (retCode == 1)
                     {
+                        pre.clear();
                         int identification = jsonObject.getInt("identification");
                         int rejection = jsonObject.getInt("rejection");
                         int autonomy = jsonObject.getInt("autonomy");

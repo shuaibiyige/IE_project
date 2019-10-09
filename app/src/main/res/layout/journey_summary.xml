@@ -47,11 +47,9 @@
 
     <com.github.mikephil.charting.charts.RadarChart
         android:id="@+id/radarChart"
-        android:layout_height="350dp"
+        android:layout_height="370dp"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_history_title_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.25"/>
+        app:layout_constraintTop_toBottomOf="@+id/journey_history_title_text" />
 
     <Button
         android:id="@+id/history_back"

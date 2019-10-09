@@ -111,7 +111,8 @@ public class Dashboard extends Fragment
         journey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), JourneySummary.class);
+                startActivity(intent);
             }
         });
 
