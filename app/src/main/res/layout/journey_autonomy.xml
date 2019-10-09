@@ -29,7 +29,7 @@
         android:elevation="-1dp"/>
 
     <TextView
-        android:id="@+id/journey_cohesion_title_text"
+        android:id="@+id/journey_autonomy_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gotham"
@@ -46,7 +46,7 @@
 
 
     <LinearLayout
-        android:id="@+id/cohesion_scoll"
+        android:id="@+id/autonomy_scoll"
         android:layout_width="match_parent"
         android:layout_marginBottom="28dp"
         android:gravity="center"
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_cohesion_title_text"
+        app:layout_constraintTop_toBottomOf="@+id/journey_autonomy_title_text"
         app:layout_constraintVertical_bias="0.05">
         <ScrollView
             android:layout_width="wrap_content"
@@ -63,25 +63,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="COHESION:\nWhat is cohesion?
-\nCohesion evaluates what is perceived as parental emotional warmth and bonding, intimacy, mutual
-support, care and reliability. Cohesion is deemed to be a core construct of the parent-child
-relationship.
-\n\nWhat to do to improve cohesion?
-\nEmbed a sense of stability with each other by means of simple practices. Consistent implementation
-of such practices can induce better quality bonding and help the child open-up more frequently and/or
-willingly.
-\n\nExamples of practices that can improve cohesion:
-\n1. Having regular meals together
-\n2. Establishing daily/weekly/monthly family rituals such as movie nights, spa evenings,
-biking/walking exploration tours etc…
-\n3. Actively expressing interest in your child’s life and volunteering to share information about
-yours to illustrate genuine willingness to be part of each other’s life (without judgement)"/>
+                android:text="AUTONOMY:
+\nWhat is autonomy?
+Autonomy evaluates how an adolescent is prepared for independent decision making by the parent.
+Granting appropriate autonomy and mutual influence between parent and child plays an important
+role in fostering trust.
+\n\nWhat to do to improve autonomy?
+Prioritise the decisions to be made and slowly guide the child through them from the lowest to
+highest priority decisions as they enter adolescence. Dissuade comparisons between peers, siblings,
+cousins or any others when it comes to granting and exercising autonomy.
+\n\nExamples of practices that can your approach to autonomy:
+\n1. Prepare the child by discussing probable scenarios, the different viable decisions and the
+thought process behind each decision
+2. Support the child in the initial few instances in decision making and encourage healthy
+exploration of different options before making the final decision
+3. Provide positive validation to good decision making
+4. Allow children to learn from their mistakes and provide gentle constructive feedback on
+areas of improvement"/>
         </ScrollView>
     </LinearLayout>
 
     <Button
-        android:id="@+id/journey_cohesion_back"
+        android:id="@+id/journey_autonomy_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -92,7 +95,7 @@ yours to illustrate genuine willingness to be part of each other’s life (witho
         android:layout_marginRight="80dp"
         android:layout_marginLeft="80dp"
         android:background="@drawable/settings_button"
-        app:layout_constraintTop_toBottomOf="@+id/cohesion_scoll"
+        app:layout_constraintTop_toBottomOf="@+id/autonomy_scoll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.5"/>
 

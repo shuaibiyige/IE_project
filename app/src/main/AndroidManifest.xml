@@ -37,7 +37,21 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".JourneyLearnMore"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JourneyIdentification"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JourneyRejection"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JourneyAutonomy"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JourneyConflict"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".JourneyCohesion"
             android:screenOrientation="portrait" />

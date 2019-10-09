@@ -53,24 +53,24 @@ public class JourneyLearnMore extends AppCompatActivity implements View.OnClickL
         switch (v.getId())
         {
             case R.id.journey_cohesion:
-                //Intent intent = new Intent(getApplicationContext(), JourneyCohesion.class);         // go to questionnaire page
-                //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), JourneyCohesion.class);         // go to questionnaire page
+                startActivity(intent);
                 break;
             case R.id.journey_conflict:
-                //Intent intent2 = new Intent(getApplicationContext(), JourneyQuestionnaire.class);     // go to journey page
-                //startActivity(intent2);
+                Intent intent2 = new Intent(getApplicationContext(), JourneyConflict.class);     // go to journey page
+                startActivity(intent2);
                 break;
             case R.id.journey_identification:
-                //Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);      // back to main page
-                //startActivity(intent3);
+                Intent intent3 = new Intent(getApplicationContext(), JourneyIdentification.class);      // back to main page
+                startActivity(intent3);
                 break;
             case R.id.journey_rejection:
-                //Intent intent4 = new Intent(getApplicationContext(), JourneyQuestionnaire.class);     // go to journey page
-                //startActivity(intent4);
+                Intent intent4 = new Intent(getApplicationContext(), JourneyRejection.class);     // go to journey page
+                startActivity(intent4);
                 break;
             case R.id.journey_autonomy:
-                //Intent intent5 = new Intent(getApplicationContext(), JourneyQuestionnaire.class);     // go to journey page
-                //startActivity(intent5);
+                Intent intent5 = new Intent(getApplicationContext(), JourneyAutonomy.class);     // go to journey page
+                startActivity(intent5);
                 break;
             case R.id.journey_learn_more_back:
                 Intent intent6 = new Intent(getApplicationContext(), JourneySummary.class);      // back to main page

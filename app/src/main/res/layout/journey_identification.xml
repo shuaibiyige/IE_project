@@ -29,7 +29,7 @@
         android:elevation="-1dp"/>
 
     <TextView
-        android:id="@+id/journey_cohesion_title_text"
+        android:id="@+id/journey_identification_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gotham"
@@ -46,7 +46,7 @@
 
 
     <LinearLayout
-        android:id="@+id/cohesion_scoll"
+        android:id="@+id/identification_scoll"
         android:layout_width="match_parent"
         android:layout_marginBottom="28dp"
         android:gravity="center"
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_cohesion_title_text"
+        app:layout_constraintTop_toBottomOf="@+id/journey_identification_title_text"
         app:layout_constraintVertical_bias="0.05">
         <ScrollView
             android:layout_width="wrap_content"
@@ -63,25 +63,30 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="COHESION:\nWhat is cohesion?
-\nCohesion evaluates what is perceived as parental emotional warmth and bonding, intimacy, mutual
-support, care and reliability. Cohesion is deemed to be a core construct of the parent-child
-relationship.
-\n\nWhat to do to improve cohesion?
-\nEmbed a sense of stability with each other by means of simple practices. Consistent implementation
-of such practices can induce better quality bonding and help the child open-up more frequently and/or
-willingly.
-\n\nExamples of practices that can improve cohesion:
-\n1. Having regular meals together
-\n2. Establishing daily/weekly/monthly family rituals such as movie nights, spa evenings,
-biking/walking exploration tours etc…
-\n3. Actively expressing interest in your child’s life and volunteering to share information about
-yours to illustrate genuine willingness to be part of each other’s life (without judgement)"/>
+                android:text="IDENTIFICATION:
+\nWhat is identification as a family unit?
+Identification evaluates the adolescent’s sense of belonging to the family and recognising parent has
+a mentor and/or role model. From the initial research in all psychotherapeutic disciplines,
+identification with parent has been recognized as being significant in the processes of socialization
+and bonding between child and parent.
+\n\nWhat to do to improve identification as a family unit?
+The best way to improve identification is to lead by example. The ideal behaviour expected from the
+child would be adopted more willingly by the child if the parent becomes a practitioner and satisfies
+the same expectation.
+\n\nExamples of practices that can improve identification:
+1. Encourage adopting new habits/practices as a family rather than instructing the child to pick
+them up
+2. Incorporate new practices as a change in perspective without pin-pointing the
+limitations/lack of performance of the child in specific areas. This general approach helps
+the child grow without insecurities about their limitations
+3. Being a source of positivity and encouragement whenever possible and exposing the child
+sensitively to the limitations of the parent as well. It is always important to show the human
+side of the parent and not just focus on the ideal expectation"/>
         </ScrollView>
     </LinearLayout>
 
     <Button
-        android:id="@+id/journey_cohesion_back"
+        android:id="@+id/journey_identification_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -92,7 +97,7 @@ yours to illustrate genuine willingness to be part of each other’s life (witho
         android:layout_marginRight="80dp"
         android:layout_marginLeft="80dp"
         android:background="@drawable/settings_button"
-        app:layout_constraintTop_toBottomOf="@+id/cohesion_scoll"
+        app:layout_constraintTop_toBottomOf="@+id/identification_scoll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.5"/>
 

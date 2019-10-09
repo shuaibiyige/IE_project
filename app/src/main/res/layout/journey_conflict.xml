@@ -29,7 +29,7 @@
         android:elevation="-1dp"/>
 
     <TextView
-        android:id="@+id/journey_cohesion_title_text"
+        android:id="@+id/journey_conflict_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gotham"
@@ -46,7 +46,7 @@
 
 
     <LinearLayout
-        android:id="@+id/cohesion_scoll"
+        android:id="@+id/conflict_scoll"
         android:layout_width="match_parent"
         android:layout_marginBottom="28dp"
         android:gravity="center"
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_cohesion_title_text"
+        app:layout_constraintTop_toBottomOf="@+id/journey_conflict_title_text"
         app:layout_constraintVertical_bias="0.05">
         <ScrollView
             android:layout_width="wrap_content"
@@ -63,25 +63,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="COHESION:\nWhat is cohesion?
-\nCohesion evaluates what is perceived as parental emotional warmth and bonding, intimacy, mutual
-support, care and reliability. Cohesion is deemed to be a core construct of the parent-child
-relationship.
-\n\nWhat to do to improve cohesion?
-\nEmbed a sense of stability with each other by means of simple practices. Consistent implementation
-of such practices can induce better quality bonding and help the child open-up more frequently and/or
-willingly.
-\n\nExamples of practices that can improve cohesion:
-\n1. Having regular meals together
-\n2. Establishing daily/weekly/monthly family rituals such as movie nights, spa evenings,
-biking/walking exploration tours etc…
-\n3. Actively expressing interest in your child’s life and volunteering to share information about
-yours to illustrate genuine willingness to be part of each other’s life (without judgement)"/>
+                android:text="CONFLICT:
+\nWhat is conflict and bonding beyond conflict? \nConflict evaluates the experiences of conflict of views between the parent and the child. Chronic or
+very frequent conflict usually results from underlying difficulties in the relationship. Lack of adequate
+family coping strategies cause a distress in the relationship.
+\n\nWhat to do to improve bonding beyond conflict?
+\nActive listening during conflicts and absorbing the details is essential. Patient, persuasive approach to
+dealing with conflicts by respecting opposing point of views is recommended. Exhibiting such
+characteristics by practices to the child re-enforces these concepts enabling reciprocation.
+\n\nExamples of practices that can improve bonding beyond conflicts:
+\n1. Implementing a habit of taking time-outs during sensitive conversationsto give some personal
+space to collect individual thoughts
+\n2. Active listening and empathising the conflicting point of view when it is proposed/brought up
+first
+\n3. Using non-judgemental tones and statements such as “I feel/I worry/My concern is” instead
+of accusatory statements"/>
         </ScrollView>
     </LinearLayout>
 
     <Button
-        android:id="@+id/journey_cohesion_back"
+        android:id="@+id/journey_conflict_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -92,7 +93,7 @@ yours to illustrate genuine willingness to be part of each other’s life (witho
         android:layout_marginRight="80dp"
         android:layout_marginLeft="80dp"
         android:background="@drawable/settings_button"
-        app:layout_constraintTop_toBottomOf="@+id/cohesion_scoll"
+        app:layout_constraintTop_toBottomOf="@+id/conflict_scoll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.5"/>
 

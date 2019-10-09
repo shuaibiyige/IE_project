@@ -10,21 +10,21 @@ import android.widget.Button;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class JourneyCohesion extends AppCompatActivity implements View.OnClickListener {
+public class JourneyAutonomy extends AppCompatActivity implements View.OnClickListener {
     private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.journey_cohesion);
+        setContentView(R.layout.journey_autonomy);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
 
 
 
-        back = findViewById(R.id.journey_cohesion_back);
+        back = findViewById(R.id.journey_autonomy_back);
 
         back.setOnClickListener(this);
     }
@@ -34,7 +34,7 @@ public class JourneyCohesion extends AppCompatActivity implements View.OnClickLi
     {
         switch (v.getId())
         {
-            case R.id.journey_cohesion_back:
+            case R.id.journey_autonomy_back:
                 Intent intent = new Intent(getApplicationContext(), JourneyLearnMore.class);         // go to questionnaire page
                 startActivity(intent);
                 break;
