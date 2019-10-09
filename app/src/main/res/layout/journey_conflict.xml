@@ -57,8 +57,10 @@
         app:layout_constraintTop_toBottomOf="@+id/journey_conflict_title_text"
         app:layout_constraintVertical_bias="0.05">
         <ScrollView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:scrollbars="horizontal">
             <TextView
                 android:layout_width="wrap_content"
