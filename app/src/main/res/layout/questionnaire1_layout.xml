@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.06" />
 
-    <HorizontalScrollView
+    <com.example.ie_project.SlowScrollView
         android:id="@+id/question1_card"
         android:scrollbars="none"
         android:layout_width="match_parent"
@@ -726,42 +726,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </HorizontalScrollView>
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/question1_card"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginRight="20dp"-->
-<!--        app:layout_constraintVertical_bias="0.25">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/questionnaire1_swipe_left"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:text="Previous"-->
-<!--            android:textColor="#ffd88778"-->
-<!--            android:background="@drawable/submit_button"/>-->
-
-<!--        <Button-->
-<!--            android:id="@+id/questionnaire1_swipe_right"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:text="Next"-->
-<!--            android:textColor="#ffd88778"-->
-<!--            android:background="@drawable/submit_button"/>-->
-
-<!--    </LinearLayout>-->
+    </com.example.ie_project.SlowScrollView>
 
     <ImageView
         android:id="@+id/questionnaire1_swipe"

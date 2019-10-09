@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,7 +27,7 @@
         android:text="Tell us about your feeling"
         android:textAllCaps="false"
         android:textColor="#ff707070"
-        android:textSize="22sp"
+        android:textSize="19sp"
         android:autoSizeMaxTextSize="30sp"
         android:autoSizeMinTextSize="15sp"
         android:autoSizeTextType="uniform"
@@ -37,19 +38,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.06" />
 
-    <HorizontalScrollView
+    <com.example.ie_project.SlowScrollView
         android:id="@+id/journey_question_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:scrollbars="none"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/journey_questionnaire_you_text">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -73,26 +73,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
                         android:text="I am confident that my child perceives me as a mentor/role-model"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="20sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:orientation="vertical">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="70dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q1_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -102,7 +105,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q1_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -112,7 +115,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q1_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -122,7 +125,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q1_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -132,7 +135,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q1_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -142,7 +145,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -172,22 +175,25 @@
                         android:text="My child confides in me and feels reassured"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textSize="20sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="70dp"
+                        android:orientation="vertical">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q2"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="90dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q2_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -197,7 +203,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q2_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -207,7 +213,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q2_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -217,7 +223,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q2_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -227,7 +233,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q2_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -237,7 +243,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -262,26 +268,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
                         android:fontFamily="@font/gotham"
-                        android:text="I share postivity and encouragement with my child"
+                        android:text="I share positive and encouragement with my child"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="18sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="70dp">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q3"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="70dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q3_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -291,7 +299,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q3_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -301,7 +309,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q3_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -331,7 +339,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -356,26 +364,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
                         android:text="We prefer to spend time together at home beyond just co-existing"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="18sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q4"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="70dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q4_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -385,7 +395,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q4_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -395,7 +405,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q4_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -405,7 +415,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q4_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -415,7 +425,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q4_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -425,7 +435,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -450,26 +460,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
                         android:text="We notice the small changes around the house and with each other intuitively"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="18sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q5"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="50dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q5_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -479,7 +491,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q5_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -489,7 +501,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q5_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -499,7 +511,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q5_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -509,7 +521,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q5_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -519,7 +531,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -544,26 +556,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
                         android:text="I feel confident that my child is being supported in areas of their interest effectively"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="18sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q6"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_marginTop="50dp">
 
                             <RadioButton
                                 android:id="@+id/journey_q6_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -573,7 +587,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q6_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -583,7 +597,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q6_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -593,7 +607,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q6_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -603,7 +617,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q6_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -613,7 +627,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -638,26 +652,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
                         android:text="I express disinterest/disappointment/disgust/anguish on my child's behaviour by outbursts (implicit/explicit)"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="18sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="vertical">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q7"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="30dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q7_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -667,7 +684,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q7_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -677,7 +694,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q7_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -687,7 +704,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q7_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -697,7 +714,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q7_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -707,7 +724,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -732,26 +749,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
                         android:text="My child has expressed disinterest/disappointment/disgust/anguish on my  behaviour by outbursts (implicit/explicit)"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="18sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="vertical">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q8"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="10dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q8_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -761,7 +781,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q8_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -771,7 +791,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q8_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -781,7 +801,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q8_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -791,7 +811,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q8_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -801,7 +821,7 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -826,26 +846,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
                         android:text="There is expression of love, affection and trust between us"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="20sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q9"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="80dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q9_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -855,7 +877,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q9_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -865,7 +887,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q9_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -875,7 +897,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q9_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -885,7 +907,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q9_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -895,13 +917,11 @@
 
                         </RadioGroup>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
-
-
 
 
 
@@ -910,41 +930,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/question_card2"
-                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="290dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/question_card2"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@drawable/question_card2">
 
                     <TextView
                         android:id="@+id/journey_q10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/gotham"
-                        android:text="There is expression of love, affection and trust between us"
+                        android:text="I prefer to discuss regarding rules over having my child obey me implicitly"
                         android:textAlignment="center"
                         android:textColor="#ffffffff"
-                        android:textSize="23sp" />
+                        android:textSize="18sp" />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:orientation="vertical">
 
                         <RadioGroup
                             android:id="@+id/radioGroup_journey_q10"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="70dp">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/journey_q10_always"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Always / Almost Daily"
@@ -954,7 +976,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q10_often"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Often"
                                 android:layout_marginLeft="20dp"
@@ -964,7 +986,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q10_sometimes"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Sometimes"
@@ -974,7 +996,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q10_rarely"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Rarely"
@@ -984,7 +1006,7 @@
 
                             <RadioButton
                                 android:id="@+id/journey_q10_never"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Never"
@@ -998,9 +1020,8 @@
                             android:id="@+id/journey_submit"
                             android:layout_width="wrap_content"
                             android:layout_height="25dp"
-                            android:layout_below="@+id/radioGroup_journey_q10"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="7dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center_horizontal"
                             android:background="@drawable/submit_button"
                             android:text="Submit"
                             android:textAlignment="center"
@@ -1008,54 +1029,25 @@
                             android:textColor="#ffd88778"
                             android:textSize="15sp" />
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
-
-
-
-
 
             </LinearLayout>
 
 
         </LinearLayout>
-    </HorizontalScrollView>
 
-    <LinearLayout
+    </com.example.ie_project.SlowScrollView>
+
+    <ImageView
+        android:id="@+id/questionnaire1_swipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/swipe_right"
         app:layout_constraintTop_toBottomOf="@+id/journey_question_card"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintVertical_bias="0.25">
-
-        <Button
-            android:id="@+id/journey_questionnaire_swipe_left"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            android:layout_marginRight="10dp"
-            android:text="Previous"
-            android:textColor="#ffd88778"
-            android:background="@drawable/submit_button"/>
-
-        <Button
-            android:id="@+id/journey_questionnaire_swipe_right"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            android:layout_marginLeft="10dp"
-            android:text="Next"
-            android:textColor="#ffd88778"
-            android:background="@drawable/submit_button"/>
-
-    </LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
 
     <ImageView
         android:layout_width="600dp"

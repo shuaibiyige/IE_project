@@ -51,7 +51,7 @@ public class Dashboard extends Fragment
     View dashboard;
     private ImageView setting, addEvent, review, journey;
     private TextView welcome;
-    private LinearLayout linearLayout;
+    //private LinearLayout linearLayout;
     private RequestQueue requestQueue;
     private SwipeSelector upcomingSwipeSelector, completedSwipeSelector;
     private List<Activity> upcoming, completed;
@@ -111,8 +111,7 @@ public class Dashboard extends Fragment
         journey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), JourneyQuestionnaire.class);            // go to history page
-                startActivity(intent);
+
             }
         });
 

@@ -315,6 +315,14 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         });
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        Intent intent = new Intent(Schedule.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void spinner2(ArrayAdapter<String> adapter, final Spinner spinner)
     {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

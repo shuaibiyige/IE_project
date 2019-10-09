@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class Settings extends AppCompatActivity implements View.OnClickListener
 {
-    private Button questionnaire, journey, changePassword, back;
+    private Button questionnaire, journey, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,17 +27,14 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
 
         questionnaire = findViewById(R.id.setting_questionnaire);
         journey = findViewById(R.id.setting_journey);
-        changePassword = findViewById(R.id.setting_change_password);
         back = findViewById(R.id.setting_back);
 
         questionnaire.setAnimation(ani2);
         journey.setAnimation(ani2);
-        changePassword.setAnimation(ani2);
         back.setAnimation(ani2);
 
         questionnaire.setOnClickListener(this);
         journey.setOnClickListener(this);
-        changePassword.setOnClickListener(this);
         back.setOnClickListener(this);
     }
 
@@ -51,17 +48,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent);
                 break;
             case R.id.setting_journey:
-
-
-
-                break;
-            case R.id.setting_change_password:
-
-
-
+                Intent intent2 = new Intent(getApplicationContext(), JourneyQuestionnaire.class);     // go to journey page
+                startActivity(intent2);
                 break;
             case R.id.setting_back:
-                Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);      // back to main page
                 startActivity(anotherIntent);
                 break;
              default:

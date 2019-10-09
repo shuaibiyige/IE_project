@@ -42,52 +42,14 @@ public class JourneyQuestionnaire1 extends Fragment {
     View journeyQuestionnaire;
     private Button submit;
     private RadioGroup radioGroup_journey_q1, radioGroup_journey_q2, radioGroup_journey_q3, radioGroup_journey_q4, radioGroup_journey_q5, radioGroup_journey_q6, radioGroup_journey_q7, radioGroup_journey_q8, radioGroup_journey_q9,radioGroup_journey_q10;
-    private HorizontalScrollView scrollView;
-    private Button swipe_right, swipe_left;
     private int q1, q2, q3, q4, q5, q6, q7, q8, q9, q10;
-    private int offset;
 
     @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         journeyQuestionnaire = inflater.inflate(R.layout.journey_questionnaire_layout, container, false);
         final FragmentManager fragmentManager = getFragmentManager();
 
-        offset = 0;
         initView();
-
-
-        swipe_right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run()
-                    {
-                        if (offset < 5500) {
-                            offset = offset + 930;
-                            scrollView.smoothScrollTo(offset, 0);
-                        }
-                    }});
-            }
-        });
-
-        swipe_left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run()
-                    {
-                        if (offset > 0)
-                        {
-                            offset = offset - 930;
-                            scrollView.smoothScrollTo(offset, 0);
-                        }
-                    }});
-            }
-        });
 
         radioGroup_journey_q1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -346,9 +308,6 @@ public class JourneyQuestionnaire1 extends Fragment {
         radioGroup_journey_q8 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q8);
         radioGroup_journey_q9 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q9);
         radioGroup_journey_q10 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q10);
-        scrollView = journeyQuestionnaire.findViewById(R.id.journey_question_card);
-        swipe_right = journeyQuestionnaire.findViewById(R.id.journey_questionnaire_swipe_right);
-        swipe_left = journeyQuestionnaire.findViewById(R.id.journey_questionnaire_swipe_left);
-
+        submit = journeyQuestionnaire.findViewById(R.id.journey_submit);
     }
 }

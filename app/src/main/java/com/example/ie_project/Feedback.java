@@ -97,12 +97,14 @@ public class Feedback extends AppCompatActivity
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stars = ratingBar.getNumStars();
+                stars = (int)ratingBar.getRating();
                 String learntText = learnt.getText().toString();
-                transmitActivity(String.valueOf(completed_ts), learntText, String.valueOf(stars), "null");
-
-                Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(anotherIntent);
+                if (learntText.trim().length() != 0)
+                {
+                    transmitActivity(String.valueOf(completed_ts), learntText, String.valueOf(stars), "null");
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"what have you learnt?", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -157,7 +159,11 @@ public class Feedback extends AppCompatActivity
                     if (retCode == 1)
                     {
                         Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                        Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(anotherIntent);
                     }
+                    else
+                        Toast.makeText(getApplicationContext(), "Unknown error", Toast.LENGTH_SHORT).show();
                 }
                 catch (JSONException e)
                 {

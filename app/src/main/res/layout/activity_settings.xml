@@ -55,7 +55,7 @@
         android:background="@drawable/settings_button"
         app:layout_constraintTop_toBottomOf="@+id/setting_title_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.2"/>
+        app:layout_constraintVertical_bias="0.3"/>
 
     <Button
         android:id="@+id/setting_journey"
@@ -71,23 +71,7 @@
         android:background="@drawable/settings_button"
         app:layout_constraintTop_toBottomOf="@+id/setting_title_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.4"/>
-
-    <Button
-        android:id="@+id/setting_change_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Change password"
-        android:textColor="#ffffffff"
-        android:fontFamily="@font/gotham"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
-        android:background="@drawable/settings_button"
-        app:layout_constraintTop_toBottomOf="@+id/setting_title_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.6"/>
+        app:layout_constraintVertical_bias="0.5"/>
 
     <Button
         android:id="@+id/setting_back"
@@ -103,7 +87,7 @@
         android:background="@drawable/settings_button"
         app:layout_constraintTop_toBottomOf="@+id/setting_title_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.87"/>
+        app:layout_constraintVertical_bias="0.8"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

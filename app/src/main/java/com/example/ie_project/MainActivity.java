@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity// implements NavigationView.OnNavigationItemSelectedListener
 {
-    private Button button;
+    //private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
