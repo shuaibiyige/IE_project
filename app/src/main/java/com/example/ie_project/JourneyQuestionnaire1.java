@@ -3,6 +3,7 @@ package com.example.ie_project;
 import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -50,26 +51,21 @@ import java.util.Set;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class JourneyQuestionnaire1 extends Fragment {
-    View journeyQuestionnaire;
+public class JourneyQuestionnaire1 extends Fragment
+{
+    private View journeyQuestionnaire;
     private Button submit;
     private RadioGroup radioGroup_journey_q1, radioGroup_journey_q2, radioGroup_journey_q3, radioGroup_journey_q4, radioGroup_journey_q5, radioGroup_journey_q6, radioGroup_journey_q7, radioGroup_journey_q8, radioGroup_journey_q9,radioGroup_journey_q10;
-    private HorizontalScrollView scrollView;
-
     private int q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, identification, rejection, autonomy, cohesion, conflict, user_id;
-    private int offset;
     private RequestQueue requestQueue;
 
     @SuppressLint("ClickableViewAccessibility")
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         journeyQuestionnaire = inflater.inflate(R.layout.journey_questionnaire_layout, container, false);
-        final FragmentManager fragmentManager = getFragmentManager();
+
         requestQueue = Volley.newRequestQueue(getContext());
-        offset = 0;
         initView();
-
-
-
 
         radioGroup_journey_q1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -310,20 +306,56 @@ public class JourneyQuestionnaire1 extends Fragment {
                 }
             }
         });
-        identification = q1 + q5;
-        rejection = q2 + q10;
-        autonomy = q3 + q6;
-        cohesion = q4 + q9;
-        conflict =q7 + q8;
+
+
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
-        String user_name = sharedPreferences.getString("user_name", "");
         user_id = sharedPreferences.getInt("user_id", 0);
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (q1 != 0 && q2 != 0 && q3 != 0 && q4 != 0 && q5 != 0 && q6 != 0 && q7 != 0 && q8 != 0 && q9 != 0 && q10 != 0)
+                {
+                    identification = q1 + q5;
+                    rejection = q2 + q10;
+                    autonomy = q3 + q6;
+                    cohesion = q4 + q9;
+                    conflict = q7 + q8;
+
+                    transSurveyData(identification, rejection, autonomy, cohesion, conflict, user_id);
+                }
+                else if (q1 == 0)
+                    Toast.makeText(getActivity(), "question1 not done", Toast.LENGTH_SHORT).show();
+                else if (q2 == 0)
+                    Toast.makeText(getActivity(), "question2 not done", Toast.LENGTH_SHORT).show();
+                else if (q3 == 0)
+                    Toast.makeText(getActivity(), "question3 not done", Toast.LENGTH_SHORT).show();
+                else if (q4 == 0)
+                    Toast.makeText(getActivity(), "question4 not done", Toast.LENGTH_SHORT).show();
+                else if (q5 == 0)
+                    Toast.makeText(getActivity(), "question5 not done", Toast.LENGTH_SHORT).show();
+                else if (q6 == 0)
+                    Toast.makeText(getActivity(), "question6 not done", Toast.LENGTH_SHORT).show();
+                else if (q7 == 0)
+                    Toast.makeText(getActivity(), "question7 not done", Toast.LENGTH_SHORT).show();
+                else if (q8 == 0)
+                    Toast.makeText(getActivity(), "question8 not done", Toast.LENGTH_SHORT).show();
+                else if (q9 == 0)
+                    Toast.makeText(getActivity(), "question9 not done", Toast.LENGTH_SHORT).show();
+                else if (q10 == 0)
+                    Toast.makeText(getActivity(), "question10 not done", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getActivity(), "some questions are not done", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return journeyQuestionnaire;
     }
 
-    public void initView(){
+    public void initView()
+    {
         radioGroup_journey_q1 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q1);
         radioGroup_journey_q2 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q2);
         radioGroup_journey_q3 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q3);
@@ -334,14 +366,14 @@ public class JourneyQuestionnaire1 extends Fragment {
         radioGroup_journey_q8 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q8);
         radioGroup_journey_q9 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q9);
         radioGroup_journey_q10 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q10);
-        scrollView = journeyQuestionnaire.findViewById(R.id.journey_question_card);
+        submit = journeyQuestionnaire.findViewById(R.id.journey_submit);
         identification = 0;
         rejection = 0;
         autonomy = 0;
         cohesion = 0;
         conflict = 0;
         user_id = 0;
-
+        q1=q2=q3=q4=q5=q6=q7=q8=q9=q10=0;
     }
 
     public void transSurveyData(final int identification, final int rejection, final int autonomy, final int cohesion, final int conflict, final int user_id)
@@ -361,6 +393,8 @@ public class JourneyQuestionnaire1 extends Fragment {
                     if (retCode == 1)
                     {
                         Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), JourneySummary.class);
+                        startActivity(intent);
                     }
                 }
                 catch (JSONException e)
@@ -385,7 +419,6 @@ public class JourneyQuestionnaire1 extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError
             {
                 Map<String, String> map = new HashMap<>();
-                //map.put("recom_id", recom_id);
                 map.put("user_id", String.valueOf(user_id));
                 map.put("identification", String.valueOf(identification));
                 map.put("rejection", String.valueOf(rejection));

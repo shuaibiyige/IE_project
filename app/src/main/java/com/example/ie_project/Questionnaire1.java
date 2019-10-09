@@ -48,9 +48,6 @@ public class Questionnaire1 extends Fragment
     private CheckBox dog, cat, other_pet, reading, cooking, music, collecting, sport, other_hobbies, adventure, health, tech, art, indoorsy, other_description, swimming, sport_court, videoGame, barbeque, games, other_home;
     private EditText other_pet_text, other_hobbies_text, other_restrictions_text, other_description_text, other_home_text;
     private Set<String> petList, hobbiesList, descriptionList, homeList;
-    //private HorizontalScrollView scrollView;
-    //private Button swipe_right, swipe_left;
-    //private int offset;
 
     @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -60,48 +57,6 @@ public class Questionnaire1 extends Fragment
         final FragmentManager fragmentManager = getFragmentManager();
 
         initView();
-
-//        offset = 0;
-//
-//        scrollView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                return true;
-//            }
-//        });
-//
-//        swipe_right.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                scrollView.post(new Runnable() {
-//                    @Override
-//                    public void run()
-//                    {
-//                        if (offset < 4500) {
-//                            offset = offset + 930;
-//                            scrollView.smoothScrollTo(offset, 0);
-//                        }
-//                    }});
-//            }
-//        });
-//
-//        swipe_left.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                scrollView.post(new Runnable() {
-//                    @Override
-//                    public void run()
-//                    {
-//                        if (offset > 0)
-//                        {
-//                            offset = offset - 930;
-//                            scrollView.smoothScrollTo(offset, 0);
-//                        }
-//                    }});
-//            }
-//        });
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -316,9 +271,6 @@ public class Questionnaire1 extends Fragment
         games = question1.findViewById(R.id.games_puzzles);
         other_home = question1.findViewById(R.id.home_other);
         other_home_text = question1.findViewById(R.id.other_home_text);
-//        scrollView = question1.findViewById(R.id.question1_card);
-//        swipe_right = question1.findViewById(R.id.questionnaire1_swipe_right);
-//        swipe_left = question1.findViewById(R.id.questionnaire1_swipe_left);
         area_lat = "";
         area_long = "";
     }
@@ -418,23 +370,5 @@ public class Questionnaire1 extends Fragment
                 }
             }
         });
-    }
-
-    public int size()
-    {
-        int[] list = new int[2];
-        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;         // 屏幕宽度（像素）
-        int height = dm.heightPixels;       // 屏幕高度（像素）
-        float density = dm.density;         // 屏幕密度（0.75 / 1.0 / 1.5）
-        int densityDpi = dm.densityDpi;     // 屏幕密度dpi（120 / 160 / 240）
-        // 屏幕宽度算法:屏幕宽度（像素）/屏幕密度
-        int screenWidth = (int) (width / density);  // 屏幕宽度(dp)
-        int screenHeight = (int) (height / density);// 屏幕高度(dp)
-        list[0] = screenWidth;
-        list[1] = screenHeight;
-        return width;
     }
 }

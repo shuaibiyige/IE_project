@@ -56,9 +56,6 @@ public class Questionnaire2 extends Fragment
     private RequestQueue requestQueue;
     private int user_id;
     private String dateTime;
-//    private HorizontalScrollView scrollView;
-//    private Button swipe_right, swipe_left;
-//    private int offset;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {

@@ -10,7 +10,10 @@
         android:roundIcon="@drawable/logo_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".History"
+        <activity android:name=".JourneySummary"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".History"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Settings"
@@ -54,10 +57,10 @@
         android:normalScreens="true"
         android:smallScreens="true"
         android:xlargeScreens="true" />
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
 
 </manifest>
