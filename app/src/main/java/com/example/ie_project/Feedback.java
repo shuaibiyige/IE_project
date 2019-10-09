@@ -90,6 +90,8 @@ public class Feedback extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                if (layout.getVisibility() == View.VISIBLE)
+                    layout.setVisibility(View.INVISIBLE);
                 alertDialog();
             }
         });
