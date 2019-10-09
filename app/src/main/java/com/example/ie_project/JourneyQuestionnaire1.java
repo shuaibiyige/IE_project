@@ -25,6 +25,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -32,8 +39,13 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -42,14 +54,22 @@ public class JourneyQuestionnaire1 extends Fragment {
     View journeyQuestionnaire;
     private Button submit;
     private RadioGroup radioGroup_journey_q1, radioGroup_journey_q2, radioGroup_journey_q3, radioGroup_journey_q4, radioGroup_journey_q5, radioGroup_journey_q6, radioGroup_journey_q7, radioGroup_journey_q8, radioGroup_journey_q9,radioGroup_journey_q10;
-    private int q1, q2, q3, q4, q5, q6, q7, q8, q9, q10;
+    private HorizontalScrollView scrollView;
+
+    private int q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, identification, rejection, autonomy, cohesion, conflict, user_id;
+    private int offset;
+    private RequestQueue requestQueue;
 
     @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         journeyQuestionnaire = inflater.inflate(R.layout.journey_questionnaire_layout, container, false);
         final FragmentManager fragmentManager = getFragmentManager();
-
+        requestQueue = Volley.newRequestQueue(getContext());
+        offset = 0;
         initView();
+
+
+
 
         radioGroup_journey_q1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -290,8 +310,14 @@ public class JourneyQuestionnaire1 extends Fragment {
                 }
             }
         });
-
-
+        identification = q1 + q5;
+        rejection = q2 + q10;
+        autonomy = q3 + q6;
+        cohesion = q4 + q9;
+        conflict =q7 + q8;
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        String user_name = sharedPreferences.getString("user_name", "");
+        user_id = sharedPreferences.getInt("user_id", 0);
 
 
         return journeyQuestionnaire;
@@ -308,6 +334,68 @@ public class JourneyQuestionnaire1 extends Fragment {
         radioGroup_journey_q8 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q8);
         radioGroup_journey_q9 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q9);
         radioGroup_journey_q10 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q10);
-        submit = journeyQuestionnaire.findViewById(R.id.journey_submit);
+        scrollView = journeyQuestionnaire.findViewById(R.id.journey_question_card);
+        identification = 0;
+        rejection = 0;
+        autonomy = 0;
+        cohesion = 0;
+        conflict = 0;
+        user_id = 0;
+
+    }
+
+    public void transSurveyData(final int identification, final int rejection, final int autonomy, final int cohesion, final int conflict, final int user_id)
+    {
+        String connectUrl = "http://ec2-13-236-44-7.ap-southeast-2.compute.amazonaws.com/letosaid/addSurveyScore.php";
+
+        com.android.volley.Response.Listener<String> listener = new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String s)
+            {
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(s);
+                    int retCode = jsonObject.getInt("success");
+
+                    if (retCode == 1)
+                    {
+                        Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    Toast.makeText(getContext(),"Network is unavailable", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+            public String TAG = "LOG";
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage(), error);
+            }
+        };
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, connectUrl, listener, errorListener)
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> map = new HashMap<>();
+                //map.put("recom_id", recom_id);
+                map.put("user_id", String.valueOf(user_id));
+                map.put("identification", String.valueOf(identification));
+                map.put("rejection", String.valueOf(rejection));
+                map.put("autonomy", String.valueOf(autonomy));
+                map.put("cohesion", String.valueOf(cohesion));
+                map.put("conflict", String.valueOf(conflict));
+
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }
