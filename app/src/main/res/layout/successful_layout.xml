@@ -36,7 +36,4 @@
         android:shadowDy="3"
         android:background="@drawable/login_button"/>
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
