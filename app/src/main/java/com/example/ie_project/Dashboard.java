@@ -1,12 +1,15 @@
 package com.example.ie_project;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -30,6 +33,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.roughike.swipeselector.OnSwipeItemSelectedListener;
 import com.roughike.swipeselector.SwipeItem;
 import com.roughike.swipeselector.SwipeSelector;
@@ -45,6 +51,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class Dashboard extends Fragment
 {
@@ -57,7 +65,7 @@ public class Dashboard extends Fragment
     private int user_id, completed_ts;
     private Button goToFeedback;
     private String completed_name, completed_date;
-    private boolean isNew;
+    private boolean isNew,newFeedback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -71,6 +79,9 @@ public class Dashboard extends Fragment
         completed_date = "";
         completed_ts = 0;
         isNew = false;
+        newFeedback = false;
+
+
 
         welcome = (TextView) dashboard.findViewById(R.id.welcome_name);
         addEvent = (ImageView) dashboard.findViewById(R.id.schedule_add_event);
@@ -82,6 +93,72 @@ public class Dashboard extends Fragment
         goToFeedback = dashboard.findViewById(R.id.dashboard_feedback);
 
         getBothActivity();
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", MODE_PRIVATE);
+        isNew = sharedPreferences.getBoolean("isNew", false);        // if the user is new
+        newFeedback = sharedPreferences.getBoolean("newFeedback", false);        // if the user is new
+
+
+
+        if(isNew == true){
+            final TapTargetSequence sequence = new TapTargetSequence(getActivity())
+                    .targets(
+                            TapTarget.forView(dashboard.findViewById(R.id.dashboard_setting), "Customise the App", "Answer the Questionnaire, take the Journey Survey to get started")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(30)
+                                    .id(1),
+                            TapTarget.forView(dashboard.findViewById(R.id.schedule_journey), "View Journey Survey results", "View latest survey results and your growth over time")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(70)
+                                    .id(2),
+                            TapTarget.forView(dashboard.findViewById(R.id.schedule_add_event), "Add Activities to your calendar", "Select your leisure & choose from custom suggested activities to add to your calendar")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(70)
+                                    .id(3),
+                            TapTarget.forView(dashboard.findViewById(R.id.dashboard_upcoming), "View all Upcoming Activities", "Swipe right to view all Upcoming Activities.  Click on the activity tile to view more details")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(70)
+                                    .id(4),
+                            TapTarget.forView(dashboard.findViewById(R.id.dashboard_completed), "Rate & Reflect on your Activities", "Swipe right to view all Completed Activities.  Click on the Feedback button to rate & reflect on your experience")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(70)
+                                    .id(5),
+                            TapTarget.forView(dashboard.findViewById(R.id.schedule_review), "Review all recorded Ratings and Reflections", "View activity completion statistics, past ratings and personal reflections in detail")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(70)
+                                    .id(6)
+                    );
+            sequence.start();
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
+            editor.putBoolean("isNew", false);
+            editor.apply();
+        }
+
+        if(newFeedback == true){
+            final TapTargetSequence sequence = new TapTargetSequence(getActivity())
+                    .targets(
+                            TapTarget.forView(dashboard.findViewById(R.id.dashboard_setting), "oops!", "Let's get journey survey done.")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(30)
+                                    .id(1)
+                    );
+            sequence.start();
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
+            editor.putBoolean("newFeedback", false);
+            editor.apply();
+        }
+
+
+
+
+
 
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,10 +213,10 @@ public class Dashboard extends Fragment
             }
         });
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         String user_name = sharedPreferences.getString("user_name", "");
         user_id = sharedPreferences.getInt("user_id", 0);
-        isNew = sharedPreferences.getBoolean("isNew", false);        // if the user is new
+       // isNew = sharedPreferences.getBoolean("isNew", false);        // if the user is new
 
         welcome.setText("Hey, " + user_name);
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,7 @@ public class Feedback extends AppCompatActivity
     private Button submit;
     private EditText learnt;
     private RequestQueue requestQueue;
+    private boolean newFeedback = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -105,8 +107,13 @@ public class Feedback extends AppCompatActivity
                 {
                     transmitActivity(String.valueOf(completed_ts), learntText.trim(), String.valueOf(stars), "null");
                 }
-                else
-                    Toast.makeText(getApplicationContext(),"what have you learnt?", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(getApplicationContext(), "what have you learnt?", Toast.LENGTH_SHORT).show();
+                }
+
+                SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+                editor.putBoolean("newFeedback", true);
+                editor.apply();
             }
         });
     }

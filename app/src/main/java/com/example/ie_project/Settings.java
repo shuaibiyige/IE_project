@@ -4,15 +4,20 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+
 public class Settings extends AppCompatActivity implements View.OnClickListener
 {
     private Button questionnaire, journey, back;
+    private boolean isSettingNew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +41,30 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
         questionnaire.setOnClickListener(this);
         journey.setOnClickListener(this);
         back.setOnClickListener(this);
+        isSettingNew = false;
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        isSettingNew = sharedPreferences.getBoolean("isSettingNew", false);        // if the user is new
+
+        if(isSettingNew == true){
+            final TapTargetSequence sequence = new TapTargetSequence(this)
+                    .targets(
+                            TapTarget.forView(findViewById(R.id.setting_questionnaire), "Record details about you and your child", "Answer a quick questionnaire about you and your child to generate custom suggestions")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(140)
+                                    .id(1),
+                            TapTarget.forView(findViewById(R.id.setting_journey), "Assess your relationship quality", "Take the quick survey to assess the quality of your parent-child relationship")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(140)
+                                    .id(2)
+                    );
+            sequence.start();
+            SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+            editor.putBoolean("isSettingNew", false);
+            editor.apply();
+        }
+
     }
 
     @Override
@@ -43,6 +72,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
     {
         switch (v.getId())
         {
+
             case R.id.setting_questionnaire:
                 Intent intent = new Intent(getApplicationContext(), Questionnaire.class);         // go to questionnaire page
                 startActivity(intent);

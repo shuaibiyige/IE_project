@@ -80,7 +80,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/settings_button"
-            android:text="MORE"
+            android:text="info"
             android:textColor="#ffffffff"
             android:fontFamily="@font/gotham"/>
 

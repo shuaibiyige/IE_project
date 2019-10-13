@@ -6,6 +6,9 @@ import android.widget.Button;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
+
 
 public class MainActivity extends AppCompatActivity// implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity// implements NavigationView.
         
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
+
+
 
 
         //ActionBar actionBar = getActionBar();

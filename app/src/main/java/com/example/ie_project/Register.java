@@ -165,6 +165,9 @@ public class Register extends AppCompatActivity {
                             editor.putString("user_name", params[0].get(1));
                             editor.putInt("user_id", user_id);
                             editor.putBoolean("isNew", true);          // is a new user
+                            editor.putBoolean("isSettingNew", true);
+                            editor.putBoolean("isJourneyNew", true);
+
                             editor.apply();
 
                             Intent intent = new Intent(Register.this, MainActivity.class);
