@@ -189,7 +189,6 @@ public class Feedback extends AppCompatActivity
             protected Map<String, String> getParams() throws AuthFailureError
             {
                 Map<String, String> map = new HashMap<>();
-                //map.put("recom_id", recom_id);
                 map.put("ts_id", ts_id);
                 map.put("description", description);
                 map.put("rating", rating);

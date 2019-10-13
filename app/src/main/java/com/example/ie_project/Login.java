@@ -160,36 +160,32 @@ public class Login extends AppCompatActivity
                 {
                     int retCode = 0;
                     String user_name = "";
-                    //int isQuestionnaire = 0;
-                    //int isSchedule = 0;
                     int user_id = 0;
                     try
                     {
                         JSONObject jsonObject = new JSONObject(s);
                         retCode = jsonObject.getInt("success");
-                        user_name = jsonObject.getString("userName");
-                        user_id = jsonObject.getInt("userId");
-                        //isQuestionnaire = jsonObject.getInt("isQuestionnaire");
-                        //isSchedule = jsonObject.getInt("isSchedule");
+
+                        if (retCode == 1)
+                        {
+                            user_name = jsonObject.getString("userName");
+                            user_id = jsonObject.getInt("userId");
+
+                            SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+                            editor.putString("user_name", user_name);
+                            editor.putInt("user_id", user_id);
+                            editor.putBoolean("isNew", false);             // not a new user
+                            editor.apply();
+                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"User not found", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     catch (JSONException e)
                     {
                         e.printStackTrace();
-                    }
-
-                    if (retCode == 1)
-                    {
-                        SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
-                        editor.putString("user_name", user_name);
-                        editor.putInt("user_id", user_id);
-                        //editor.putInt("isQuestionnaire", isQuestionnaire);      // 0: not answered, 1: answered
-                        //editor.putInt("isSchedule", isSchedule);
-                        editor.apply();
-                        Intent intent = new Intent(Login.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(),"User not found", Toast.LENGTH_SHORT).show();
                     }
                 }
             };

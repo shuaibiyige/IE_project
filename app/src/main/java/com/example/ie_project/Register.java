@@ -47,10 +47,10 @@ public class Register extends AppCompatActivity {
     private Spinner security_question;
     private int security_id;
     private RequestQueue requestQueue;
-    //private TextView signup_text, email_text, name_text, password_text, confirm_pass_text, security_ques_text, answer_text;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         getSupportActionBar().hide();
@@ -100,7 +100,6 @@ public class Register extends AppCompatActivity {
                 user_info.add(user_email);
                 user_info.add(user_name);
                 user_info.add(user_password);
-                //user_info.add(user_password_confirm);
                 user_info.add(String.valueOf(security_id));
                 user_info.add(user_answer);
 
@@ -158,26 +157,26 @@ public class Register extends AppCompatActivity {
                     {
                         JSONObject jsonObject = new JSONObject(s);
                         retCode = jsonObject.getInt("success");
-                        user_id = jsonObject.getInt("userId");
+                        if (retCode == 1)
+                        {
+                            user_id = jsonObject.getInt("userId");
+
+                            SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+                            editor.putString("user_name", params[0].get(1));
+                            editor.putInt("user_id", user_id);
+                            editor.putBoolean("isNew", true);          // is a new user
+                            editor.apply();
+
+                            Intent intent = new Intent(Register.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Register failed",Toast.LENGTH_SHORT).show();
+                        }
                     }
                     catch (JSONException e)
                     {
                         e.printStackTrace();
-                    }
-
-                    if (retCode == 1)
-                    {
-                        SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
-                        editor.putString("user_name", params[0].get(1));
-                        editor.putInt("user_id", user_id);
-                        editor.putInt("isQuestionnaire", 0);          // new user not finish questionnaire yet
-                        editor.apply();
-
-                        Intent intent = new Intent(Register.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(),"Register failed",Toast.LENGTH_SHORT).show();
                     }
                 }
             };

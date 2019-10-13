@@ -51,13 +51,13 @@ public class Dashboard extends Fragment
     View dashboard;
     private ImageView setting, addEvent, review, journey;
     private TextView welcome;
-    //private LinearLayout linearLayout;
     private RequestQueue requestQueue;
     private SwipeSelector upcomingSwipeSelector, completedSwipeSelector;
     private List<Activity> upcoming, completed;
     private int user_id, completed_ts;
     private Button goToFeedback;
     private String completed_name, completed_date;
+    private boolean isNew;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -70,6 +70,7 @@ public class Dashboard extends Fragment
         completed_name = "";
         completed_date = "";
         completed_ts = 0;
+        isNew = false;
 
         welcome = (TextView) dashboard.findViewById(R.id.welcome_name);
         addEvent = (ImageView) dashboard.findViewById(R.id.schedule_add_event);
@@ -138,6 +139,7 @@ public class Dashboard extends Fragment
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         String user_name = sharedPreferences.getString("user_name", "");
         user_id = sharedPreferences.getInt("user_id", 0);
+        isNew = sharedPreferences.getBoolean("isNew", false);        // if the user is new
 
         welcome.setText("Hey, " + user_name);
 
