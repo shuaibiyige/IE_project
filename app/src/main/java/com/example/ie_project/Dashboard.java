@@ -136,7 +136,7 @@ public class Dashboard extends Fragment
                     );
             sequence.start();
             SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
-            editor.putBoolean("newFeedback", false);
+            editor.putBoolean("isNew", false);
             editor.apply();
         }
 
@@ -151,7 +151,7 @@ public class Dashboard extends Fragment
                     );
             sequence.start();
             SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
-            editor.putBoolean("isNew", false);
+            editor.putBoolean("newFeedback", false);
             editor.apply();
         }
 
