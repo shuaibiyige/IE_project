@@ -1,5 +1,6 @@
 package com.example.ie_project;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -7,13 +8,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -79,6 +86,13 @@ public class History extends AppCompatActivity implements View.OnClickListener
         end_button.setOnClickListener(this);
         all_button.setOnClickListener(this);
         back.setOnClickListener(this);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                alertDialog(mData.get(position));
+            }
+        });
     }
 
     private void initData()
@@ -165,6 +179,33 @@ public class History extends AppCompatActivity implements View.OnClickListener
         }
         else if (input == 1)
             datePickerDialog.show();
+    }
+
+    public void alertDialog(HistoryList historyList)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog dialog = builder.create();
+        View dialogView = View.inflate(this, R.layout.history_dialog, null);
+        dialog.setView(dialogView);
+        Window window = dialog.getWindow();
+        window.setBackgroundDrawable(new BitmapDrawable());        //erase white background
+        dialog.show();
+
+        Button yes_dialog = dialogView.findViewById(R.id.history_dialog_confirm);
+        RatingBar dialog_ratingBar = dialogView.findViewById(R.id.feedback_star);
+        TextView description_dialog = dialogView.findViewById(R.id.history_dialog_description);
+        TextView dialog_title = dialogView.findViewById(R.id.history_dialog_title);
+
+        dialog_title.setText(historyList.getName());
+        description_dialog.setText(historyList.getDescription());
+        dialog_ratingBar.setRating(historyList.getStars());
+
+        yes_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void pieChart(int done, int notDone)
@@ -272,7 +313,8 @@ public class History extends AppCompatActivity implements View.OnClickListener
                             String done_rating = object.getString("activity_rating");
                             String done_date = object.getString("schedule_date");
                             String done_title = object.getString("title");
-                            HistoryList historyList = new HistoryList(done_date, done_title, Integer.valueOf(done_rating), Color.parseColor("#ffa0eb9a"));
+                            String done_learnt = object.getString("description");
+                            HistoryList historyList = new HistoryList(done_date, done_title, Integer.valueOf(done_rating), Color.parseColor("#ffa0eb9a"), done_learnt);
                             doneList.add(historyList);
                         }
 
@@ -281,7 +323,8 @@ public class History extends AppCompatActivity implements View.OnClickListener
                             JSONObject object = notDone_activity.getJSONObject(i);
                             String notDone_date = object.getString("schedule_date");
                             String notDone_title = object.getString("title");
-                            HistoryList historyList = new HistoryList(notDone_date, notDone_title, 100, Color.parseColor("#FFF78C"));
+                            String notDone_reason = object.getString("not_done_reason");
+                            HistoryList historyList = new HistoryList(notDone_date, notDone_title, 100, Color.parseColor("#FFF78C"), notDone_reason);
                             notDoneList.add(historyList);
                         }
 

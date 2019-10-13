@@ -24,7 +24,6 @@ public class Startup extends AppCompatActivity
 
         imageView = findViewById(R.id.logo);
         progressBar = findViewById(R.id.progressbar);
-        //progressBar.setVisibility(View.INVISIBLE);
 
         AnimationSet animationSet = new AnimationSet(true);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0,1);

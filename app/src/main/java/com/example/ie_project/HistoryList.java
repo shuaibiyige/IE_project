@@ -6,13 +6,15 @@ public class HistoryList
     private String name;
     private float stars;
     private int color;
+    private String description;
 
-    public HistoryList(String date, String name, float stars, int color)
+    public HistoryList(String date, String name, float stars, int color, String description)
     {
         this.date = date;
         this.name = name;
         this.stars = stars;
         this.color = color;
+        this.description = description;
     }
 
     public String getDate() {
@@ -45,5 +47,13 @@ public class HistoryList
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -103,7 +103,7 @@ public class Feedback extends AppCompatActivity
                 String learntText = learnt.getText().toString();
                 if (learntText.trim().length() != 0)
                 {
-                    transmitActivity(String.valueOf(completed_ts), learntText, String.valueOf(stars), "null");
+                    transmitActivity(String.valueOf(completed_ts), learntText.trim(), String.valueOf(stars), "null");
                 }
                 else
                     Toast.makeText(getApplicationContext(),"what have you learnt?", Toast.LENGTH_SHORT).show();
@@ -131,7 +131,7 @@ public class Feedback extends AppCompatActivity
                 String feedback = whyNot.getText().toString();
                 if (feedback.trim().length() != 0)
                 {
-                    transmitActivity(String.valueOf(completed_ts), "null", "null", whyNot.getText().toString());
+                    transmitActivity(String.valueOf(completed_ts), "null", "null", whyNot.getText().toString().trim());
 
                     dialog.dismiss();
 
