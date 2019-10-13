@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,6 +14,7 @@ import android.widget.Button;
 public class Settings extends AppCompatActivity implements View.OnClickListener
 {
     private Button questionnaire, journey, back;
+    private boolean isSettingNew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +38,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
         questionnaire.setOnClickListener(this);
         journey.setOnClickListener(this);
         back.setOnClickListener(this);
+        isSettingNew = false;
     }
 
     @Override
@@ -43,6 +46,9 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
     {
         switch (v.getId())
         {
+            SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+            isSettingNew = sharedPreferences.getBoolean("isSettingNew", false);        // if the user is new
+
             case R.id.setting_questionnaire:
                 Intent intent = new Intent(getApplicationContext(), Questionnaire.class);         // go to questionnaire page
                 startActivity(intent);

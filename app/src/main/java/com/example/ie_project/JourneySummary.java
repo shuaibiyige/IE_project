@@ -47,6 +47,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
     private RequestQueue requestQueue;
     private ArrayList<RadarEntry> pre = new ArrayList<>();
     private ArrayList<RadarEntry> cur = new ArrayList<>();
+    private boolean isJourneyNew = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -92,6 +93,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         xAxis.setValueFormatter(new ValueFormatter() {
             private final String[] mActivities = new String[]{"Identification", "Rejection", "Autonomy", "Cohesion", "Conflict"};
 
+
             @Override
             public String getFormattedValue(float value)
             {
@@ -123,6 +125,9 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
     {
         switch (v.getId())
         {
+            SharedPreferences sharedPreferences = getContext().getSharedPreferences("user", MODE_PRIVATE);
+            isJourneyNew = sharedPreferences.getBoolean("isJourneyNew", false);
+
             case R.id.journey_summary_back:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
                 startActivity(intent);
