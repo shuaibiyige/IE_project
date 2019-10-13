@@ -27,7 +27,8 @@
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/image_logo" />
+        app:layout_constraintBottom_toBottomOf="@id/image_logo"
+        android:translationY="-10dp"/>
 
     <TextView
         android:id="@+id/hello"

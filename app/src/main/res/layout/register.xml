@@ -9,21 +9,18 @@
     <TextView
         android:id="@+id/signup_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:fontFamily="@font/gotham"
         android:text="Sign up"
         android:textAllCaps="false"
         android:textColor="#ff707070"
-        android:textSize="25sp"
-        android:autoSizeMaxTextSize="55sp"
-        android:autoSizeMinTextSize="25sp"
-        android:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_percent="0.12"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        android:paddingTop="15dp"/>
 
     <ImageView
         android:layout_width="600dp"
@@ -35,16 +32,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:translationY="-250dp"/>
+        android:translationY="-270dp"/>
 
     <LinearLayout
         android:id="@+id/register_email_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/signup_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.03">
+        app:layout_constraintHeight_percent="0.125">
 
         <TextView
             android:id="@+id/email_text"
@@ -76,11 +72,10 @@
     <LinearLayout
         android:id="@+id/register_name_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/register_email_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.02">
+        app:layout_constraintHeight_percent="0.125">
 
         <TextView
             android:id="@+id/name_text"
@@ -112,11 +107,10 @@
     <LinearLayout
         android:id="@+id/register_password_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/register_name_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.02">
+        app:layout_constraintHeight_percent="0.125">
 
         <TextView
             android:id="@+id/password_text"
@@ -150,11 +144,10 @@
     <LinearLayout
         android:id="@+id/register_confirmPassword_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/register_password_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.02">
+        app:layout_constraintHeight_percent="0.125">
 
         <TextView
             android:id="@+id/confirm_pass_text"
@@ -187,11 +180,10 @@
     <LinearLayout
         android:id="@+id/register_security_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/register_confirmPassword_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.02">
+        app:layout_constraintHeight_percent="0.125">
 
         <TextView
             android:id="@+id/security_ques_text"
@@ -219,11 +211,10 @@
     <LinearLayout
         android:id="@+id/register_answer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/register_security_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.02">
+        app:layout_constraintHeight_percent="0.125">
 
         <TextView
             android:id="@+id/answer_text"
@@ -264,6 +255,6 @@
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/register_answer_layout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
