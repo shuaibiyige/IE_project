@@ -19,6 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -118,6 +120,30 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         l.setYEntrySpace(5f);    // 图例Y间距
         l.setTextSize(10f);
         //l.setTextColor(Color.WHITE);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        isJourneyNew = sharedPreferences.getBoolean("isJourneyNew", false);
+        if(isJourneyNew == true){
+            final TapTargetSequence sequence = new TapTargetSequence(this)
+                    .targets(
+                            TapTarget.forView(findViewById(R.id.journey_history_title_text), "View your results and your growth", "Visualise your relationship journey over time to see improvements in each Parental Focus Area")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(140)
+                                    .id(1),
+                            TapTarget.forView(findViewById(R.id.journey_summary_learn_more), "Learn more about each Parenting Focal Area", "Browse through each parental focus area to understand what they are and how you can improve them in your parenting")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(90)
+                                    .id(2)
+                    );
+            sequence.start();
+            SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+            editor.putBoolean("isJourneyNew", false);
+            editor.apply();
+        }
+
+
     }
 
    @Override
@@ -125,8 +151,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
     {
         switch (v.getId())
         {
-            SharedPreferences sharedPreferences = getContext().getSharedPreferences("user", MODE_PRIVATE);
-            isJourneyNew = sharedPreferences.getBoolean("isJourneyNew", false);
+
 
             case R.id.journey_summary_back:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page

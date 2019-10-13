@@ -65,7 +65,7 @@ public class Dashboard extends Fragment
     private int user_id, completed_ts;
     private Button goToFeedback;
     private String completed_name, completed_date;
-    private boolean isNew;
+    private boolean isNew,newFeedback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -79,6 +79,7 @@ public class Dashboard extends Fragment
         completed_date = "";
         completed_ts = 0;
         isNew = false;
+        newFeedback = false;
 
 
 
@@ -95,6 +96,7 @@ public class Dashboard extends Fragment
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", MODE_PRIVATE);
         isNew = sharedPreferences.getBoolean("isNew", false);        // if the user is new
+        newFeedback = sharedPreferences.getBoolean("newFeedback", false);        // if the user is new
 
 
 
@@ -134,7 +136,23 @@ public class Dashboard extends Fragment
                     );
             sequence.start();
             SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
+            editor.putBoolean("newFeedback", false);
+            editor.apply();
+        }
+
+        if(newFeedback == true){
+            final TapTargetSequence sequence = new TapTargetSequence(getActivity())
+                    .targets(
+                            TapTarget.forView(dashboard.findViewById(R.id.dashboard_setting), "oops!", "Let's get journey survey done.")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(30)
+                                    .id(1)
+                    );
+            sequence.start();
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("user", MODE_PRIVATE).edit();
             editor.putBoolean("isNew", false);
+            editor.apply();
         }
 
 
