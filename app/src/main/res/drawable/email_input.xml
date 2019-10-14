@@ -3,7 +3,7 @@
 
     <!-- Style for "rectangle_" -->
     <!-- Add this snippet to layer-list xml in drawable. -->
-    <item android:width="266dp" android:height="39dp">
+    <item>
         <shape android:shape="rectangle">
             <corners android:radius="20dp" />
             <solid android:color="#ffffffff" />
