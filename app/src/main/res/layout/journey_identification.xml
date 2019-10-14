@@ -30,16 +30,16 @@
 
     <TextView
         android:id="@+id/journey_identification_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
         android:fontFamily="@font/gotham"
-        android:text="Journey Summary"
+        android:text="COHESION"
         android:textAllCaps="false"
         android:textColor="#ff707070"
         android:textSize="26sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07" />
@@ -50,40 +50,26 @@
         android:layout_width="match_parent"
         android:layout_marginBottom="28dp"
         android:gravity="center"
-        android:layout_height="370dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/journey_identification_title_text"
         app:layout_constraintVertical_bias="0.05">
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:scrollbars="horizontal">
+            android:scrollbars="vertical">
+
             <TextView
+                android:id="@+id/journey_identification_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="IDENTIFICATION:
-\nWhat is identification as a family unit?
-Identification evaluates the adolescent’s sense of belonging to the family and recognising parent has
-a mentor and/or role model. From the initial research in all psychotherapeutic disciplines,
-identification with parent has been recognized as being significant in the processes of socialization
-and bonding between child and parent.
-\n\nWhat to do to improve identification as a family unit?
-The best way to improve identification is to lead by example. The ideal behaviour expected from the
-child would be adopted more willingly by the child if the parent becomes a practitioner and satisfies
-the same expectation.
-\n\nExamples of practices that can improve identification:
-\n1. Encourage adopting new habits/practices as a family rather than instructing the child to pick
-them up
-\n2. Incorporate new practices as a change in perspective without pin-pointing the
-limitations/lack of performance of the child in specific areas. This general approach helps
-the child grow without insecurities about their limitations
-\n3. Being a source of positivity and encouragement whenever possible and exposing the child
-sensitively to the limitations of the parent as well. It is always important to show the human
-side of the parent and not just focus on the ideal expectation"/>
+                android:layout_height="match_parent" />
+
         </ScrollView>
     </LinearLayout>
 

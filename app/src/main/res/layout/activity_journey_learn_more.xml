@@ -29,124 +29,161 @@
     <TextView
         android:id="@+id/journey_learn_more_title_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.12"
         android:fontFamily="@font/gotham"
         android:text="Learn more"
         android:textAllCaps="false"
         android:textColor="#ff707070"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/journey_cohesion"
+    <LinearLayout
+        android:id="@+id/learnMore_cohesion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:background="@drawable/settings_button"
-        android:fontFamily="@font/gotham"
-        android:text="COHESION"
-        android:textAllCaps="false"
-        android:textColor="#ffffffff"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_learn_more_title_text"
-        app:layout_constraintVertical_bias="0.06" />
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintTop_toBottomOf="@+id/journey_learn_more_title_text">
 
-    <Button
-        android:id="@+id/journey_conflict"
+        <Button
+            android:id="@+id/journey_cohesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_button"
+            android:fontFamily="@font/gotham"
+            android:text="COHESION"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/learnMore_conflict"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:background="@drawable/settings_button"
-        android:fontFamily="@font/gotham"
-        android:text="CONFLICT"
-        android:textAllCaps="false"
-        android:textColor="#ffffffff"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_cohesion"
-        app:layout_constraintVertical_bias="0.027" />
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintTop_toBottomOf="@+id/learnMore_cohesion" >
 
-    <Button
-        android:id="@+id/journey_identification"
+        <Button
+            android:id="@+id/journey_conflict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_button"
+            android:fontFamily="@font/gotham"
+            android:text="CONFLICT"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/learnMore_identification"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:background="@drawable/settings_button"
-        android:fontFamily="@font/gotham"
-        android:text="IDENTIFICATION"
-        android:textAllCaps="false"
-        android:textColor="#ffffffff"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_conflict"
-        app:layout_constraintVertical_bias="0.033" />
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintTop_toBottomOf="@+id/learnMore_conflict" >
 
-    <Button
-        android:id="@+id/journey_rejection"
+        <Button
+            android:id="@+id/journey_identification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_button"
+            android:fontFamily="@font/gotham"
+            android:text="IDENTIFICATION"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/learnMore_rejection"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:background="@drawable/settings_button"
-        android:fontFamily="@font/gotham"
-        android:text="REJECTION"
-        android:textAllCaps="false"
-        android:textColor="#ffffffff"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_identification"
-        app:layout_constraintVertical_bias="0.037" />
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintTop_toBottomOf="@+id/learnMore_identification" >
 
-    <Button
-        android:id="@+id/journey_autonomy"
+        <Button
+            android:id="@+id/journey_rejection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_button"
+            android:fontFamily="@font/gotham"
+            android:text="REJECTION"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/learnMore_autonomy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/settings_button"
-        android:fontFamily="@font/gotham"
-        android:text="AUTONOMY"
-        android:textAllCaps="false"
-        android:textColor="#ffffffff"
-        android:textSize="18sp"
-        android:layout_marginRight="40dp"
+        android:layout_height="0dp"
         android:layout_marginLeft="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journey_rejection"
-        app:layout_constraintVertical_bias="0.06" />
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintTop_toBottomOf="@+id/learnMore_rejection">
 
-    <Button
-        android:id="@+id/journey_learn_more_back"
+        <Button
+            android:id="@+id/journey_autonomy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_button"
+            android:fontFamily="@font/gotham"
+            android:text="AUTONOMY"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/learnMore_back"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:textColor="#ffffffff"
-        android:fontFamily="@font/gotham"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        android:layout_marginRight="80dp"
+        android:layout_height="0dp"
         android:layout_marginLeft="80dp"
-        android:background="@drawable/settings_button"
-        app:layout_constraintTop_toBottomOf="@+id/journey_autonomy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.4"/>
+        android:layout_marginRight="80dp"
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintTop_toBottomOf="@+id/learnMore_autonomy">
+
+        <Button
+            android:id="@+id/journey_learn_more_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textColor="#ffffffff"
+            android:fontFamily="@font/gotham"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:background="@drawable/settings_button" />
+
+    </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
