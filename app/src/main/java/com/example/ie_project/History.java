@@ -324,7 +324,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
                             String notDone_date = object.getString("schedule_date");
                             String notDone_title = object.getString("title");
                             String notDone_reason = object.getString("not_done_reason");
-                            HistoryList historyList = new HistoryList(notDone_date, notDone_title, 100, Color.parseColor("#FFF78C"), notDone_reason);
+                            HistoryList historyList = new HistoryList(notDone_date, notDone_title, 0, Color.parseColor("#FFF78C"), notDone_reason);
                             notDoneList.add(historyList);
                         }
 

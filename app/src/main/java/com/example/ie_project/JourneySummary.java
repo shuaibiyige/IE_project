@@ -169,7 +169,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
 
     private void setData(ArrayList<RadarEntry> previous, ArrayList<RadarEntry> current)
     {
-        RadarDataSet set1 = new RadarDataSet(previous, "Previous");
+        RadarDataSet set1 = new RadarDataSet(previous, "Last Survey");
 
         set1.setColor(Color.rgb(103, 110, 129));
         set1.setFillColor(Color.rgb(103, 110, 129));
@@ -179,10 +179,10 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         set1.setDrawHighlightCircleEnabled(true);
         set1.setDrawHighlightIndicators(false);
 
-        RadarDataSet set2 = new RadarDataSet(current, "Current");
+        RadarDataSet set2 = new RadarDataSet(current, "Current Survey");
 
-        set2.setColor(Color.rgb(121, 162, 175));
-        set2.setFillColor(Color.rgb(121, 162, 175));
+        set2.setColor(Color.rgb(177, 156, 217));
+        set2.setFillColor(Color.rgb(177, 156, 217));
         set2.setDrawFilled(true);
         set2.setFillAlpha(180);
         set2.setLineWidth(2f);
@@ -194,7 +194,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         sets.add(set2);
 
         RadarData data = new RadarData(sets);
-        data.setValueTextSize(8f);
+        data.setValueTextSize(10f);
         data.setDrawValues(false);
         data.setValueTextColor(Color.WHITE);
 
@@ -212,8 +212,6 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
 
         readDataFromDbCurrent(user_id);
         readDataFromDbPrevious(user_id);
-        //if (confirm1 == 1 && confirm2 == 1)
-            //setData(pre, cur);
     }
 
     private void readDataFromDbCurrent(final int id)

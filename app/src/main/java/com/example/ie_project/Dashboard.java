@@ -143,7 +143,7 @@ public class Dashboard extends Fragment
         if(newFeedback == true){
             final TapTargetSequence sequence = new TapTargetSequence(getActivity())
                     .targets(
-                            TapTarget.forView(dashboard.findViewById(R.id.dashboard_setting), "oops!", "Let's get journey survey done.")
+                            TapTarget.forView(dashboard.findViewById(R.id.dashboard_setting), "Time to Re-evaluate!", "Redo the Journey Survey to evaluate your progress!")
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.tutorial_color_1)
                                     .targetRadius(30)
