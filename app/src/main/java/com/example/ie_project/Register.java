@@ -174,11 +174,12 @@ public class Register extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else {
-                            Toast.makeText(getApplicationContext(),"Register failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"User existed",Toast.LENGTH_SHORT).show();
                         }
                     }
                     catch (JSONException e)
                     {
+                        Toast.makeText(getApplicationContext(),"Register failed",Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
