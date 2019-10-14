@@ -12,7 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class JourneyCohesion extends AppCompatActivity implements View.OnClickListener {
+public class JourneyCohesion extends AppCompatActivity implements View.OnClickListener
+{
     private Button back;
     private TextView textView;
     private final static String HTML_TEXT = "<p><strong>What is cohesion?</strong></p>\n" +

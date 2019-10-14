@@ -62,7 +62,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private ImageView yes_schedule;
     private TextView textView;
     private FoldingCell fc1, fc2;
-    private Button select1, select2, viewMap1, viewMap2;
+    private Button select1, select2, viewMap1, viewMap2, back;
     private Animation ani2;
     private int user_id, activity1_duration, activity2_duration, activity_id1, activity_id2;
     private String startTime, endTime, chosenDate, activity_type, activity_money, activity_travel;
@@ -98,6 +98,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         viewMap1 = findViewById(R.id.activity1_viewMap);
         viewMap2 = findViewById(R.id.activity2_viewMap);
         textView = findViewById(R.id.select_free_time_text);
+        back = findViewById(R.id.schedule_back);
 
         activity_title1_view = findViewById(R.id.activity1_title);
         activity_title2_view = findViewById(R.id.activity2_title);
@@ -146,6 +147,14 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         init(startList);
         calendarInit();
         initNewSpinner();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Schedule.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         viewMap1.setOnClickListener(new View.OnClickListener() {
             @Override

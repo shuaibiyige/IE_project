@@ -78,13 +78,6 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         chart.setWebColorInner(Color.LTGRAY);
         chart.setWebAlpha(100);
 
-        // create a custom MarkerView (extend MarkerView) and specify the layout
-        // to use for it
-//        MarkerView mv = new RadarMarkerView(this, R.layout.radar_markerview);
-//        mv.setChartView(chart); // For bounds control
-//        chart.setMarker(mv); // Set the marker to the chart
-
-
         chart.animateXY(1400, 1400, Easing.EaseInOutQuad);
 
         XAxis xAxis = chart.getXAxis();
@@ -142,8 +135,6 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
             editor.putBoolean("isJourneyNew", false);
             editor.apply();
         }
-
-
     }
 
    @Override
@@ -151,8 +142,6 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
     {
         switch (v.getId())
         {
-
-
             case R.id.journey_summary_back:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
                 startActivity(intent);
