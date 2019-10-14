@@ -30,16 +30,16 @@
 
     <TextView
         android:id="@+id/journey_autonomy_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
         android:fontFamily="@font/gotham"
-        android:text="Journey Summary"
+        android:text="AUTONOMY"
         android:textAllCaps="false"
         android:textColor="#ff707070"
         android:textSize="26sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07" />
@@ -63,25 +63,9 @@
             android:layout_marginLeft="10dp"
             android:scrollbars="horizontal">
             <TextView
+                android:id="@+id/journey_autonomy_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AUTONOMY:
-\nWhat is autonomy?
-Autonomy evaluates how an adolescent is prepared for independent decision making by the parent.
-Granting appropriate autonomy and mutual influence between parent and child plays an important
-role in fostering trust.
-\n\nWhat to do to improve autonomy?
-Prioritise the decisions to be made and slowly guide the child through them from the lowest to
-highest priority decisions as they enter adolescence. Dissuade comparisons between peers, siblings,
-cousins or any others when it comes to granting and exercising autonomy.
-\n\nExamples of practices that can your approach to autonomy:
-\n1. Prepare the child by discussing probable scenarios, the different viable decisions and the
-thought process behind each decision
-\n2. Support the child in the initial few instances in decision making and encourage healthy
-exploration of different options before making the final decision
-\n3. Provide positive validation to good decision making
-\n4. Allow children to learn from their mistakes and provide gentle constructive feedback on
-areas of improvement"/>
+                android:layout_height="match_parent" />
         </ScrollView>
     </LinearLayout>
 

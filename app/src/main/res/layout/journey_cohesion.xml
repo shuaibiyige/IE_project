@@ -30,16 +30,16 @@
 
     <TextView
         android:id="@+id/journey_cohesion_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
         android:fontFamily="@font/gotham"
-        android:text="Journey Summary"
+        android:text="COHESION"
         android:textAllCaps="false"
         android:textColor="#ff707070"
         android:textSize="26sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07" />
@@ -63,22 +63,9 @@
             android:layout_marginLeft="10dp"
             android:scrollbars="horizontal">
             <TextView
+                android:id="@+id/journey_cohesion_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="COHESION:\nWhat is cohesion?
-\nCohesion evaluates what is perceived as parental emotional warmth and bonding, intimacy, mutual
-support, care and reliability. Cohesion is deemed to be a core construct of the parent-child
-relationship.
-\n\nWhat to do to improve cohesion?
-\nEmbed a sense of stability with each other by means of simple practices. Consistent implementation
-of such practices can induce better quality bonding and help the child open-up more frequently and/or
-willingly.
-\n\nExamples of practices that can improve cohesion:
-\n1. Having regular meals together
-\n2. Establishing daily/weekly/monthly family rituals such as movie nights, spa evenings,
-biking/walking exploration tours etc…
-\n3. Actively expressing interest in your child’s life and volunteering to share information about
-yours to illustrate genuine willingness to be part of each other’s life (without judgement)"/>
+                android:layout_height="match_parent" />
         </ScrollView>
     </LinearLayout>
 

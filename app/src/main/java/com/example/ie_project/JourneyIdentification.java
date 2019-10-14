@@ -16,14 +16,21 @@ public class JourneyIdentification extends AppCompatActivity implements View.OnC
 {
     private Button back;
     private TextView textView;
-    private final static String HTML_TEXT = "<p><strong>What is cohesion?</strong></p>\n" +
-            "<p>Cohesion evaluates what is perceived as parental emotional warmth and bonding, intimacy, mutual support, care and reliability. Cohesion is deemed to be a core construct of the parent-child relationship.</p>\n" +
-            "<p><strong>What to do to improve cohesion?</strong></p>\n" +
-            "<p>Embed a sense of stability with each other by means of simple practices. Consistent implementation of such practices can induce better quality bonding and help the child open-up more frequently and/or willingly.</p>\n" +
-            "<p><strong>Examples of practices that can improve cohesion:</strong></p>\n" +
-            "<p>1. Having regular meals together</p>\n" +
-            "<p>2. Establishing daily/weekly/monthly family rituals such as movie nights, spa evenings, biking/walking exploration tours etc...</p>\n" +
-            "<p>3. Actively expressing interest in your child’s life and volunteering to share information about yours to illustrate genuine willingness to be part of each other’s life (without judgement)</p>";
+    private final static String HTML_TEXT = "<p><strong>What is identification as a family unit?</strong></p>\n" +
+            "<p>Identification evaluates the adolescent’s sense of belonging to the family and recognising parent has \n" +
+            "a mentor and/or role model. From the initial research in all psychotherapeutic disciplines,\n" +
+            "identification with parent has been recognized as being significant in the processes of socialization \n" +
+            "and bonding between child and parent.</p>\n" +
+            "<p><strong>What to do to improve identification as a family unit?</strong></p>\n" +
+            "<p>The best way to improve identification is to lead by example. The ideal behaviour expected from the child would be adopted more willingly by the child if the parent becomes a practitioner and satisfies the same expectation. \n</p>\n" +
+            "<p><strong>Examples of practices that can improve identification: \n</strong></p>\n" +
+            "<p>1. Encourage adopting new habits/practices as a family rather than instructing the child to pick \n" +
+            "them up</p>\n" +
+            "<p>2. Incorporate new practices as a change in perspective without pin-pointing the \n" +
+            "limitations/lack of performance of the child in specific areas. This general approach helps the child grow without insecurities about their limitations\n</p>\n" +
+            "<p>3. Being a source of positivity and encouragement whenever possible and exposing the child \n" +
+            "sensitively to the limitations of the parent as well. It is always important to show the human \n" +
+            "side of the parent and not just focus on the ideal expectation</p>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

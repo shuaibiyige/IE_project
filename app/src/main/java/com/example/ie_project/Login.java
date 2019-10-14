@@ -72,8 +72,8 @@ public class Login extends AppCompatActivity
         int width = list[0];
         int height = list[1];
 
-        hello.setTextSize((height / hello.getTextSize()) * 25);
-        signIn_text.setTextSize(height / signIn_text.getTextSize() * 2);
+//        hello.setTextSize((height / hello.getTextSize()) * 25);
+//        signIn_text.setTextSize(height / signIn_text.getTextSize() * 2);
 
         signIn.setOnClickListener(new View.OnClickListener()
         {

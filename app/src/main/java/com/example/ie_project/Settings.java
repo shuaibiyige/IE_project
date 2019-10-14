@@ -16,7 +16,7 @@ import com.getkeepsafe.taptargetview.TapTargetSequence;
 
 public class Settings extends AppCompatActivity implements View.OnClickListener
 {
-    private Button questionnaire, journey, back;
+    private Button questionnaire, journey,viewTutorial,aboutUs, back;
     private boolean isSettingNew;
 
     @Override
@@ -32,13 +32,20 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
 
         questionnaire = findViewById(R.id.setting_questionnaire);
         journey = findViewById(R.id.setting_journey);
+        viewTutorial = findViewById(R.id.setting_view_tutorial);
+        aboutUs = findViewById(R.id.setting_about_us);
+
         back = findViewById(R.id.setting_back);
 
         questionnaire.setAnimation(ani2);
         journey.setAnimation(ani2);
+        viewTutorial.setAnimation(ani2);
+        aboutUs.setAnimation(ani2);
         back.setAnimation(ani2);
 
         questionnaire.setOnClickListener(this);
+        viewTutorial.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
         journey.setOnClickListener(this);
         back.setOnClickListener(this);
         isSettingNew = false;
@@ -80,6 +87,15 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
             case R.id.setting_journey:
                 Intent intent2 = new Intent(getApplicationContext(), JourneyQuestionnaire.class);     // go to journey page
                 startActivity(intent2);
+                break;
+            case R.id.setting_view_tutorial:
+                SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+                editor.putBoolean("isSettingNew", true);
+                editor.putBoolean("isNew", true);
+                editor.putBoolean("isJourneyNew", true);
+                editor.apply();
+                Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);     // go to journey page
+                startActivity(intent3);
                 break;
             case R.id.setting_back:
                 Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);      // back to main page

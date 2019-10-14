@@ -30,16 +30,16 @@
 
     <TextView
         android:id="@+id/journey_rejection_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
         android:fontFamily="@font/gotham"
-        android:text="Journey Summary"
+        android:text="REJECTION"
         android:textAllCaps="false"
         android:textColor="#ff707070"
         android:textSize="26sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07" />
@@ -63,27 +63,9 @@
             android:layout_marginLeft="10dp"
             android:scrollbars="horizontal">
             <TextView
+                android:id="@+id/journey_rejection_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="REJECTION:
-\nWhat is rejection?
-Rejection evaluates the parent’s priority to the adolescent’s feelings. If there is a consideration on the
-positive impact of the actions discussed and undertaken in the family on the adolescent’s personal
-life. Research concludes that children who experience rejection/neglect in their parental relationship
-detach themselves and report different forms of psychological mal-adjustment.
-\n\nWhat to do to improve handling rejection?
-Adopt an inclusive approach to decision making by providing an opportunity for the child to express
-their views and/or concerns in a safe space. Cultivate a transparent sharing atmosphere at home and
-initiate expressing feelings on recent activities, situations and experiences.
-\n\nExamples of practices that can improve handling rejection:
-\n1. Avoid vehement opposition to innocent views expressions. Exercise resistance and listen to
-their genuine views the first time around. This reduces the secondary backlash in the future
-\n2. Engage actively with interest in your child’s life and share your positive outlook towards the
-improvement
-\n3. Approach sanctioning inappropriate actions/behaviour with a gentle, but firm demeanour.
-Be patient and guide the child through your reasoning without being judgemental
-\n4. Acknowledge the nature of humans to err and support acceptance of limitations, rejections
-and failures in life"/>
+                android:layout_height="match_parent" />
         </ScrollView>
     </LinearLayout>
 

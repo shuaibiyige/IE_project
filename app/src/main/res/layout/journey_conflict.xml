@@ -30,16 +30,16 @@
 
     <TextView
         android:id="@+id/journey_conflict_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
         android:fontFamily="@font/gotham"
-        android:text="Journey Summary"
+        android:text="CONFLICT"
         android:textAllCaps="false"
         android:textColor="#ff707070"
         android:textSize="26sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07" />
@@ -63,23 +63,9 @@
             android:layout_marginLeft="10dp"
             android:scrollbars="horizontal">
             <TextView
+                android:id="@+id/journey_conflict_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CONFLICT:
-\nWhat is conflict and bonding beyond conflict? \nConflict evaluates the experiences of conflict of views between the parent and the child. Chronic or
-very frequent conflict usually results from underlying difficulties in the relationship. Lack of adequate
-family coping strategies cause a distress in the relationship.
-\n\nWhat to do to improve bonding beyond conflict?
-\nActive listening during conflicts and absorbing the details is essential. Patient, persuasive approach to
-dealing with conflicts by respecting opposing point of views is recommended. Exhibiting such
-characteristics by practices to the child re-enforces these concepts enabling reciprocation.
-\n\nExamples of practices that can improve bonding beyond conflicts:
-\n1. Implementing a habit of taking time-outs during sensitive conversationsto give some personal
-space to collect individual thoughts
-\n2. Active listening and empathising the conflicting point of view when it is proposed/brought up
-first
-\n3. Using non-judgemental tones and statements such as “I feel/I worry/My concern is” instead
-of accusatory statements"/>
+                android:layout_height="match_parent" />
         </ScrollView>
     </LinearLayout>
 
