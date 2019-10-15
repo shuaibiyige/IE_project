@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -16,7 +17,7 @@ import com.getkeepsafe.taptargetview.TapTargetSequence;
 
 public class Settings extends AppCompatActivity implements View.OnClickListener
 {
-    private Button questionnaire, journey,viewTutorial,aboutUs, back;
+    private Button questionnaire, journey, viewTutorial, aboutUs, back;
     private boolean isSettingNew;
 
     @Override
@@ -84,7 +85,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
     {
         switch (v.getId())
         {
-
             case R.id.setting_questionnaire:
                 Intent intent = new Intent(getApplicationContext(), Questionnaire.class);         // go to questionnaire page
                 startActivity(intent);
@@ -106,7 +106,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
                 Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);      // back to main page
                 startActivity(anotherIntent);
                 break;
-             default:
+            case R.id.setting_about_us:
+                Uri uri = Uri.parse("https://www.letosaid.cf");
+                Intent intent4 = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent4);
+            default:
                 break;
         }
     }
