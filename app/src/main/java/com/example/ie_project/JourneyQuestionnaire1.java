@@ -70,7 +70,7 @@ public class JourneyQuestionnaire1 extends Fragment
         initView();
 
         TapTargetView.showFor(getActivity(),                 // `this` is an Activity
-                TapTarget.forView(journeyQuestionnaire.findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
+                TapTarget.forView(journeyQuestionnaire.findViewById(R.id.journey_questionnaire_you_text), "Swipe right to answer all the questions!")
                         .tintTarget(false)
                         .outerCircleColor(R.color.tutorial_color_1)
                         .targetRadius(140)
