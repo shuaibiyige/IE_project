@@ -71,12 +71,12 @@ public class Questionnaire1 extends Fragment
 //                );
 //        sequence.start();
 
-//        TapTargetView.showFor(getActivity(),                 // `this` is an Activity
-//                TapTarget.forView(getActivity().findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
-//                        .tintTarget(false)
-//                        .outerCircleColor(R.color.tutorial_color_1)
-//                        .targetRadius(140)
-//        );
+        TapTargetView.showFor(getActivity(),                 // `this` is an Activity
+                TapTarget.forView(question1.findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
+                        .tintTarget(false)
+                        .outerCircleColor(R.color.tutorial_color_1)
+                        .targetRadius(140)
+        );
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
