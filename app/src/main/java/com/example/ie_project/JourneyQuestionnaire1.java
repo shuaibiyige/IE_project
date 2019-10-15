@@ -33,6 +33,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -66,6 +68,13 @@ public class JourneyQuestionnaire1 extends Fragment
 
         requestQueue = Volley.newRequestQueue(getContext());
         initView();
+
+        TapTargetView.showFor(getActivity(),                 // `this` is an Activity
+                TapTarget.forView(journeyQuestionnaire.findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
+                        .tintTarget(false)
+                        .outerCircleColor(R.color.tutorial_color_1)
+                        .targetRadius(140)
+        );
 
         radioGroup_journey_q1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {

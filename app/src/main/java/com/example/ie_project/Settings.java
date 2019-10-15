@@ -95,13 +95,15 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent2);
                 break;
             case R.id.setting_view_tutorial:
+
+                Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
                 editor.putBoolean("isSettingNew", true);
                 editor.putBoolean("isNew", true);
                 editor.putBoolean("isJourneyNew", true);
-                editor.apply();
-                Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);     // go to journey page
+                editor.apply();// go to journey page
                 startActivity(intent3);
+
                 break;
             case R.id.setting_back:
                 Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);      // back to main page
