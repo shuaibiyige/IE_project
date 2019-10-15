@@ -54,13 +54,14 @@
 
         <TextView
             android:id="@+id/dashboard_upcoming"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upcoming"
             android:fontFamily="@font/gotham"
             android:textSize="22sp"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginRight="40dp"
+            android:layout_gravity="left"/>
 
         <com.roughike.swipeselector.SwipeSelector
             android:id="@+id/upcomingSelector"
@@ -84,13 +85,14 @@
 
         <TextView
             android:id="@+id/dashboard_completed"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Completed"
             android:fontFamily="@font/gotham"
             android:textSize="22sp"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginRight="40dp"
+            android:layout_gravity="left"/>
 
         <com.roughike.swipeselector.SwipeSelector
             android:id="@+id/completedSelector"

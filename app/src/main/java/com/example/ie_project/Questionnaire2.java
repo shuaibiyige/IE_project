@@ -1,6 +1,7 @@
 package com.example.ie_project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,7 +50,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Questionnaire2 extends Fragment
 {
     View question2;
-    private Button submit;
+    private Button submit, back;
     private RadioGroup radioGroup_gender, radioGroup, radioGroup_restrictions;
     private EditText child_name_edit, other_restrictions_text, other_hobbies_text, other_description_text;
     private CheckBox reading, dancing, music, sport, video_game, other_hobbies, adventure, health, tech, art, indoorsy, other_description;
@@ -140,6 +141,13 @@ public class Questionnaire2 extends Fragment
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntent = new Intent(getActivity(), MainActivity.class);      // back to main page
+                startActivity(backIntent);
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,9 +256,7 @@ public class Questionnaire2 extends Fragment
         indoorsy = question2.findViewById(R.id.indoorsy_child);
         other_description = question2.findViewById(R.id.describe_other_child);
         other_description_text = question2.findViewById(R.id.type_description_child);
-//        scrollView = question2.findViewById(R.id.scrollView_down);
-//        swipe_right = question2.findViewById(R.id.questionnaire2_swipe_right);
-//        swipe_left = question2.findViewById(R.id.questionnaire2_swipe_left);
+        back = question2.findViewById(R.id.questionnaire2_back);
 
         long time = System.currentTimeMillis();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

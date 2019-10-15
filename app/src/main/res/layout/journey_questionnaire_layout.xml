@@ -1040,6 +1040,22 @@
 
     </com.example.ie_project.SlowScrollView>
 
+    <Button
+        android:id="@+id/questionnaire_journey_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textColor="#ffffffff"
+        android:fontFamily="@font/gotham"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="80dp"
+        android:background="@drawable/settings_button"
+        app:layout_constraintTop_toBottomOf="@+id/journey_question_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
 
     <ImageView
         android:layout_width="600dp"

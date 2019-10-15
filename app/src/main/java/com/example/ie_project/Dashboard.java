@@ -279,6 +279,15 @@ public class Dashboard extends Fragment
 
                     swipeSelector(upcomingSwipeSelector, upcoming);
                     swipeSelector(completedSwipeSelector, completed);
+
+                    if (completed.size() == 0)
+                    {
+                        goToFeedback.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        goToFeedback.setVisibility(View.VISIBLE);
+                    }
                 }
                 catch (JSONException e)
                 {

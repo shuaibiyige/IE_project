@@ -56,7 +56,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class JourneyQuestionnaire1 extends Fragment
 {
     private View journeyQuestionnaire;
-    private Button submit;
+    private Button submit, back;
     private RadioGroup radioGroup_journey_q1, radioGroup_journey_q2, radioGroup_journey_q3, radioGroup_journey_q4, radioGroup_journey_q5, radioGroup_journey_q6, radioGroup_journey_q7, radioGroup_journey_q8, radioGroup_journey_q9,radioGroup_journey_q10;
     private int q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, identification, rejection, autonomy, cohesion, conflict, user_id;
     private RequestQueue requestQueue;
@@ -321,6 +321,14 @@ public class JourneyQuestionnaire1 extends Fragment
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         user_id = sharedPreferences.getInt("user_id", 0);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntent = new Intent(getActivity(), MainActivity.class);      // back to main page
+                startActivity(backIntent);
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -376,13 +384,14 @@ public class JourneyQuestionnaire1 extends Fragment
         radioGroup_journey_q9 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q9);
         radioGroup_journey_q10 = journeyQuestionnaire.findViewById(R.id.radioGroup_journey_q10);
         submit = journeyQuestionnaire.findViewById(R.id.journey_submit);
+        back = journeyQuestionnaire.findViewById(R.id.questionnaire_journey_back);
         identification = 0;
         rejection = 0;
         autonomy = 0;
         cohesion = 0;
         conflict = 0;
         user_id = 0;
-        q1=q2=q3=q4=q5=q6=q7=q8=q9=q10=0;
+        q1 = q2 = q3 = q4 = q5 = q6 = q7 = q8 = q9 = q10 = 0;
     }
 
     public void transSurveyData(final int identification, final int rejection, final int autonomy, final int cohesion, final int conflict, final int user_id)
