@@ -2,6 +2,7 @@ package com.example.ie_project;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -44,7 +45,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Questionnaire1 extends Fragment
 {
     View question1;
-    private Button next;
+    private Button next, back;
     private String gender, transport, age, restriction, area_long, area_lat;
     private RadioButton age_30, age_35, age_40, age_45up;
     private RadioGroup radioGroup_gender, radioGroup_transport, radioGroup_age1, radioGroup_age2, radioGroup_restrictions;
@@ -171,6 +172,14 @@ public class Questionnaire1 extends Fragment
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntent = new Intent(getActivity(), MainActivity.class);      // back to main page
+                startActivity(backIntent);
+            }
+        });
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -265,6 +274,7 @@ public class Questionnaire1 extends Fragment
         radioGroup_age2 = question1.findViewById(R.id.radioGroup_age2);
         radioGroup_restrictions = question1.findViewById(R.id.radioGroup_restrictions);
         next = question1.findViewById(R.id.next_ques);
+        back = question1.findViewById(R.id.questionnaire1_back);
         dog = question1.findViewById(R.id.dog);
         cat = question1.findViewById(R.id.cat);
         other_pet = question1.findViewById(R.id.other_pet);
