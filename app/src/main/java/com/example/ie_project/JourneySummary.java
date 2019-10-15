@@ -44,7 +44,7 @@ import java.util.Map;
 public class JourneySummary extends AppCompatActivity implements View.OnClickListener
 {
     private RadarChart chart;
-    private int confirm1, confirm2;
+    //private int confirm1, confirm2;
     private Button back,learnMore;
     private RequestQueue requestQueue;
     private ArrayList<RadarEntry> pre = new ArrayList<>();
@@ -116,7 +116,9 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         isJourneyNew = sharedPreferences.getBoolean("isJourneyNew", false);
-        if(isJourneyNew == true){
+
+        if(isJourneyNew == true)
+        {
             final TapTargetSequence sequence = new TapTargetSequence(this)
                     .targets(
                             TapTarget.forView(findViewById(R.id.journey_history_title_text), "View your results and your growth", "Visualise your relationship journey over time to see improvements in each Parental Focus Area")
@@ -196,8 +198,8 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         SharedPreferences sharedPreferences = getApplication().getSharedPreferences("user", Context.MODE_PRIVATE);
         int user_id = sharedPreferences.getInt("user_id", 0);
 
-        confirm1 = 0;
-        confirm2 = 0;
+        //confirm1 = 0;
+        //confirm2 = 0;
 
         readDataFromDbCurrent(user_id);
         readDataFromDbPrevious(user_id);

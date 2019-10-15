@@ -150,8 +150,8 @@
                 android:scaleType="centerInside"
                 android:background="@drawable/settings_button"
                 android:gravity="center"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
 
             <Button
                 android:id="@+id/schedule_back"
@@ -163,8 +163,8 @@
                 android:textAllCaps="false"
                 android:textColor="#ffffffff"
                 android:fontFamily="@font/gotham"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
 
         </LinearLayout>
 

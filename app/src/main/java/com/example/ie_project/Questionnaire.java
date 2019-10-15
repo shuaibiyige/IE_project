@@ -21,7 +21,6 @@ public class Questionnaire extends AppCompatActivity
         setContentView(R.layout.activity_questionnaire);
         getSupportActionBar().hide();
 
-
         fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire1()).commit();
     }
 }

@@ -28,7 +28,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        Animation ani1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.register_anim);
+        //Animation ani1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.register_anim);
         Animation ani2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.dashboard_image);
 
         questionnaire = findViewById(R.id.setting_questionnaire);
@@ -53,7 +53,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         isSettingNew = sharedPreferences.getBoolean("isSettingNew", false);        // if the user is new
 
-        if(isSettingNew == true){
+        if(isSettingNew == true)
+        {
             final TapTargetSequence sequence = new TapTargetSequence(this)
                     .targets(
                             TapTarget.forView(findViewById(R.id.setting_questionnaire), "Record details about you and your child", "Answer a quick questionnaire about you and your child to generate custom suggestions")

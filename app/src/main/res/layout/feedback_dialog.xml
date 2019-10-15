@@ -39,18 +39,39 @@
             android:padding="10dp"
             android:background="@drawable/feedback_learned"/>
 
-        <Button
-            android:id="@+id/feedback_save_dialog"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:background="@drawable/dialog_yes"
-            android:paddingBottom="10dp"
-            android:textColor="#ffffffff"
-            android:textSize="16sp"
-            android:textAllCaps="false"
-            android:fontFamily="@font/gotham"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/feedback_save_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save"
+                android:background="@drawable/settings_button"
+                android:textColor="#ffffffff"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/gotham"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/feedback_notDone_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:background="@drawable/settings_button"
+                android:text="Back"
+                android:textColor="#ffffffff"
+                android:fontFamily="@font/gotham"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

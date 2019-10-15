@@ -69,7 +69,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     private RequestQueue requestQueue;
     private CalendarDay calendarDay;
     private TextView activity_title1_view, activity_name1_view, activity_description1_view, activity_address1_view, activity_title2_view, activity_name2_view, activity_description2_view, activity_address2_view;
-    private String money1, latitude1, longitude1, money2, latitude2, longitude2, activity_title1, activity_name1, activity_description1, activity_address1, activity_title2, activity_name2, activity_description2, activity_address2;
+    private String latitude1, longitude1, latitude2, longitude2, activity_title1, activity_name1, activity_description1, activity_address1, activity_title2, activity_name2, activity_description2, activity_address2;
     private String activity1_startTime, activity2_startTime;
     private CalendarEvent calendarEvent;
 

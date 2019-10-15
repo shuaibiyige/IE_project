@@ -81,8 +81,6 @@ public class Dashboard extends Fragment
         isNew = false;
         newFeedback = false;
 
-
-
         welcome = (TextView) dashboard.findViewById(R.id.welcome_name);
         addEvent = (ImageView) dashboard.findViewById(R.id.schedule_add_event);
         review = (ImageView) dashboard.findViewById(R.id.schedule_review);
@@ -140,7 +138,8 @@ public class Dashboard extends Fragment
             editor.apply();
         }
 
-        if(newFeedback == true){
+        if(newFeedback == true)
+        {
             final TapTargetSequence sequence = new TapTargetSequence(getActivity())
                     .targets(
                             TapTarget.forView(dashboard.findViewById(R.id.dashboard_setting), "Time to Re-evaluate!", "Redo the Journey Survey to evaluate your progress!")
@@ -154,11 +153,6 @@ public class Dashboard extends Fragment
             editor.putBoolean("newFeedback", false);
             editor.apply();
         }
-
-
-
-
-
 
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override

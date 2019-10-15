@@ -66,40 +66,6 @@ public class Questionnaire2 extends Fragment
         requestQueue = Volley.newRequestQueue(getActivity());
 
         initView();
-//        offset = 0;
-//
-//        swipe_right.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                scrollView.post(new Runnable() {
-//                    @Override
-//                    public void run()
-//                    {
-//                        if (offset < 2500) {
-//                            offset = offset + 930;
-//                            scrollView.smoothScrollTo(offset, 0);
-//                        }
-//                    }});
-//            }
-//        });
-//
-//        swipe_left.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                scrollView.post(new Runnable() {
-//                    @Override
-//                    public void run()
-//                    {
-//                        if (offset > 0)
-//                        {
-//                            offset = offset - 930;
-//                            scrollView.smoothScrollTo(offset, 0);
-//                        }
-//                    }});
-//            }
-//        });
 
 //        final TapTargetSequence sequence = new TapTargetSequence(getActivity())
 //                .targets(

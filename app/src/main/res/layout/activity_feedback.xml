@@ -183,17 +183,40 @@
                 android:background="@drawable/feedback_learned"
                 android:maxLines="3"/>
 
-            <Button
-                android:id="@+id/submit_feedback"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/dialog_yes"
-                android:textAllCaps="false"
-                android:text="Submit"
-                android:layout_marginTop="20dp"
-                android:textSize="16sp"
-                android:textColor="#ffffffff"
-                android:paddingBottom="10dp" />
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/submit_feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/settings_button"
+                    android:textAllCaps="false"
+                    android:text="Submit"
+                    android:textSize="16sp"
+                    android:textColor="#ffffffff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"/>
+
+                <Button
+                    android:id="@+id/feedback_done_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:background="@drawable/settings_button"
+                    android:text="Back"
+                    android:textColor="#ffffffff"
+                    android:fontFamily="@font/gotham"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"/>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 

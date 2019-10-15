@@ -47,7 +47,7 @@ public class Feedback extends AppCompatActivity
     private TextView activity_name, activity_time;
     private String completed_name, completed_date;
     private int stars, completed_ts;
-    private Button submit;
+    private Button submit, done_back;
     private EditText learnt;
     private RequestQueue requestQueue;
     private boolean newFeedback = false;
@@ -68,6 +68,7 @@ public class Feedback extends AppCompatActivity
         activity_name = findViewById(R.id.feedback_name);
         activity_time = findViewById(R.id.feedback_time);
         submit = findViewById(R.id.submit_feedback);
+        done_back = findViewById(R.id.feedback_done_back);
         learnt = findViewById(R.id.feedback_editText);
 
         Intent intent = getIntent();
@@ -116,6 +117,14 @@ public class Feedback extends AppCompatActivity
                 editor.apply();
             }
         });
+
+        done_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
+                startActivity(intent1);
+            }
+        });
     }
 
     public void alertDialog()
@@ -129,6 +138,7 @@ public class Feedback extends AppCompatActivity
         dialog.show();
 
         Button save = dialogView.findViewById(R.id.feedback_save_dialog);
+        Button dialog_back = dialogView.findViewById(R.id.feedback_notDone_back);
         final EditText whyNot = dialogView.findViewById(R.id.feedback_edit_dialog);
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +157,14 @@ public class Feedback extends AppCompatActivity
                 }
                 else
                     Toast.makeText(getApplicationContext(), "you haven't input anything", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
+                startActivity(intent2);
             }
         });
     }
