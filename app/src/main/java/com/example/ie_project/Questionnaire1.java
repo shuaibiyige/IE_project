@@ -61,16 +61,6 @@ public class Questionnaire1 extends Fragment
         final FragmentManager fragmentManager = getFragmentManager();
 
         initView();
-//        final TapTargetSequence sequence = new TapTargetSequence(getActivity())
-//                .targets(
-//                        TapTarget.forView(getActivity().findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
-//                                .tintTarget(false)
-//                                .outerCircleColor(R.color.tutorial_color_1)
-//                                .targetRadius(140)
-//                                .id(1)
-//
-//                );
-//        sequence.start();
 
         TapTargetView.showFor(getActivity(),                 // `this` is an Activity
                 TapTarget.forView(question1.findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
@@ -175,8 +165,7 @@ public class Questionnaire1 extends Fragment
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backIntent = new Intent(getActivity(), MainActivity.class);      // back to main page
-                startActivity(backIntent);
+                getActivity().finish();
             }
         });
 

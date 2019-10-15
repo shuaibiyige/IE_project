@@ -121,8 +121,7 @@ public class Feedback extends AppCompatActivity
         done_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
-                startActivity(intent1);
+                finish();
             }
         });
     }
@@ -163,8 +162,7 @@ public class Feedback extends AppCompatActivity
         dialog_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
-                startActivity(intent2);
+                finish();
             }
         });
     }

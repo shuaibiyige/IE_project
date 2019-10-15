@@ -123,8 +123,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
                     Toast.makeText(getApplicationContext(),"Choose time interval first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.history_back:
-                Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(anotherIntent);
+                finish();
                 break;
             default:
                 break;

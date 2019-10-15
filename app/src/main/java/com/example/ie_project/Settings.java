@@ -104,8 +104,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent3);
                 break;
             case R.id.setting_back:
-                Intent anotherIntent = new Intent(getApplicationContext(), MainActivity.class);      // back to main page
-                startActivity(anotherIntent);
+                finish();
                 break;
             case R.id.setting_about_us:
                 Uri uri = Uri.parse("https://www.letosaid.cf");

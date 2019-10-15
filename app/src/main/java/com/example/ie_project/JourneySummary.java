@@ -145,8 +145,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         switch (v.getId())
         {
             case R.id.journey_summary_back:
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);         // go to questionnaire page
-                startActivity(intent);
+                finish();
                 break;
             case R.id.journey_summary_learn_more:
                 Intent intent2 = new Intent(getApplicationContext(), JourneyLearnMore.class);     // go to journey page
