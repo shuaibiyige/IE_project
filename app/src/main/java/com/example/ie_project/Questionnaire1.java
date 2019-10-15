@@ -25,6 +25,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -57,6 +60,23 @@ public class Questionnaire1 extends Fragment
         final FragmentManager fragmentManager = getFragmentManager();
 
         initView();
+//        final TapTargetSequence sequence = new TapTargetSequence(getActivity())
+//                .targets(
+//                        TapTarget.forView(getActivity().findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
+//                                .tintTarget(false)
+//                                .outerCircleColor(R.color.tutorial_color_1)
+//                                .targetRadius(140)
+//                                .id(1)
+//
+//                );
+//        sequence.start();
+
+//        TapTargetView.showFor(getActivity(),                 // `this` is an Activity
+//                TapTarget.forView(getActivity().findViewById(R.id.questionnaire_you_text), "Swipe right to answer all the questions!")
+//                        .tintTarget(false)
+//                        .outerCircleColor(R.color.tutorial_color_1)
+//                        .targetRadius(140)
+//        );
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {

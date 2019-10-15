@@ -64,7 +64,12 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.tutorial_color_1)
                                     .targetRadius(140)
-                                    .id(2)
+                                    .id(2),
+                            TapTarget.forView(findViewById(R.id.setting_view_tutorial), "Revisit the tutorial", "Click on this button to go through the tutorial again")
+                                    .tintTarget(false)
+                                    .outerCircleColor(R.color.tutorial_color_1)
+                                    .targetRadius(140)
+                                    .id(3)
                     );
             sequence.start();
             SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();

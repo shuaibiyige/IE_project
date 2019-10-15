@@ -27,6 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -97,6 +99,17 @@ public class Questionnaire2 extends Fragment
 //                    }});
 //            }
 //        });
+
+//        final TapTargetSequence sequence = new TapTargetSequence(getActivity())
+//                .targets(
+//                        TapTarget.forView(getActivity().findViewById(R.id.questionnaire_child_text), "Swipe right to answer all the questions!")
+//                                .tintTarget(false)
+//                                .outerCircleColor(R.color.tutorial_color_1)
+//                                .targetRadius(140)
+//                                .id(1)
+//
+//                );
+//        sequence.start();
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
