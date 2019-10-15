@@ -58,8 +58,7 @@ public class JourneyRejection extends AppCompatActivity implements View.OnClickL
         switch (v.getId())
         {
             case R.id.journey_rejection_back:
-                Intent intent = new Intent(getApplicationContext(), JourneyLearnMore.class);         // go to questionnaire page
-                startActivity(intent);
+                finish();
                 break;
 
             default:

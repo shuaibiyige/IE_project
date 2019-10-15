@@ -55,8 +55,7 @@ public class JourneyConflict extends AppCompatActivity implements View.OnClickLi
         switch (v.getId())
         {
             case R.id.journey_conflict_back:
-                Intent intent = new Intent(getApplicationContext(), JourneyLearnMore.class);         // go to questionnaire page
-                startActivity(intent);
+                finish();
                 break;
 
             default:

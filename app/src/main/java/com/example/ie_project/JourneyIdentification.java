@@ -54,8 +54,7 @@ public class JourneyIdentification extends AppCompatActivity implements View.OnC
         switch (v.getId())
         {
             case R.id.journey_identification_back:
-                Intent intent = new Intent(getApplicationContext(), JourneyLearnMore.class);         // go to questionnaire page
-                startActivity(intent);
+                finish();
                 break;
 
             default:

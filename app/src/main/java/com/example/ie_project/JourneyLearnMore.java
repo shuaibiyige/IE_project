@@ -73,8 +73,7 @@ public class JourneyLearnMore extends AppCompatActivity implements View.OnClickL
                 startActivity(intent5);
                 break;
             case R.id.journey_learn_more_back:
-                Intent intent6 = new Intent(getApplicationContext(), JourneySummary.class);      // back to main page
-                startActivity(intent6);
+                finish();
                 break;
             default:
                 break;

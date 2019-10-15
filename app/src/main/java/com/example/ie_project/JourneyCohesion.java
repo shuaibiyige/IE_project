@@ -49,8 +49,7 @@ public class JourneyCohesion extends AppCompatActivity implements View.OnClickLi
         switch (v.getId())
         {
             case R.id.journey_cohesion_back:
-                Intent intent = new Intent(getApplicationContext(), JourneyLearnMore.class);         // go to questionnaire page
-                startActivity(intent);
+                finish();
                 break;
 
             default:
