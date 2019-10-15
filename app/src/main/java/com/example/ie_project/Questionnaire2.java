@@ -29,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -110,6 +111,13 @@ public class Questionnaire2 extends Fragment
 //
 //                );
 //        sequence.start();
+
+        TapTargetView.showFor(getActivity(),                 // `this` is an Activity
+                TapTarget.forView(question2.findViewById(R.id.questionnaire_child_text), "Swipe right to answer all the questions!")
+                        .tintTarget(false)
+                        .outerCircleColor(R.color.tutorial_color_1)
+                        .targetRadius(140)
+        );
 
         radioGroup_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
