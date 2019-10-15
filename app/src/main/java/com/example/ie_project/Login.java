@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity
 {
     private Button signIn;
-    private TextView signUp, hello, signIn_text;
+    private TextView signUp;
     private EditText email;
     private EditText password;
     private RequestQueue requestQueue;
@@ -63,14 +63,14 @@ public class Login extends AppCompatActivity
         signUp = (TextView) findViewById(R.id.sign_up);
         email = (EditText) findViewById(R.id.email_sign_in);
         password = (EditText) findViewById(R.id.password_sign_in);
-        hello = (TextView) findViewById(R.id.hello);
-        signIn_text = (TextView) findViewById(R.id.signin_text);
+        //hello = (TextView) findViewById(R.id.hello);
+        //signIn_text = (TextView) findViewById(R.id.signin_text);
 
         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        int[] list = size();
-        int width = list[0];
-        int height = list[1];
+//        int[] list = size();
+//        int width = list[0];
+//        int height = list[1];
 
 //        hello.setTextSize((height / hello.getTextSize()) * 25);
 //        signIn_text.setTextSize(height / signIn_text.getTextSize() * 2);
@@ -128,23 +128,23 @@ public class Login extends AppCompatActivity
         return flag;
     }
 
-    public int[] size()
-    {
-        int[] list = new int[2];
-        WindowManager wm = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;         // screen width（pixel）
-        int height = dm.heightPixels;       // screen height（pixel）
-        float density = dm.density;         // screen density（0.75 / 1.0 / 1.5）
-        int densityDpi = dm.densityDpi;     // screen density dpi（120 / 160 / 240）
-        // screen width algorithm:screen width（pixel）/screen density
-        int screenWidth = (int) (width / density);    // screen width(dp)
-        int screenHeight = (int) (height / density);  // screen height(dp)
-        list[0] = screenWidth;
-        list[1] = screenHeight;
-        return list;
-    }
+//    public int[] size()
+//    {
+//        int[] list = new int[2];
+//        WindowManager wm = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
+//        DisplayMetrics dm = new DisplayMetrics();
+//        wm.getDefaultDisplay().getMetrics(dm);
+//        int width = dm.widthPixels;         // screen width（pixel）
+//        int height = dm.heightPixels;       // screen height（pixel）
+//        float density = dm.density;         // screen density（0.75 / 1.0 / 1.5）
+//        int densityDpi = dm.densityDpi;     // screen density dpi（120 / 160 / 240）
+//        // screen width algorithm:screen width（pixel）/screen density
+//        int screenWidth = (int) (width / density);    // screen width(dp)
+//        int screenHeight = (int) (height / density);  // screen height(dp)
+//        list[0] = screenWidth;
+//        list[1] = screenHeight;
+//        return list;
+//    }
 
     private class LoginRestAsyncTask extends AsyncTask<List<String>, Void, Void>
     {
