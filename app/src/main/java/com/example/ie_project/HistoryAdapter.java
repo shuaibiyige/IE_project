@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class HistoryAdapter extends BaseAdapter
+public class HistoryAdapter extends BaseAdapter     // customised list view
 {
     private List<HistoryList> mData;
     private LayoutInflater mInflater;

@@ -39,12 +39,10 @@ public class JourneyConflict extends AppCompatActivity implements View.OnClickLi
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-
-
         textView = findViewById(R.id.journey_conflict_text);
         back = findViewById(R.id.journey_conflict_back);
 
-        textView.setText(Html.fromHtml(HTML_TEXT));
+        textView.setText(Html.fromHtml(HTML_TEXT));     // rich text using the format of html
 
         back.setOnClickListener(this);
     }
@@ -57,7 +55,6 @@ public class JourneyConflict extends AppCompatActivity implements View.OnClickLi
             case R.id.journey_conflict_back:
                 finish();
                 break;
-
             default:
                 break;
         }

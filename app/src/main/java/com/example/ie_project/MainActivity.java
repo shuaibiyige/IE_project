@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity
     {
         super.onRestart();
         finish();
-        //overridePendingTransition(android.R.anim.slide_out_right,android.R.anim.slide_in_left);
         startActivity(getIntent());
     }
 }

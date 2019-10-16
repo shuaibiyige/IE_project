@@ -43,7 +43,7 @@ public class JourneyIdentification extends AppCompatActivity implements View.OnC
         textView = findViewById(R.id.journey_identification_text);
         back = findViewById(R.id.journey_identification_back);
 
-        textView.setText(Html.fromHtml(HTML_TEXT));
+        textView.setText(Html.fromHtml(HTML_TEXT));     // rich text using the format of html
 
         back.setOnClickListener(this);
     }
@@ -56,7 +56,6 @@ public class JourneyIdentification extends AppCompatActivity implements View.OnC
             case R.id.journey_identification_back:
                 finish();
                 break;
-
             default:
                 break;
         }

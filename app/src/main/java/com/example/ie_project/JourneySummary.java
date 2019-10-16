@@ -44,7 +44,6 @@ import java.util.Map;
 public class JourneySummary extends AppCompatActivity implements View.OnClickListener
 {
     private RadarChart chart;
-    //private int confirm1, confirm2;
     private Button back,learnMore;
     private RequestQueue requestQueue;
     private ArrayList<RadarEntry> pre = new ArrayList<>();
@@ -68,7 +67,6 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
 
         chart = findViewById(R.id.radarChart);
         init();
-        //chart.setBackgroundColor(Color.rgb(60, 65, 82));
 
         chart.getDescription().setEnabled(false);
 
@@ -81,7 +79,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         chart.animateXY(1400, 1400, Easing.EaseInOutQuad);
 
         XAxis xAxis = chart.getXAxis();
-        xAxis.setTextSize(9f);     // X坐标值字体大小
+        xAxis.setTextSize(9f);     // X axis font
 
         xAxis.setYOffset(0f);
         xAxis.setXOffset(0f);
@@ -98,7 +96,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         //xAxis.setTextColor(Color.WHITE);
 
         YAxis yAxis = chart.getYAxis();
-        yAxis.setLabelCount(9, false);    // Y坐标值标签个数
+        yAxis.setLabelCount(9, false);    // the numbers of Y axis label
         yAxis.setTextSize(9f);
         yAxis.setAxisMinimum(0f);
         yAxis.setAxisMaximum(10f);
@@ -109,8 +107,8 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-        l.setXEntrySpace(7f);    // 图例X间距
-        l.setYEntrySpace(5f);    // 图例Y间距
+        l.setXEntrySpace(7f);    // space of x label
+        l.setYEntrySpace(5f);    // space of y label
         l.setTextSize(10f);
         //l.setTextColor(Color.WHITE);
 
@@ -197,9 +195,6 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
     {
         SharedPreferences sharedPreferences = getApplication().getSharedPreferences("user", Context.MODE_PRIVATE);
         int user_id = sharedPreferences.getInt("user_id", 0);
-
-        //confirm1 = 0;
-        //confirm2 = 0;
 
         readDataFromDbCurrent(user_id);
         readDataFromDbPrevious(user_id);

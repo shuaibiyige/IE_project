@@ -26,13 +26,12 @@ public class Successful extends Fragment
         image = successful.findViewById(R.id.ok_image);
         Animation ani = AnimationUtils.loadAnimation(getActivity(), R.anim.dashboard_image);
 
-
         head.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(getActivity(), JourneyQuestionnaire.class);
+                Intent intent = new Intent(getActivity(), JourneyQuestionnaire.class);   // go to JourneyQuestionnaire page
                 startActivity(intent);
             }
         });

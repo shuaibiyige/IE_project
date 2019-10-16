@@ -40,12 +40,10 @@ public class JourneyAutonomy extends AppCompatActivity implements View.OnClickLi
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-
-
         textView = findViewById(R.id.journey_autonomy_text);
         back = findViewById(R.id.journey_autonomy_back);
 
-        textView.setText(Html.fromHtml(HTML_TEXT));
+        textView.setText(Html.fromHtml(HTML_TEXT));     // rich text using the format of html
 
         back.setOnClickListener(this);
     }
@@ -58,7 +56,6 @@ public class JourneyAutonomy extends AppCompatActivity implements View.OnClickLi
             case R.id.journey_autonomy_back:
                 finish();
                 break;
-
             default:
                 break;
         }

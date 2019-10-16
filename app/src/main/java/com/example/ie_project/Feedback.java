@@ -104,7 +104,7 @@ public class Feedback extends AppCompatActivity
             public void onClick(View v) {
                 stars = (int)ratingBar.getRating();
                 String learntText = learnt.getText().toString();
-                if (learntText.trim().length() != 0)
+                if (learntText.trim().length() != 0)       // cannot be empty
                 {
                     transmitActivity(String.valueOf(completed_ts), learntText.trim(), String.valueOf(stars), "null");
                 }
@@ -122,7 +122,7 @@ public class Feedback extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);      // from left to right
             }
         });
     }
@@ -146,7 +146,7 @@ public class Feedback extends AppCompatActivity
             public void onClick(View v)
             {
                 String feedback = whyNot.getText().toString();
-                if (feedback.trim().length() != 0)
+                if (feedback.trim().length() != 0)       // cannot be empty
                 {
                     transmitActivity(String.valueOf(completed_ts), "null", "null", whyNot.getText().toString().trim());
 

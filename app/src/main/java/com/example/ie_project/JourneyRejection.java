@@ -42,12 +42,10 @@ public class JourneyRejection extends AppCompatActivity implements View.OnClickL
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-
-
         textView = findViewById(R.id.journey_rejection_text);
         back = findViewById(R.id.journey_rejection_back);
 
-        textView.setText(Html.fromHtml(HTML_TEXT));
+        textView.setText(Html.fromHtml(HTML_TEXT));    // rich text using the format of html
 
         back.setOnClickListener(this);
     }
@@ -60,7 +58,6 @@ public class JourneyRejection extends AppCompatActivity implements View.OnClickL
             case R.id.journey_rejection_back:
                 finish();
                 break;
-
             default:
                 break;
         }

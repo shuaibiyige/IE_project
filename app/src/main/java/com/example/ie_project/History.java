@@ -80,7 +80,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
         all_button = findViewById(R.id.history_search);
         back = findViewById(R.id.history_back);
 
-        initData();
+        initData();    // load data from the database
 
         start_button.setOnClickListener(this);
         end_button.setOnClickListener(this);
@@ -173,7 +173,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
             datePickerDialog.show();
         }
-        else if (input == 2 && start_button.getText().toString().equals("Start date"))
+        else if (input == 2 && start_button.getText().toString().equals("Start date"))    // doesn't select start date
         {
             Toast.makeText(getApplicationContext(),"Choose start date first", Toast.LENGTH_SHORT).show();
         }
@@ -208,7 +208,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
         });
     }
 
-    private void pieChart(int done, int notDone)
+    private void pieChart(int done, int notDone)      // draw a pie chart
     {
         if (done == 0 && notDone == 0)
         {

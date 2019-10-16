@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity
         //hello = (TextView) findViewById(R.id.hello);
         //signIn_text = (TextView) findViewById(R.id.signin_text);
 
-        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        password.setTransformationMethod(PasswordTransformationMethod.getInstance());    // hide number
 
 //        int[] list = size();
 //        int width = list[0];

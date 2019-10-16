@@ -5,7 +5,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.HorizontalScrollView;
 
-public class SlowScrollView extends HorizontalScrollView
+public class SlowScrollView extends HorizontalScrollView    // customised HorizontalScrollView to adjust the scrolling speed
 {
     public SlowScrollView(Context context, AttributeSet attrs, int defStyle)
     {

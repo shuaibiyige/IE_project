@@ -316,8 +316,6 @@ public class JourneyQuestionnaire1 extends Fragment
             }
         });
 
-
-
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         user_id = sharedPreferences.getInt("user_id", 0);
 

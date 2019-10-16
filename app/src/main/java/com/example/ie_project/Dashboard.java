@@ -90,13 +90,11 @@ public class Dashboard extends Fragment
         completedSwipeSelector = (SwipeSelector) dashboard.findViewById(R.id.completedSelector);
         goToFeedback = dashboard.findViewById(R.id.dashboard_feedback);
 
-        getBothActivity();
+        getBothActivity();       // load data from database
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", MODE_PRIVATE);
         isNew = sharedPreferences.getBoolean("isNew", false);        // if the user is new
         newFeedback = sharedPreferences.getBoolean("newFeedback", false);        // if the user is new
-
-
 
         if(isNew == true)
         {
@@ -218,7 +216,7 @@ public class Dashboard extends Fragment
 
     public void swipeSelector(SwipeSelector swipeSelector, List<Activity> activities)
     {
-        if (activities.size() == 0)
+        if (activities.size() == 0)        // no activity found
         {
             swipeSelector.setItems(new SwipeItem(0, "no activity found", ""));
         }
@@ -246,7 +244,7 @@ public class Dashboard extends Fragment
                 try
                 {
                     JSONObject jsonObject = new JSONObject(s);
-                    int retCode = jsonObject.getInt("success");
+                    //int retCode = jsonObject.getInt("success");
 
                     upcoming.clear();
                     completed.clear();
