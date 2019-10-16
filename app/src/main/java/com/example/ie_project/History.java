@@ -124,6 +124,7 @@ public class History extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.history_back:
                 finish();
+                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                 break;
             default:
                 break;
@@ -374,5 +375,12 @@ public class History extends AppCompatActivity implements View.OnClickListener
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 }

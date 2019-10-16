@@ -324,8 +324,7 @@ public class JourneyQuestionnaire1 extends Fragment
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backIntent = new Intent(getActivity(), MainActivity.class);      // back to main page
-                startActivity(backIntent);
+                getActivity().finish();
             }
         });
 

@@ -23,4 +23,13 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_main, new Dashboard()).commit();
     }
+
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        finish();
+        //overridePendingTransition(android.R.anim.slide_out_right,android.R.anim.slide_in_left);
+        startActivity(getIntent());
+    }
 }

@@ -146,6 +146,7 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
         {
             case R.id.journey_summary_back:
                 finish();
+                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                 break;
             case R.id.journey_summary_learn_more:
                 Intent intent2 = new Intent(getApplicationContext(), JourneyLearnMore.class);     // go to journey page
@@ -326,5 +327,12 @@ public class JourneySummary extends AppCompatActivity implements View.OnClickLis
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 }

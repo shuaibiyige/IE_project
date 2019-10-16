@@ -105,6 +105,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.setting_back:
                 finish();
+                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                 break;
             case R.id.setting_about_us:
                 Uri uri = Uri.parse("https://www.letosaid.cf");
@@ -113,5 +114,12 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 }

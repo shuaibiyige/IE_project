@@ -98,7 +98,8 @@ public class Dashboard extends Fragment
 
 
 
-        if(isNew == true){
+        if(isNew == true)
+        {
             final TapTargetSequence sequence = new TapTargetSequence(getActivity())
                     .targets(
                             TapTarget.forView(dashboard.findViewById(R.id.dashboard_setting), "Customise the App", "Answer the Questionnaire, take the Journey Survey to get started")
@@ -207,10 +208,8 @@ public class Dashboard extends Fragment
             }
         });
 
-//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         String user_name = sharedPreferences.getString("user_name", "");
         user_id = sharedPreferences.getInt("user_id", 0);
-       // isNew = sharedPreferences.getBoolean("isNew", false);        // if the user is new
 
         welcome.setText("Hey, " + user_name);
 

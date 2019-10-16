@@ -122,6 +122,7 @@ public class Feedback extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
             }
         });
     }
@@ -163,6 +164,7 @@ public class Feedback extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
             }
         });
     }
@@ -221,5 +223,12 @@ public class Feedback extends AppCompatActivity
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 }

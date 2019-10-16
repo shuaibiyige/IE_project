@@ -142,7 +142,7 @@
             android:src="@drawable/dashboard_review"
             android:scaleX="0.7"
             android:scaleY="0.7"
-            android:translationY="-5dp"
+            android:translationY="-2dp"
             android:layout_weight="1" />
 
         <ImageView

@@ -151,8 +151,8 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Schedule.this, MainActivity.class);
-                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
             }
         });
 
@@ -335,8 +335,7 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
     public void onBackPressed()
     {
         super.onBackPressed();
-        Intent intent = new Intent(Schedule.this, MainActivity.class);
-        startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 
     public void spinner2(ArrayAdapter<String> adapter, final Spinner spinner)
@@ -561,7 +560,11 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                         fc1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                fc1.toggle(false);
+                                //fc1.toggle(false);
+                                if (android.os.Build.MODEL.equals("LIO-AL00"))
+                                    fc1.toggle(true);
+                                else
+                                    fc1.toggle(false);
                             }
                         });
 
@@ -572,7 +575,11 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                         fc2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                fc2.toggle(false);
+                                //fc2.toggle(false);
+                                if (android.os.Build.MODEL.equals("LIO-AL00"))
+                                    fc2.toggle(true);
+                                else
+                                    fc2.toggle(false);
                             }
                         });
                     }
