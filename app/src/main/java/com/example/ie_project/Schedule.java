@@ -543,12 +543,12 @@ public class Schedule extends AppCompatActivity implements OnDateSelectedListene
                         if (activity_address1.equals(""))
                             activity_address1_view.setText("At home" + " (" + activity1_duration + " hour)");
                         else
-                            activity_address1_view.setText(activity_address1);
+                            activity_address1_view.setText(activity_address1 + " (" + activity1_duration + " hour)");
 
                         if (activity_address2.equals(""))
                             activity_address2_view.setText("At home" + " (" + activity2_duration + " hour)");
                         else
-                            activity_address2_view.setText(activity_address2);
+                            activity_address2_view.setText(activity_address2 + " (" + activity2_duration + " hour)");
 
                         innerSpinner(innerSpinner1, Integer.valueOf(startTime.split(":")[0]), duration);
                         innerSpinner(innerSpinner2, Integer.valueOf(startTime.split(":")[0]), duration);
