@@ -83,7 +83,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:paddingLeft="20dp"
-        android:text="abc@gmail.com"/>
+        android:text="expoacc@gmail.com"/>
 
     <EditText
         android:id="@+id/password_sign_in"
@@ -102,7 +102,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:paddingLeft="20dp"
-        android:text="abc123"/>
+        android:text="test"/>
 
     <Button
         android:id="@+id/sign_in"
